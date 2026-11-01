@@ -1,0 +1,1468 @@
+{
+  "id": "iphone-12",
+  "name": "iPhone 12",
+  "brand": "Apple",
+  "category": "phone",
+  "released": 2020,
+  "summary": "Apple's 2020 5G smartphone featuring a flat-edge design, Super Retina XDR OLED display, A14 Bionic chip, MagSafe charging, and a front screen that opens like a book.",
+  "dimensionsMm": [
+    71.5,
+    146.7,
+    7.4
+  ],
+  "specs": {
+    "Display": "6.1\" Super Retina XDR OLED, 2532 x 1170 px",
+    "Processor": "Apple A14 Bionic (5nm)",
+    "Battery": "2,815 mAh",
+    "Rear cameras": "12 MP Wide (f/1.6, OIS) + 12 MP Ultra Wide (f/2.4)",
+    "Front camera": "12 MP TrueDepth with 3D IR Face ID",
+    "Weight": "164 g",
+    "Water resistance": "IP68 (6 meters up to 30 mins)"
+  },
+  "verification": {
+    "status": "draft",
+    "sources": [
+      {
+        "title": "iFixit: iPhone 12 Screen Replacement",
+        "url": "https://www.ifixit.com/Guide/iPhone+12+Screen+Replacement/136421"
+      },
+      {
+        "title": "iFixit: iPhone 12 Battery Replacement",
+        "url": "https://www.ifixit.com/Guide/iPhone+12+Battery+Replacement/136428"
+      },
+      {
+        "title": "iFixit: iPhone 12 Rear Camera Replacement",
+        "url": "https://www.ifixit.com/Guide/iPhone+12+Rear+Camera+Replacement/136430"
+      },
+      {
+        "title": "iFixit: iPhone 12 Earpiece Speaker and Front Sensor Assembly Replacement",
+        "url": "https://www.ifixit.com/Guide/iPhone+12+Earpiece+Speaker+and+Front+Sensor+Assembly+Replacement/136427"
+      },
+      {
+        "title": "iFixit: iPhone 12 Taptic Engine Replacement",
+        "url": "https://www.ifixit.com/Guide/iPhone+12+Taptic+Engine+Replacement/136432"
+      },
+      {
+        "title": "iFixit: iPhone 12 Loudspeaker Replacement",
+        "url": "https://www.ifixit.com/Guide/iPhone+12+Loudspeaker+Replacement/136431"
+      },
+      {
+        "title": "iFixit: iPhone 12 Lightning Connector Assembly Replacement",
+        "url": "https://www.ifixit.com/Guide/iPhone+12+Lightning+Connector+Assembly+Replacement/136433"
+      },
+      {
+        "title": "iFixit: iPhone 12 Logic Board Replacement",
+        "url": "https://www.ifixit.com/Guide/iPhone+12+Logic+Board+Replacement/136434"
+      }
+    ],
+    "notes": "Removal order, fastening, and connector layout derived from iFixit teardown guides. 3D geometry modeled with detailed multi-primitive components, realistic metallic/roughness materials, and hardware features."
+  },
+  "components": [
+    {
+      "id": "screen",
+      "name": "Super Retina XDR Display",
+      "kind": "display",
+      "system": "display",
+      "difficulty": "medium",
+      "requires": [],
+      "connectsTo": [
+        "motherboard"
+      ],
+      "fastening": "Two Pentalobe P2 screws on the bottom edge, perimeter waterproof display adhesive, and retaining clips. Heat edge, slice adhesive, and open like a book to the left.",
+      "fasteners": [
+        {
+          "type": "screw",
+          "count": 2,
+          "tool": "pentalobe-p2",
+          "notes": "6.7 mm Pentalobe screws at Lightning port"
+        },
+        {
+          "type": "adhesive",
+          "tool": "heat-gun",
+          "notes": "Perimeter display seal"
+        },
+        {
+          "type": "adhesive",
+          "tool": "suction-pick",
+          "notes": "Suction handle and opening pick"
+        }
+      ],
+      "layer": 7,
+      "exit": [
+        0,
+        0,
+        1
+      ],
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            71.5,
+            146.7,
+            0.5
+          ],
+          "pos": [
+            0,
+            0,
+            3.8
+          ],
+          "color": "#ffffff",
+          "textureUrl": "textures/screen_front.jpg",
+          "roughness": 0.1,
+          "metalness": 0.1,
+          "screen": true
+        },
+        {
+          "type": "box",
+          "size": [
+            70,
+            144,
+            0.4
+          ],
+          "pos": [
+            0,
+            0,
+            3.35
+          ],
+          "color": "#c4c8cc",
+          "metalness": 0.85,
+          "roughness": 0.25
+        }
+      ],
+      "info": {
+        "what": "The 6.1-inch Super Retina XDR OLED screen assembly with Ceramic Shield cover glass.",
+        "does": "Displays all visual UI, registers multi-touch gestures, and houses the top ear speaker cutouts.",
+        "ifFails": "Black screen, flicker, green vertical lines, dead touch areas, or shattered glass."
+      },
+      "specs": {
+        "Panel": "6.1\" OLED Super Retina XDR",
+        "Resolution": "2532 x 1170 px (460 ppi)",
+        "Glass": "Ceramic Shield"
+      },
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "No display screen: the device cannot show video output or accept touch input."
+      },
+      "verified": true
+    },
+    {
+      "id": "sim-tray",
+      "name": "SIM tray",
+      "kind": "sim-tray",
+      "system": "connectivity",
+      "difficulty": "easy",
+      "requires": [],
+      "connectsTo": [],
+      "fastening": "Push-eject with a SIM tool through the pinhole on the left edge.",
+      "fasteners": [
+        {
+          "type": "clip",
+          "count": 1,
+          "tool": "sim-tool",
+          "notes": "Push-eject latch"
+        }
+      ],
+      "layer": 3,
+      "exit": [
+        -1,
+        0,
+        0
+      ],
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            14,
+            9,
+            0.8
+          ],
+          "pos": [
+            -34,
+            -18,
+            0
+          ],
+          "color": "#7a8288",
+          "metalness": 0.9,
+          "roughness": 0.2
+        },
+        {
+          "type": "cylinder",
+          "size": [
+            0.4,
+            2,
+            0
+          ],
+          "pos": [
+            -35,
+            -14,
+            0
+          ],
+          "color": "#111317"
+        }
+      ],
+      "info": {
+        "what": "The nano-SIM card tray located on the left aluminum edge.",
+        "does": "Holds the physical nano-SIM card for mobile network access.",
+        "ifFails": "No cellular network service unless an eSIM profile is configured."
+      },
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "No SIM tray: physical nano-SIM card cannot be loaded."
+      },
+      "verified": true
+    },
+    {
+      "id": "display-bracket",
+      "name": "Display & battery connector bracket",
+      "kind": "motherboard-cover",
+      "system": "structure",
+      "difficulty": "easy",
+      "requires": [
+        "screen"
+      ],
+      "connectsTo": [
+        "motherboard"
+      ],
+      "fastening": "Two Y000 tri-point screws securing a metal cover plate over the battery and screen flex press connectors.",
+      "fasteners": [
+        {
+          "type": "screw",
+          "count": 2,
+          "tool": "tri-point-y000",
+          "notes": "1.1 mm Y000 tri-point screws"
+        }
+      ],
+      "layer": 6,
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            18,
+            28,
+            0.5
+          ],
+          "pos": [
+            14,
+            12,
+            2.8
+          ],
+          "color": "#c5ccd4",
+          "metalness": 0.92,
+          "roughness": 0.2
+        },
+        {
+          "type": "cylinder",
+          "size": [
+            1.2,
+            0.6,
+            0
+          ],
+          "pos": [
+            14,
+            24,
+            3.1
+          ],
+          "color": "#e8ecef",
+          "metalness": 0.95
+        },
+        {
+          "type": "cylinder",
+          "size": [
+            1.2,
+            0.6,
+            0
+          ],
+          "pos": [
+            14,
+            2,
+            3.1
+          ],
+          "color": "#e8ecef",
+          "metalness": 0.95
+        },
+        {
+          "type": "box",
+          "size": [
+            14,
+            8,
+            0.3
+          ],
+          "pos": [
+            14,
+            18,
+            3.1
+          ],
+          "color": "#1c1e22",
+          "roughness": 0.9
+        }
+      ],
+      "info": {
+        "what": "Metal shield plate screwed over the logic board press connectors.",
+        "does": "Secures the battery and display flex cable connectors to prevent them popping off after drops.",
+        "ifFails": "Connectors can dislodge during impacts, causing sudden loss of power or display signal."
+      },
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "Connector bracket missing: battery and screen ribbon connectors are unprotected."
+      },
+      "verified": true
+    },
+    {
+      "id": "earpiece-assembly",
+      "name": "Earpiece speaker & sensor assembly",
+      "kind": "motherboard-cover",
+      "system": "audio",
+      "difficulty": "medium",
+      "requires": [
+        "screen"
+      ],
+      "connectsTo": [
+        "motherboard"
+      ],
+      "electrical": true,
+      "fastening": "Four Phillips screws on the back top of the display panel. Sits in a plastic recess.",
+      "fasteners": [
+        {
+          "type": "screw",
+          "count": 4,
+          "tool": "phillips-00",
+          "notes": "1.4 mm Phillips screws"
+        },
+        {
+          "type": "press-connector",
+          "count": 1,
+          "tool": "spudger"
+        }
+      ],
+      "layer": 6,
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            36,
+            18,
+            1.5
+          ],
+          "pos": [
+            0,
+            58,
+            2.5
+          ],
+          "color": "#ffffff",
+          "textureUrl": "textures/earpiece.jpg",
+          "metalness": 0.5,
+          "roughness": 0.35
+        }
+      ],
+      "info": {
+        "what": "Top flex assembly containing the earpiece speaker, microphone, proximity sensor, and flood illuminator.",
+        "does": "Delivers call audio, ambient light auto-brightness, proximity detection during calls, and IR illumination for Face ID.",
+        "ifFails": "No earpiece call audio, disabled auto-brightness, screen staying on during phone calls, and Face ID failure."
+      },
+      "specs": {
+        "Functions": "Earpiece audio, Proximity sensor, Ambient light sensor, Flood illuminator"
+      },
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "Earpiece & sensor assembly missing: call audio disabled, auto-brightness off, and Face ID unavailable."
+      },
+      "verified": true
+    },
+    {
+      "id": "battery",
+      "name": "Battery",
+      "kind": "battery",
+      "system": "power",
+      "difficulty": "medium",
+      "requires": [
+        "display-bracket"
+      ],
+      "connectsTo": [
+        "motherboard"
+      ],
+      "electrical": true,
+      "powerSource": true,
+      "connectorAccess": [
+        "display-bracket"
+      ],
+      "fastening": "Four stretch-release adhesive pull tabs (two top, two bottom) beneath the lithium-ion cell. One press connector to the logic board.",
+      "fasteners": [
+        {
+          "type": "adhesive",
+          "count": 4,
+          "tool": "spudger",
+          "notes": "Stretch-release pull tabs"
+        },
+        {
+          "type": "press-connector",
+          "count": 1,
+          "tool": "spudger"
+        }
+      ],
+      "layer": 5,
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            38,
+            76,
+            3.8
+          ],
+          "pos": [
+            -12,
+            -10,
+            0.9
+          ],
+          "color": "#ffffff",
+          "roughness": 0.7,
+          "textureUrl": "textures/battery.jpg"
+        },
+        {
+          "type": "box",
+          "size": [
+            37.6,
+            75.6,
+            3.85
+          ],
+          "pos": [
+            -12,
+            -10,
+            0.92
+          ],
+          "color": "#14161b",
+          "roughness": 0.8
+        },
+        {
+          "type": "box",
+          "size": [
+            12,
+            6,
+            0.1
+          ],
+          "pos": [
+            -12,
+            26,
+            2.85
+          ],
+          "color": "#e6e9ed",
+          "metalness": 0.7
+        },
+        {
+          "type": "box",
+          "size": [
+            12,
+            6,
+            0.1
+          ],
+          "pos": [
+            -12,
+            -46,
+            2.85
+          ],
+          "color": "#e6e9ed",
+          "metalness": 0.7
+        },
+        {
+          "type": "box",
+          "size": [
+            38,
+            4,
+            1
+          ],
+          "pos": [
+            -12,
+            27,
+            1.2
+          ],
+          "color": "#0d0f12"
+        },
+        {
+          "type": "box",
+          "size": [
+            24,
+            40,
+            0.05
+          ],
+          "pos": [
+            -12,
+            -10,
+            2.88
+          ],
+          "color": "#4a5260",
+          "opacity": 0.7
+        }
+      ],
+      "info": {
+        "what": "The 2,815 mAh rechargeable lithium-ion battery cell.",
+        "does": "Powers the iPhone logic board and all internal components.",
+        "ifFails": "Short runtime, sudden shutdowns at low charge percentage, swelling pushing against screen, or thermal issues."
+      },
+      "specs": {
+        "Capacity": "2,815 mAh (10.78 Wh)",
+        "Voltage": "3.83 V",
+        "Type": "Lithium-ion"
+      },
+      "onMissing": {
+        "outcome": "no-power",
+        "symptom": "No battery installed: the iPhone has no power source and cannot turn on."
+      },
+      "onDamaged": {
+        "outcome": "thermal-shutdown",
+        "tempC": 18,
+        "symptom": "Damaged battery cell: voltage sags under load, cell runs hot and forces thermal shutdown."
+      },
+      "onIncompatible": {
+        "outcome": "degraded",
+        "tempC": 12,
+        "symptom": "Non-genuine battery: iOS displays 'Important Battery Message' and health metrics are disabled."
+      },
+      "verified": true
+    },
+    {
+      "id": "camera-rear",
+      "name": "Dual 12 MP rear camera module",
+      "kind": "camera-main",
+      "system": "imaging",
+      "difficulty": "easy",
+      "requires": [
+        "display-bracket"
+      ],
+      "connectsTo": [
+        "motherboard"
+      ],
+      "electrical": true,
+      "fastening": "Metal bracket secured by two standoff screws. Two press connectors to the logic board.",
+      "fasteners": [
+        {
+          "type": "screw",
+          "count": 2,
+          "tool": "phillips-00",
+          "notes": "Metal retainer bracket screws"
+        },
+        {
+          "type": "press-connector",
+          "count": 2,
+          "tool": "spudger"
+        }
+      ],
+      "layer": 5,
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            26,
+            26,
+            2
+          ],
+          "pos": [
+            18,
+            48,
+            1.2
+          ],
+          "color": "#ffffff",
+          "roughness": 0.1,
+          "metalness": 0.3,
+          "textureUrl": "textures/cameras.jpg"
+        },
+        {
+          "type": "cylinder",
+          "size": [
+            7,
+            1.6,
+            0
+          ],
+          "pos": [
+            18,
+            54,
+            2.4
+          ],
+          "color": "#b8c0c8",
+          "metalness": 0.95,
+          "roughness": 0.15
+        },
+        {
+          "type": "cylinder",
+          "size": [
+            7,
+            1.6,
+            0
+          ],
+          "pos": [
+            18,
+            42,
+            2.4
+          ],
+          "color": "#b8c0c8",
+          "metalness": 0.95,
+          "roughness": 0.15
+        },
+        {
+          "type": "cylinder",
+          "size": [
+            5.2,
+            1.7,
+            0
+          ],
+          "pos": [
+            18,
+            54,
+            2.5
+          ],
+          "color": "#050c14",
+          "metalness": 0.8,
+          "roughness": 0.1
+        },
+        {
+          "type": "cylinder",
+          "size": [
+            5.2,
+            1.7,
+            0
+          ],
+          "pos": [
+            18,
+            42,
+            2.5
+          ],
+          "color": "#050c14",
+          "metalness": 0.8,
+          "roughness": 0.1
+        },
+        {
+          "type": "cylinder",
+          "size": [
+            3.5,
+            1,
+            0
+          ],
+          "pos": [
+            26,
+            48,
+            1.3
+          ],
+          "color": "#fff4d4",
+          "metalness": 0.2,
+          "roughness": 0.1
+        },
+        {
+          "type": "cylinder",
+          "size": [
+            1.2,
+            0.8,
+            0
+          ],
+          "pos": [
+            11,
+            48,
+            1.3
+          ],
+          "color": "#0d0e12"
+        }
+      ],
+      "info": {
+        "what": "Dual-camera module housing the 12 MP Wide (f/1.6 OIS) and 12 MP Ultra Wide (f/2.4) lenses.",
+        "does": "Captures photos, 4K Dolby Vision HDR video, Night mode images, and Portrait mode depth maps.",
+        "ifFails": "Camera app shows black screen on 1x/0.5x modes, vibrating image due to broken OIS, or autofocus failure."
+      },
+      "specs": {
+        "Wide": "12 MP, f/1.6, OIS, 26mm",
+        "Ultra Wide": "12 MP, f/2.4, 120 deg, 13mm"
+      },
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "Rear camera module missing: camera app displays a black screen for rear camera modes."
+      },
+      "onDamaged": {
+        "outcome": "degraded",
+        "symptom": "Rear camera damaged: vibrating image, focus failure, or black preview."
+      },
+      "onIncompatible": {
+        "outcome": "degraded",
+        "symptom": "Unrecognized camera module: iOS displays 'Important Camera Message'."
+      },
+      "verified": true
+    },
+    {
+      "id": "front-camera-faceid",
+      "name": "TrueDepth camera & Face ID dot projector",
+      "kind": "camera-front",
+      "system": "imaging",
+      "difficulty": "medium",
+      "requires": [
+        "display-bracket"
+      ],
+      "connectsTo": [
+        "motherboard"
+      ],
+      "electrical": true,
+      "fastening": "Nestled in a frame recess at the top of the logic board. Two press connectors.",
+      "fasteners": [
+        {
+          "type": "press-connector",
+          "count": 2,
+          "tool": "spudger"
+        }
+      ],
+      "layer": 5,
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            22,
+            12,
+            2.8
+          ],
+          "pos": [
+            0,
+            55,
+            1.2
+          ],
+          "color": "#ffffff",
+          "textureUrl": "textures/truedepth.jpg",
+          "metalness": 0.65,
+          "roughness": 0.25
+        }
+      ],
+      "info": {
+        "what": "12 MP front TrueDepth camera and infrared dot projector assembly.",
+        "does": "Captures 12 MP selfies and 4K video while projecting 30,000 IR dots for 3D Face ID biometrics.",
+        "ifFails": "Selfies fail and Face ID configuration fails with 'Face ID Is Not Available'."
+      },
+      "specs": {
+        "Resolution": "12 MP",
+        "Aperture": "f/2.2",
+        "Biometrics": "TrueDepth 3D IR scanner"
+      },
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "TrueDepth camera missing: selfie video and Face ID authentication disabled."
+      },
+      "verified": true
+    },
+    {
+      "id": "loudspeaker",
+      "name": "Bottom loudspeaker",
+      "kind": "coil-speaker",
+      "system": "audio",
+      "difficulty": "easy",
+      "requires": [
+        "display-bracket"
+      ],
+      "connectsTo": [
+        "lightning-board"
+      ],
+      "electrical": true,
+      "fastening": "Four Phillips screws securing the plastic loudspeaker enclosure at the bottom right. Sprung contacts.",
+      "fasteners": [
+        {
+          "type": "screw",
+          "count": 4,
+          "tool": "phillips-00"
+        }
+      ],
+      "layer": 5,
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            30,
+            22,
+            5
+          ],
+          "pos": [
+            14,
+            -58,
+            0.4
+          ],
+          "color": "#ffffff",
+          "textureUrl": "textures/loudspeaker.jpg",
+          "roughness": 0.4,
+          "metalness": 0.3
+        }
+      ],
+      "info": {
+        "what": "Bottom loudspeaker box providing main acoustic output.",
+        "does": "Plays ringtones, media audio, and speakerphone calls.",
+        "ifFails": "Muted, distorted, or quiet audio from the bottom speaker ports."
+      },
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "Loudspeaker missing: media playback and speakerphone produce no sound from the bottom."
+      },
+      "verified": true
+    },
+    {
+      "id": "taptic-engine",
+      "name": "Taptic Engine",
+      "kind": "interconnect",
+      "system": "input",
+      "difficulty": "easy",
+      "requires": [
+        "loudspeaker"
+      ],
+      "connectsTo": [
+        "lightning-board"
+      ],
+      "electrical": true,
+      "fastening": "Three Phillips screws securing the motor at the bottom left next to the battery. Sprung contact pads.",
+      "fasteners": [
+        {
+          "type": "screw",
+          "count": 3,
+          "tool": "phillips-00"
+        }
+      ],
+      "layer": 5,
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            22,
+            12,
+            4
+          ],
+          "pos": [
+            -18,
+            -58,
+            0.4
+          ],
+          "color": "#ffffff",
+          "metalness": 0.9,
+          "roughness": 0.2,
+          "textureUrl": "textures/taptic_engine.jpg"
+        },
+        {
+          "type": "box",
+          "size": [
+            18,
+            1.2,
+            0.4
+          ],
+          "pos": [
+            -18,
+            -56,
+            2.4
+          ],
+          "color": "#d5dcfe",
+          "metalness": 0.95
+        },
+        {
+          "type": "box",
+          "size": [
+            18,
+            1.2,
+            0.4
+          ],
+          "pos": [
+            -18,
+            -60,
+            2.4
+          ],
+          "color": "#d5dcfe",
+          "metalness": 0.95
+        },
+        {
+          "type": "box",
+          "size": [
+            4,
+            4,
+            0.2
+          ],
+          "pos": [
+            -18,
+            -52,
+            2.1
+          ],
+          "color": "#d9a729",
+          "metalness": 0.7
+        }
+      ],
+      "info": {
+        "what": "Apple linear resonant haptic actuator.",
+        "does": "Generates precise haptic feedback for system gestures, keyboard typing, and call vibrations.",
+        "ifFails": "No system haptics or vibration alerts."
+      },
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "Taptic Engine missing: tactile feedback and call vibrations are disabled."
+      },
+      "verified": true
+    },
+    {
+      "id": "lightning-board",
+      "name": "Lightning connector assembly",
+      "kind": "charging-board",
+      "system": "charging",
+      "difficulty": "hard",
+      "requires": [
+        "battery",
+        "loudspeaker",
+        "taptic-engine",
+        "sim-tray"
+      ],
+      "connectsTo": [
+        "motherboard"
+      ],
+      "electrical": true,
+      "fastening": "Adhered flex cable anchored by multiple small screws securing the Lightning port, lower microphones, and cellular antenna leads.",
+      "fasteners": [
+        {
+          "type": "screw",
+          "count": 5,
+          "tool": "phillips-00"
+        },
+        {
+          "type": "press-connector",
+          "count": 1,
+          "tool": "spudger"
+        }
+      ],
+      "layer": 3,
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            58,
+            24,
+            1.5
+          ],
+          "pos": [
+            0,
+            -62,
+            -1
+          ],
+          "color": "#ffffff",
+          "textureUrl": "textures/lightning.jpg",
+          "roughness": 0.3,
+          "metalness": 0.6
+        }
+      ],
+      "info": {
+        "what": "Lower flex cable carrying the Lightning port, dual microphones, and cellular antenna contacts.",
+        "does": "Accepts Lightning charging cables, transfers USB data, and captures lower voice microphone audio.",
+        "ifFails": "No wired charging, mic silent on phone calls, and no USB communication."
+      },
+      "specs": {
+        "Port": "8-pin Lightning",
+        "Charging": "20 W USB-PD",
+        "Data": "USB 2.0 (480 Mbps)"
+      },
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "Lightning connector assembly missing: wired charging, voice microphone, and USB data disabled."
+      },
+      "verified": true
+    },
+    {
+      "id": "magsafe-coil",
+      "name": "MagSafe wireless charging coil & NFC",
+      "kind": "thermal-interface",
+      "system": "charging",
+      "difficulty": "hard",
+      "requires": [
+        "battery",
+        "motherboard"
+      ],
+      "connectsTo": [
+        "motherboard"
+      ],
+      "electrical": true,
+      "fastening": "Circular magnet array and copper wireless coil adhered to the inner back glass.",
+      "fasteners": [
+        {
+          "type": "adhesive",
+          "tool": "heat-gun"
+        }
+      ],
+      "layer": 2,
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            52,
+            52,
+            0.4
+          ],
+          "pos": [
+            0,
+            -10,
+            -2.4
+          ],
+          "color": "#ffffff",
+          "textureUrl": "textures/magsafe_coil.jpg",
+          "roughness": 0.35,
+          "metalness": 0.5
+        }
+      ],
+      "info": {
+        "what": "MagSafe circular magnet ring, wireless charging coil, and NFC antenna pad.",
+        "does": "Aligns MagSafe chargers, receives up to 15 W wireless power, and handles Apple Pay NFC.",
+        "ifFails": "No MagSafe or Qi wireless charging, and Apple Pay tap-to-pay failure."
+      },
+      "specs": {
+        "MagSafe": "15 W wireless",
+        "Qi": "7.5 W wireless",
+        "NFC": "Apple Pay"
+      },
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "MagSafe coil missing: wireless charging and Apple Pay NFC fail."
+      },
+      "verified": true
+    },
+    {
+      "id": "motherboard",
+      "name": "A14 Bionic logic board",
+      "kind": "motherboard",
+      "system": "compute",
+      "difficulty": "hard",
+      "requires": [
+        "display-bracket",
+        "battery",
+        "camera-rear",
+        "front-camera-faceid",
+        "earpiece-assembly",
+        "sim-tray"
+      ],
+      "connectsTo": [
+        "battery",
+        "screen",
+        "earpiece-assembly",
+        "camera-rear",
+        "front-camera-faceid",
+        "lightning-board",
+        "magsafe-coil"
+      ],
+      "electrical": true,
+      "fastening": "Stacked double-decker PCB secured with standoff screws to the right chassis sidewall.",
+      "fasteners": [
+        {
+          "type": "screw",
+          "count": 3,
+          "tool": "phillips-00",
+          "notes": "Logic board standoff screws"
+        }
+      ],
+      "layer": 3,
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            18,
+            92,
+            2.2
+          ],
+          "pos": [
+            18,
+            12,
+            -0.6
+          ],
+          "color": "#ffffff",
+          "roughness": 0.6,
+          "textureUrl": "textures/logic_board.jpg"
+        },
+        {
+          "type": "box",
+          "size": [
+            14,
+            24,
+            0.8
+          ],
+          "pos": [
+            18,
+            20,
+            0.9
+          ],
+          "color": "#b5bcc4",
+          "metalness": 0.9,
+          "roughness": 0.2
+        },
+        {
+          "type": "box",
+          "size": [
+            14,
+            22,
+            0.9
+          ],
+          "pos": [
+            18,
+            -4,
+            0.9
+          ],
+          "color": "#a4acb5",
+          "metalness": 0.9,
+          "roughness": 0.2
+        },
+        {
+          "type": "box",
+          "size": [
+            11,
+            11,
+            0.4
+          ],
+          "pos": [
+            18,
+            -4,
+            1.45
+          ],
+          "color": "#1c1f26",
+          "roughness": 0.4
+        },
+        {
+          "type": "box",
+          "size": [
+            9,
+            9,
+            0.1
+          ],
+          "pos": [
+            18,
+            -4,
+            1.7
+          ],
+          "color": "#383d47",
+          "metalness": 0.5
+        },
+        {
+          "type": "box",
+          "size": [
+            2,
+            14,
+            0.4
+          ],
+          "pos": [
+            10,
+            24,
+            0.7
+          ],
+          "color": "#c99b24",
+          "metalness": 0.85
+        },
+        {
+          "type": "box",
+          "size": [
+            2,
+            12,
+            0.4
+          ],
+          "pos": [
+            10,
+            4,
+            0.7
+          ],
+          "color": "#c99b24",
+          "metalness": 0.85
+        },
+        {
+          "type": "box",
+          "size": [
+            2,
+            16,
+            0.4
+          ],
+          "pos": [
+            10,
+            -18,
+            0.7
+          ],
+          "color": "#c99b24",
+          "metalness": 0.85
+        }
+      ],
+      "info": {
+        "what": "Main logic board housing the Apple A14 Bionic chip, 4 GB LPDDR4X RAM, NVMe storage, and Qualcomm X55 5G modem.",
+        "does": "Executes iOS software, manages system memory, power regulation, and wireless communications.",
+        "ifFails": "Device completely unpowered (dead), stuck at Apple logo bootloop, or kernel panics."
+      },
+      "specs": {
+        "SoC": "Apple A14 Bionic (5nm)",
+        "RAM": "4 GB LPDDR4X",
+        "Modem": "Qualcomm Snapdragon X55 5G"
+      },
+      "onMissing": {
+        "outcome": "no-power",
+        "symptom": "No logic board: the device has no CPU or system memory and cannot power on."
+      },
+      "onDamaged": {
+        "outcome": "short-circuit",
+        "tempC": 30,
+        "symptom": "Short circuit on logic board power rail: rapid heating and instant shutdown."
+      },
+      "verified": true
+    },
+    {
+      "id": "rear-chassis",
+      "name": "Aluminum frame & rear glass chassis",
+      "kind": "back-cover",
+      "system": "structure",
+      "difficulty": "hard",
+      "requires": [
+        "screen",
+        "battery",
+        "motherboard",
+        "lightning-board",
+        "loudspeaker",
+        "taptic-engine",
+        "magsafe-coil"
+      ],
+      "connectsTo": [],
+      "fastening": "Flat-edge aluminum midframe permanently bonded to rear glass back.",
+      "fasteners": [],
+      "layer": 0,
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            71.5,
+            146.7,
+            3
+          ],
+          "pos": [
+            0,
+            0,
+            -2.8
+          ],
+          "color": "#ffffff",
+          "textureUrl": "textures/rear_chassis.jpg",
+          "roughness": 0.15,
+          "metalness": 0.1
+        },
+        {
+          "type": "box",
+          "size": [
+            1.4,
+            146.7,
+            4.8
+          ],
+          "pos": [
+            -35.05,
+            0,
+            1
+          ],
+          "color": "#858e99",
+          "metalness": 0.9,
+          "roughness": 0.25
+        },
+        {
+          "type": "box",
+          "size": [
+            1.4,
+            146.7,
+            4.8
+          ],
+          "pos": [
+            35.05,
+            0,
+            1
+          ],
+          "color": "#858e99",
+          "metalness": 0.9,
+          "roughness": 0.25
+        },
+        {
+          "type": "box",
+          "size": [
+            71.5,
+            1.4,
+            4.8
+          ],
+          "pos": [
+            0,
+            72.65,
+            1
+          ],
+          "color": "#858e99",
+          "metalness": 0.9,
+          "roughness": 0.25
+        },
+        {
+          "type": "box",
+          "size": [
+            71.5,
+            1.4,
+            4.8
+          ],
+          "pos": [
+            0,
+            -72.65,
+            1
+          ],
+          "color": "#858e99",
+          "metalness": 0.9,
+          "roughness": 0.25
+        },
+        {
+          "type": "box",
+          "size": [
+            28,
+            28,
+            0.8
+          ],
+          "pos": [
+            18,
+            48,
+            -3.2
+          ],
+          "color": "#1b1e24",
+          "opacity": 0.8
+        }
+      ],
+      "info": {
+        "what": "Flat-edge aerospace-grade aluminum frame and rear glass body.",
+        "does": "Provides structural enclosure, IP68 water seal, and ground plane for internal modules.",
+        "ifFails": "Bent chassis or cracked rear glass compromising IP68 seal."
+      },
+      "specs": {
+        "Material": "Aluminum & Rear Glass",
+        "IP Rating": "IP68"
+      },
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "No chassis frame: components have no structural housing."
+      },
+      "verified": true
+    }
+  ],
+  "spares": [
+    {
+      "id": "ip12-battery-new",
+      "name": "New iPhone 12 battery (genuine)",
+      "kind": "battery",
+      "compatible": [
+        "iphone-12"
+      ],
+      "note": "Factory fresh 2,815 mAh cell."
+    },
+    {
+      "id": "ip12-battery-degraded",
+      "name": "Degraded iPhone 12 battery",
+      "kind": "battery",
+      "compatible": [
+        "iphone-12"
+      ],
+      "damaged": true,
+      "condition": "Health at 65%. Voltage sags under load.",
+      "effect": {
+        "outcome": "thermal-shutdown",
+        "tempC": 18,
+        "symptom": "Degraded battery cell: voltage sags causing sudden shutdown at low charge."
+      },
+      "color": "#4a4237"
+    },
+    {
+      "id": "ip12-screen-new",
+      "name": "New Super Retina XDR display assembly",
+      "kind": "display",
+      "compatible": [
+        "iphone-12"
+      ]
+    },
+    {
+      "id": "ip12-screen-cracked",
+      "name": "Cracked OLED display assembly",
+      "kind": "display",
+      "compatible": [
+        "iphone-12"
+      ],
+      "damaged": true,
+      "condition": "Substrate crack causing vertical green line and dead touch zone.",
+      "effect": {
+        "outcome": "degraded",
+        "symptom": "Damaged OLED panel: vertical green line on display and touch unresponsive."
+      },
+      "color": "#1a251a"
+    },
+    {
+      "id": "ip12-camera-new",
+      "name": "New dual rear camera module",
+      "kind": "camera-main",
+      "compatible": [
+        "iphone-12"
+      ]
+    },
+    {
+      "id": "ip12-lightning-new",
+      "name": "New Lightning connector assembly",
+      "kind": "charging-board",
+      "compatible": [
+        "iphone-12"
+      ]
+    },
+    {
+      "id": "ip12-lightning-damaged",
+      "name": "Damaged Lightning connector assembly",
+      "kind": "charging-board",
+      "compatible": [
+        "iphone-12"
+      ],
+      "damaged": true,
+      "condition": "Lightning port pins corroded.",
+      "effect": {
+        "outcome": "degraded",
+        "symptom": "Damaged Lightning port: wired charging and data connection fail."
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "ip12-001",
+      "title": "The Unexpected Shutdown",
+      "level": "beginner",
+      "brief": "A customer reports their iPhone 12 turns off abruptly whenever battery drops below 30% or when running heavy apps.",
+      "symptoms": [
+        "Shuts down abruptly around 30% battery",
+        "Battery settings show Service recommendation",
+        "Functions normally when plugged into charger"
+      ],
+      "setup": {
+        "battery": "ip12-battery-degraded"
+      },
+      "culprit": "battery",
+      "spares": [
+        "ip12-battery-new"
+      ],
+      "targetSeconds": 240,
+      "explanation": "As lithium-ion batteries degrade, internal resistance increases. High current demands cause voltage to sag below operating threshold, triggering an instant shutdown. Replacing the battery cell restores normal runtime."
+    },
+    {
+      "id": "ip12-002",
+      "title": "Green Line of Death",
+      "level": "intermediate",
+      "brief": "After a drop onto concrete, a bright green vertical line appeared down the right side of the screen and touch is dead in that region.",
+      "symptoms": [
+        "Bright green vertical line on display",
+        "Right region of screen unresponsive to touch",
+        "Hairline glass crack near top corner"
+      ],
+      "setup": {
+        "screen": "ip12-screen-cracked"
+      },
+      "culprit": "screen",
+      "spares": [
+        "ip12-screen-new"
+      ],
+      "targetSeconds": 300,
+      "explanation": "OLED substrates contain delicate pixel trace lines. Heavy impacts cause substrate shorts, bleeding voltage down a pixel column to create a bright green line. Replacing the display assembly fixes display and touch."
+    },
+    {
+      "id": "ip12-003",
+      "title": "Silent Lightning",
+      "level": "intermediate",
+      "brief": "The iPhone 12 will not charge when connected via Lightning cable and is not detected by a Mac. MagSafe wireless charging works fine.",
+      "symptoms": [
+        "Wired Lightning cable produces no charge response",
+        "Computer does not detect iPhone via USB",
+        "MagSafe wireless charging functions normally"
+      ],
+      "setup": {
+        "lightning-board": "ip12-lightning-damaged"
+      },
+      "culprit": "lightning-board",
+      "spares": [
+        "ip12-lightning-new"
+      ],
+      "targetSeconds": 420,
+      "explanation": "The Lightning port experiences mechanical wear and pin corrosion from moisture or debris. Replacing the Lightning flex assembly restores wired fast charging and USB data transfer."
+    }
+  ]
+}

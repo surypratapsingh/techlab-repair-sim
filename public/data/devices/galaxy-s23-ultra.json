@@ -1,0 +1,565 @@
+{
+  "id": "galaxy-s23-ultra",
+  "name": "Galaxy S23 Ultra",
+  "brand": "Samsung",
+  "category": "phone",
+  "released": 2023,
+  "summary": "Samsung's 2023 flagship with a 200 MP camera, built-in S Pen and a back that opens from the rear glass.",
+  "dimensionsMm": [78.1, 163.4, 8.9],
+  "specs": {
+    "Display": "6.8\" QHD+ Dynamic AMOLED 2X, 1-120 Hz",
+    "Processor": "Snapdragon 8 Gen 2 for Galaxy",
+    "Battery": "5,000 mAh",
+    "Rear cameras": "200 MP wide + 12 MP ultra-wide + 10 MP 3x + 10 MP 10x",
+    "Front camera": "12 MP",
+    "Weight": "234 g",
+    "Water resistance": "IP68"
+  },
+  "verification": {
+    "status": "draft",
+    "sources": [
+      { "title": "iFixit: Galaxy S23 Ultra Back Cover Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+Back+Cover+Replacement/161195" },
+      { "title": "iFixit: Galaxy S23 Ultra Battery Replacement", "url": "https://www.ifixit.com/Guide/Galaxy+S23+Ultra+Battery+Replacement/173949" },
+      { "title": "iFixit: Galaxy S23 Ultra USB-C Port and Charging Board Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+USB-C+Port+and+Charging+Board+Replacement/161197" },
+      { "title": "iFixit: Galaxy S23 Ultra Screen and Battery Assembly Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+Screen+and+Battery+Assembly+Replacement/161196" },
+      { "title": "iFixit: Galaxy S23 Ultra Motherboard Removal", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+Motherboard+Removal/161225" },
+      { "title": "iFixit: Galaxy S23 Ultra Chip ID", "url": "https://www.ifixit.com/Guide/Galaxy+S23+Ultra+Chip+ID/158052" },
+      { "title": "iFixit: Galaxy S23 Ultra SIM Tray Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+SIM+Tray+Replacement/161198" },
+      { "title": "iFixit: Galaxy S23 Ultra Stylus Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+Stylus+Replacement/161199" }
+    ],
+    "notes": "Removal order, fastening and connectors taken from the iFixit guides above (fetched 2026-10-07). 3D geometry is approximate and not to scale. Components with verified=false need a teardown-photo check before this device is marked verified. Failure behaviour is a simplified educational simulation."
+  },
+  "components": [
+    {
+      "id": "back-cover",
+      "name": "Back cover",
+      "kind": "back-cover",
+      "system": "structure",
+      "difficulty": "medium",
+      "requires": [],
+      "connectsTo": [],
+      "fastening": "Adhesive around the whole perimeter. Soften with heat, lift with a suction handle, slice with opening picks.",
+      "fasteners": [
+        { "type": "adhesive", "tool": "heat-gun", "notes": "Perimeter water-resistant adhesive" },
+        { "type": "adhesive", "tool": "suction-pick", "notes": "Suction handle and opening picks" }
+      ],
+      "layer": 7,
+      "shapes": [{ "type": "box", "size": [78.1, 163.4, 0.6], "pos": [0, 0, 4.15], "color": "#6d7f73" }],
+      "info": {
+        "what": "The rear glass panel of the phone.",
+        "does": "Protects the internals, seals the phone against water and dust together with its adhesive, and lets wireless charging pass through (glass, not metal).",
+        "ifFails": "Cracked glass can cut fingers and lets moisture in. Once opened, the phone is no longer water resistant until new adhesive is applied.",
+        "advanced": "The adhesive is strongest in the bottom-right and top-left corners. iFixit warns to insert picks no deeper than 4 mm near the cameras and 5 mm along the power-button side, where antenna and button cables run."
+      },
+      "specs": { "Material": "Corning Gorilla Glass Victus 2", "Seal": "Perimeter adhesive" },
+      "onMissing": { "outcome": "degraded", "symptom": "Back cover missing: no water or dust protection, and the internals are exposed." },
+      "verified": true
+    },
+    {
+      "id": "sim-tray",
+      "name": "SIM tray",
+      "kind": "sim-tray",
+      "system": "connectivity",
+      "difficulty": "easy",
+      "requires": [],
+      "connectsTo": [],
+      "fastening": "Push-eject with a SIM tool through the hole on the bottom edge.",
+      "fasteners": [{ "type": "clip", "count": 1, "tool": "sim-tool", "notes": "Push-eject latch" }],
+      "layer": 3,
+      "exit": [0, -1, 0],
+      "shapes": [{ "type": "box", "size": [9, 15, 0.9], "pos": [-18, -74, 1.7], "color": "#9aa0a6" }],
+      "info": {
+        "what": "The little tray that holds your nano-SIM card.",
+        "does": "Holds the SIM card that identifies you to your mobile network.",
+        "ifFails": "No mobile network (unless an eSIM is set up). A missing tray also leaves an open hole for dust and water."
+      },
+      "onMissing": { "outcome": "degraded", "symptom": "No SIM tray: no physical SIM, so no mobile network unless an eSIM is set up." },
+      "verified": true,
+      "note": "Exact position along the bottom edge is approximate."
+    },
+    {
+      "id": "s-pen",
+      "name": "S Pen",
+      "kind": "stylus",
+      "system": "input",
+      "difficulty": "easy",
+      "requires": [],
+      "connectsTo": [],
+      "fastening": "Spring-loaded silo. Push the end button and it pops out.",
+      "fasteners": [{ "type": "clip", "count": 1, "notes": "Spring-loaded latch" }],
+      "layer": 3,
+      "exit": [0, -1, 0],
+      "shapes": [{ "type": "cylinder", "size": [2.9, 104, 0], "pos": [33, -29.7, 1.0], "rot": [1.5708, 0, 0], "color": "#20242a" }],
+      "info": {
+        "what": "The built-in stylus that lives in a silo inside the phone.",
+        "does": "Lets you write and draw with pressure sensitivity. A digitizer layer behind the screen tracks the pen tip; Bluetooth adds remote 'Air Actions' like a camera shutter.",
+        "ifFails": "Handwriting, Air Command and Air Actions become unavailable. Everything else keeps working.",
+        "advanced": "The board has a dedicated press connector for the stylus silo, and iFixit's chip ID found a Wacom WEZ02 digitizer controller on the motherboard."
+      },
+      "specs": { "Connectivity": "Bluetooth LE", "Storage": "Internal silo, bottom edge" },
+      "onMissing": { "outcome": "degraded", "symptom": "S Pen not detected: pen input and Air Actions are unavailable." },
+      "verified": true
+    },
+    {
+      "id": "coil-speaker",
+      "name": "Wireless charging coil, NFC & loudspeaker",
+      "kind": "coil-speaker",
+      "system": "charging",
+      "difficulty": "medium",
+      "requires": ["back-cover"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "fastening": "Coil/NFC: five 3.5 mm Phillips screws, lightly glued to the battery, two press connectors. Loudspeaker: six 3.5 mm Phillips screws and clips. Removed together as one assembly.",
+      "fasteners": [
+        { "type": "screw", "count": 11, "tool": "phillips-00", "notes": "3.5 mm Phillips screws" },
+        { "type": "press-connector", "count": 2, "tool": "spudger", "notes": "Coil & NFC press connectors" }
+      ],
+      "layer": 6,
+      "shapes": [
+        { "type": "cylinder", "size": [21, 0.4, 0], "pos": [-5, -10, 3.6], "color": "#b87333" },
+        { "type": "box", "size": [44, 16, 5], "pos": [-8, -61.5, 1.1], "color": "#3b3f46" }
+      ],
+      "info": {
+        "what": "One assembly that combines the copper wireless-charging coil, the NFC antenna and the bottom loudspeaker.",
+        "does": "The coil receives energy from a wireless charger (and can share it with earbuds). The NFC antenna enables tap-to-pay. The loudspeaker plays media and speakerphone calls.",
+        "ifFails": "No wireless charging, no contactless payments, and quiet, buzzing or no audio from the bottom speaker.",
+        "advanced": "This assembly sits on top of the battery connector, so it is the one part you must remove while the battery is still connected. When reconnecting press connectors, press one side then the other, never the middle, or pins can bend."
+      },
+      "specs": { "Wireless charging": "15 W (Fast Wireless Charging 2.0)", "Reverse wireless": "4.5 W (Wireless PowerShare)", "NFC": "Yes" },
+      "onMissing": { "outcome": "degraded", "symptom": "No wireless charging, no NFC payments and no sound from the bottom loudspeaker." },
+      "verified": true
+    },
+    {
+      "id": "motherboard-cover",
+      "name": "Motherboard cover & earpiece",
+      "kind": "motherboard-cover",
+      "system": "audio",
+      "difficulty": "medium",
+      "requires": ["back-cover"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "fastening": "Five 3.5 mm Phillips screws and clips. The earpiece speaker has one press connector.",
+      "layer": 5,
+      "shapes": [
+        { "type": "box", "size": [42, 36, 0.8], "pos": [15, 58, 2.9], "color": "#4a4f57" },
+        { "type": "box", "size": [14, 3, 2.5], "pos": [0, 78.5, 2.3], "color": "#1c1e22" }
+      ],
+      "info": {
+        "what": "A cover screwed over the top of the motherboard that also carries the earpiece speaker.",
+        "does": "Shields the board and holds its connectors down. The earpiece plays the caller's voice and doubles as the second speaker for stereo audio.",
+        "ifFails": "Callers can't be heard unless you use speakerphone, stereo becomes mono, and connectors can pop loose after a drop."
+      },
+      "onMissing": { "outcome": "degraded", "symptom": "Earpiece missing: callers can't be heard unless you use speakerphone." },
+      "verified": true
+    },
+    {
+      "id": "interconnect",
+      "name": "Interconnect cables",
+      "kind": "interconnect",
+      "system": "charging",
+      "difficulty": "easy",
+      "requires": ["coil-speaker"],
+      "connectsTo": ["motherboard", "charging-board"],
+      "electrical": true,
+      "fastening": "Two flex cables (primary and secondary) with press connectors at both ends.",
+      "layer": 5,
+      "shapes": [
+        { "type": "box", "size": [3.5, 88, 0.3], "pos": [-33, -22, 3.35], "color": "#d4a017" },
+        { "type": "box", "size": [3.5, 88, 0.3], "pos": [-28.5, -22, 3.35], "color": "#c8961a" }
+      ],
+      "info": {
+        "what": "Two flexible ribbon cables linking the motherboard at the top to the charging board at the bottom.",
+        "does": "Carry charging power up from the USB-C port and carry signals between the two boards.",
+        "ifFails": "Cable charging and USB data stop working, and anything on the lower board stops responding."
+      },
+      "onMissing": { "outcome": "degraded", "symptom": "Charging board disconnected: USB-C charging and data don't work." },
+      "verified": true
+    },
+    {
+      "id": "screen-cable",
+      "name": "Display flex cable",
+      "kind": "screen-cable",
+      "system": "display",
+      "difficulty": "easy",
+      "requires": ["coil-speaker"],
+      "connectsTo": ["motherboard", "display-frame"],
+      "electrical": true,
+      "fastening": "Press connectors at the motherboard and at a cutout near the bottom of the display.",
+      "layer": 5,
+      "shapes": [{ "type": "box", "size": [4, 80, 0.3], "pos": [22, -15, 3.35], "color": "#d4a017" }],
+      "info": {
+        "what": "A flex cable running from the motherboard down to the display connector near the bottom of the phone.",
+        "does": "Carries image data and power to the screen and brings touch data back.",
+        "ifFails": "Black screen, flicker, lines or dead touch, while the phone itself keeps running."
+      },
+      "onMissing": { "outcome": "degraded", "symptom": "Phone powers on but the screen stays black: the display gets no signal." },
+      "verified": true,
+      "note": "Cable route is approximate."
+    },
+    {
+      "id": "battery",
+      "name": "Battery",
+      "kind": "battery",
+      "system": "power",
+      "difficulty": "medium",
+      "requires": ["coil-speaker", "interconnect", "screen-cable"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "powerSource": true,
+      "connectorAccess": ["coil-speaker"],
+      "fastening": "Stretch-release adhesive with a blue centre pull tab and two small corner tabs, inside a plastic sleeve. One press connector to the motherboard.",
+      "layer": 4,
+      "shapes": [{ "type": "box", "size": [62, 70, 4.4], "pos": [-5, -12, 0.95], "color": "#2c3a55" }],
+      "info": {
+        "what": "The lithium-ion battery that powers the phone.",
+        "does": "Stores electrical energy and feeds it to the motherboard through a single press connector.",
+        "ifFails": "Short battery life, sudden shutdowns at mid charge, swelling that lifts the back glass, and in the worst case heat or fire if the cell is punctured.",
+        "advanced": "iFixit recommends draining it below 25% before a repair, because a charged lithium-ion cell can catch fire if damaged. Never bend, crease or puncture it while pulling the tabs. A few drops of >90% isopropyl alcohol help release stubborn adhesive."
+      },
+      "specs": { "Capacity": "5,000 mAh", "Wired charging": "45 W", "Wireless charging": "15 W", "Chemistry": "Lithium-ion" },
+      "onMissing": { "outcome": "no-power", "symptom": "No battery: there is no energy source, so the phone won't power on." },
+      "onDamaged": { "outcome": "thermal-shutdown", "tempC": 18, "symptom": "Damaged battery cell: voltage sags under load, it heats up and the phone shuts down unexpectedly." },
+      "onIncompatible": { "outcome": "degraded", "tempC": 20, "symptom": "Unrecognised battery: the power management chip can't verify the cell, so charging is poorly regulated and the battery overheats." },
+      "verified": true
+    },
+    {
+      "id": "charging-board",
+      "name": "USB-C charging board",
+      "kind": "charging-board",
+      "system": "charging",
+      "difficulty": "medium",
+      "requires": ["interconnect", "sim-tray"],
+      "connectsTo": ["interconnect"],
+      "electrical": true,
+      "fastening": "Three 3.5 mm Phillips screws. Slide toward the top of the phone to free the USB-C port.",
+      "layer": 3,
+      "shapes": [
+        { "type": "box", "size": [46, 13, 1.2], "pos": [-4, -74, -0.85], "color": "#1f5f3f" },
+        { "type": "box", "size": [9, 3, 3.2], "pos": [0, -80.3, -0.4], "color": "#b8bcc2" }
+      ],
+      "info": {
+        "what": "A small daughterboard at the bottom of the phone carrying the USB-C port.",
+        "does": "Takes power and data in through USB-C and passes them up to the motherboard via the interconnect cables.",
+        "ifFails": "Loose or intermittent charging, 'moisture detected' warnings, no wired data. Because it's a separate board, a worn port can be replaced without touching the expensive motherboard."
+      },
+      "specs": { "Port": "USB-C", "Wired charging": "45 W (Super Fast Charging 2.0)" },
+      "onMissing": { "outcome": "degraded", "symptom": "No charging board: the phone can't charge by cable or connect to a computer." },
+      "verified": true
+    },
+    {
+      "id": "main-camera",
+      "name": "Main camera (200 MP)",
+      "kind": "camera-main",
+      "system": "imaging",
+      "difficulty": "medium",
+      "requires": ["motherboard-cover"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "fastening": "Press connector to the motherboard; sits in a cutout in the frame.",
+      "layer": 4,
+      "shapes": [
+        { "type": "box", "size": [15, 15, 3.4], "pos": [-25, 51, 2.7], "color": "#2a2c31" },
+        { "type": "cylinder", "size": [6.2, 1.2, 0], "pos": [-25, 51, 4.9], "color": "#0b0c0f" }
+      ],
+      "info": {
+        "what": "The primary rear camera: a 200-megapixel sensor behind a stabilised lens.",
+        "does": "Takes most of your photos and video. Optical image stabilisation (OIS) moves the lens with tiny magnets to cancel hand-shake.",
+        "ifFails": "Camera errors, blurry or black images, or a rattling lens when the stabiliser fails.",
+        "advanced": "With 200 MP on a small sensor, each pixel is tiny. In low light the sensor bins 16 neighbouring pixels into one large pixel (12.5 MP output) to gather more light, or 4 into one for 50 MP."
+      },
+      "specs": { "Resolution": "200 MP", "Aperture": "f/1.7", "Stabilisation": "OIS", "Focus": "Phase-detect autofocus" },
+      "onMissing": { "outcome": "degraded", "symptom": "Main camera missing: the camera app shows an error for the 1x lens." },
+      "onDamaged": { "outcome": "degraded", "symptom": "Main camera damaged: black, blurry or shaking image." },
+      "onIncompatible": { "outcome": "degraded", "symptom": "Camera module not recognised: the camera app reports 'Camera failed'." },
+      "verified": false,
+      "note": "Specs from Samsung's published spec sheet. iFixit's guides don't cover rear-camera removal; access after the motherboard cover is inferred and needs a teardown check."
+    },
+    {
+      "id": "aux-cameras",
+      "name": "Ultra-wide & telephoto cameras",
+      "kind": "camera-aux",
+      "system": "imaging",
+      "difficulty": "medium",
+      "requires": ["motherboard-cover"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "fastening": "Press connectors to the motherboard; modules sit in cutouts in the frame.",
+      "layer": 4,
+      "shapes": [
+        { "type": "box", "size": [13, 13, 3.4], "pos": [-25, 68, 2.7], "color": "#2a2c31" },
+        { "type": "cylinder", "size": [5.4, 1.2, 0], "pos": [-25, 68, 4.9], "color": "#0b0c0f" },
+        { "type": "box", "size": [13, 13, 3.4], "pos": [-25, 34, 2.7], "color": "#2a2c31" },
+        { "type": "cylinder", "size": [5.4, 1.2, 0], "pos": [-25, 34, 4.9], "color": "#0b0c0f" },
+        { "type": "box", "size": [9, 24, 4.4], "pos": [-11, 50, 2.2], "color": "#33363c" },
+        { "type": "box", "size": [7, 7, 1.0], "pos": [-11, 58, 4.9], "color": "#0b0c0f" }
+      ],
+      "info": {
+        "what": "Three more rear cameras: a 12 MP ultra-wide, a 10 MP 3x telephoto and a 10 MP 10x periscope telephoto.",
+        "does": "Give you different fields of view. The periscope bends light sideways with a prism so a long 10x lens can lie flat inside a thin phone.",
+        "ifFails": "Switching to 0.6x, 3x or 10x shows an error or a black preview."
+      },
+      "specs": { "Ultra-wide": "12 MP, f/2.2, 120 deg", "Telephoto": "10 MP, f/2.4, 3x optical, OIS", "Periscope": "10 MP, f/4.9, 10x optical, OIS" },
+      "onMissing": { "outcome": "degraded", "symptom": "Ultra-wide and zoom cameras missing: only the main lens works." },
+      "verified": false,
+      "note": "Grouped as one slot for V1. Removal access inferred (see main camera). Lens layout approximate."
+    },
+    {
+      "id": "motherboard",
+      "name": "Motherboard",
+      "kind": "motherboard",
+      "system": "compute",
+      "difficulty": "medium",
+      "requires": ["motherboard-cover", "interconnect", "screen-cable", "main-camera", "aux-cameras"],
+      "connectsTo": ["battery", "interconnect", "screen-cable", "front-camera", "mmwave", "main-camera", "aux-cameras", "motherboard-cover", "coil-speaker"],
+      "electrical": true,
+      "fastening": "A single 4 mm Phillips screw plus press connectors for the battery, interconnects, screen, front camera, fingerprint reader, stylus silo, two mmWave antennas, earpiece, NFC and coil.",
+      "layer": 2,
+      "shapes": [
+        { "type": "box", "size": [72.0, 55.0, 2.0], "pos": [0, 52.0, -0.45], "color": "#1b4d38", "roughness": 0.6 },
+        { "type": "box", "size": [20.0, 14.0, 0.8], "pos": [12.0, 44.0, 0.95], "color": "#b8c0c9", "metalness": 0.9, "roughness": 0.2 },
+        { "type": "box", "size": [12.0, 12.0, 0.4], "pos": [12.0, 44.0, 1.45], "color": "#1f222a", "roughness": 0.4 },
+        { "type": "box", "size": [10.0, 10.0, 0.1], "pos": [12.0, 44.0, 1.7], "color": "#3b404d", "metalness": 0.5 },
+        { "type": "box", "size": [14.0, 10.0, 0.8], "pos": [24.0, 66.0, 0.95], "color": "#b8c0c9", "metalness": 0.9, "roughness": 0.2 },
+        { "type": "box", "size": [2.0, 16.0, 0.4], "pos": [-28.0, 45.0, 0.75], "color": "#d9a729", "metalness": 0.85 },
+        { "type": "box", "size": [2.0, 16.0, 0.4], "pos": [-24.0, 45.0, 0.75], "color": "#d9a729", "metalness": 0.85 }
+      ],
+      "info": {
+        "what": "The phone's main circuit board: processor, memory, storage, modem and power management.",
+        "does": "Runs everything. Every other part plugs into it, directly or through a cable.",
+        "ifFails": "No power, boot loops, no network or overheating. Board-level repair needs microsoldering, which TechLab doesn't simulate.",
+        "advanced": "iFixit's chip ID shows a Qualcomm SM8550 (Snapdragon 8 Gen 2) with Micron LPDDR5X RAM layered on top, Samsung flash storage, Qualcomm FastConnect 7800 Wi-Fi/Bluetooth, an NXP NFC controller and ultra-wideband chip, and several power-management chips."
+      },
+      "specs": { "Processor": "Snapdragon 8 Gen 2 for Galaxy (SM8550)", "RAM": "8 or 12 GB LPDDR5X", "Storage": "256 GB - 1 TB UFS 4.0" },
+      "onMissing": { "outcome": "no-power", "symptom": "No motherboard: nothing can run. The phone is just a battery in a frame." },
+      "onDamaged": { "outcome": "short-circuit", "tempC": 30, "symptom": "A power rail on the motherboard is shorted: current spikes, the board heats instantly and components fail." },
+      "verified": true
+    },
+    {
+      "id": "front-camera",
+      "name": "Front camera (12 MP)",
+      "kind": "camera-front",
+      "system": "imaging",
+      "difficulty": "hard",
+      "requires": ["motherboard"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "fastening": "Very strong adhesive in a recess at the top of the frame. Heat, then pry out with a spudger.",
+      "layer": 1,
+      "shapes": [{ "type": "cylinder", "size": [2.6, 4, 0], "pos": [0, 74, -2.6], "color": "#111214" }],
+      "info": {
+        "what": "The 12 MP selfie camera behind the hole-punch at the top of the screen.",
+        "does": "Selfies, video calls and Samsung's face unlock.",
+        "ifFails": "Black selfie preview, 'Camera failed' errors, and face unlock stops working.",
+        "advanced": "iFixit warns the adhesive is very strong: heat the top of the screen and pry slowly so the sensor board doesn't separate from the camera housing."
+      },
+      "specs": { "Resolution": "12 MP", "Aperture": "f/2.2" },
+      "onMissing": { "outcome": "degraded", "symptom": "Selfie camera unavailable and face unlock stops working." },
+      "verified": true
+    },
+    {
+      "id": "mmwave",
+      "name": "5G mmWave antennas",
+      "kind": "mmwave",
+      "system": "connectivity",
+      "difficulty": "medium",
+      "requires": ["motherboard"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "fastening": "Lower module: two 2.4 mm Phillips screws in a bracket. Upper module: adhesive.",
+      "layer": 1,
+      "shapes": [
+        { "type": "box", "size": [3, 22, 4], "pos": [-37, -25, 0.5], "color": "#5b5f66" },
+        { "type": "box", "size": [3, 20, 4], "pos": [37, 55, 0.5], "color": "#5b5f66" }
+      ],
+      "info": {
+        "what": "Small antenna modules on the frame edges for millimetre-wave 5G.",
+        "does": "Send and receive very high-frequency 5G. It's fast but short-range and easily blocked by a hand, so modules are spread around the phone.",
+        "ifFails": "mmWave 5G drops out and the phone falls back to slower bands."
+      },
+      "onMissing": { "outcome": "degraded", "symptom": "No mmWave 5G: regular 5G and LTE still work, just slower." },
+      "verified": true,
+      "note": "Only fitted to mmWave-capable (mainly US) models. Positions approximate."
+    },
+    {
+      "id": "thermal-paste",
+      "name": "Thermal paste",
+      "kind": "thermal-interface",
+      "system": "thermal",
+      "difficulty": "easy",
+      "requires": ["motherboard"],
+      "connectsTo": ["motherboard", "display-frame"],
+      "fastening": "A thin layer of paste/gel. Wipe off and re-apply.",
+      "layer": 1,
+      "shapes": [{ "type": "box", "size": [18, 18, 0.2], "pos": [12, 44, -1.35], "color": "#c9ccd1" }],
+      "info": {
+        "what": "A thin layer of thermal paste between the processor area of the board and the cooling system in the frame.",
+        "does": "Fills microscopic air gaps so heat flows from the chip into the vapor chamber, which spreads it across the metal frame.",
+        "ifFails": "Overheating, throttling (lag) and heat shutdowns under load."
+      },
+      "onMissing": { "outcome": "degraded", "tempC": 24, "symptom": "No thermal paste: heat can't reach the vapor chamber, so the processor's temperature climbs fast." },
+      "onDamaged": { "outcome": "degraded", "tempC": 18, "symptom": "Thermal paste is dried out: poor heat transfer, so the phone runs hot and throttles." },
+      "verified": false,
+      "note": "Thermal interface between the SoC shield and the frame's vapor chamber is typical for this class of phone but not yet confirmed from a teardown photo."
+    },
+    {
+      "id": "display-frame",
+      "name": "Display & frame",
+      "kind": "display",
+      "system": "display",
+      "difficulty": "hard",
+      "requires": ["battery", "motherboard", "charging-board", "front-camera", "mmwave", "thermal-paste", "s-pen"],
+      "connectsTo": ["screen-cable"],
+      "fastening": "The OLED panel is bonded to the aluminium mid-frame. Samsung supplies them together as a 'screen and battery assembly'.",
+      "layer": 0,
+      "shapes": [
+        { "type": "box", "size": [78.1, 163.4, 3.0], "pos": [0, 0, -2.95], "color": "#3a3d42" },
+        { "type": "box", "size": [1.4, 163.4, 5.2], "pos": [-38.35, 0, 1.15], "color": "#4a4d53" },
+        { "type": "box", "size": [1.4, 163.4, 5.2], "pos": [38.35, 0, 1.15], "color": "#4a4d53" },
+        { "type": "box", "size": [78.1, 1.4, 5.2], "pos": [0, 81, 1.15], "color": "#4a4d53" },
+        { "type": "box", "size": [78.1, 1.4, 5.2], "pos": [0, -81, 1.15], "color": "#4a4d53" },
+        { "type": "box", "size": [76, 161, 0.1], "pos": [0, 0, -4.5], "color": "#07080a", "screen": true }
+      ],
+      "info": {
+        "what": "The 6.8-inch OLED screen permanently bonded to the aluminium mid-frame that every other part mounts into.",
+        "does": "Shows the image, senses touch and S Pen input, and reads fingerprints through the glass. The frame gives the phone its strength and houses the vapor chamber that spreads heat.",
+        "ifFails": "Cracks, dead pixels, green lines or dead touch. Replacing it means moving every other part into a new frame.",
+        "advanced": "iFixit's screen replacement transfers everything (motherboard, charging board, front camera, mmWave antennas) until 'only the screen and battery assembly remains'. The ultrasonic fingerprint reader under the panel has its own press connector on the motherboard."
+      },
+      "specs": { "Panel": "6.8\" Dynamic AMOLED 2X", "Resolution": "3088 x 1440 (QHD+)", "Refresh rate": "1-120 Hz adaptive", "Glass": "Gorilla Glass Victus 2", "Fingerprint": "Ultrasonic, under display", "Frame": "Armor Aluminum" },
+      "onMissing": { "outcome": "degraded", "symptom": "No display: the phone may run, but there's nothing to see or touch." },
+      "onDamaged": { "outcome": "degraded", "symptom": "Cracked display: lines, dead touch zones or a black screen." },
+      "verified": true,
+      "note": "Vapor chamber being part of the frame is inferred; confirm from teardown photos."
+    }
+  ],
+  "spares": [
+    { "id": "battery-new", "name": "New battery (genuine)", "kind": "battery", "compatible": ["galaxy-s23-ultra"], "note": "Factory-fresh replacement cell." },
+    {
+      "id": "battery-swollen",
+      "name": "Swollen battery",
+      "kind": "battery",
+      "compatible": ["galaxy-s23-ultra"],
+      "damaged": true,
+      "condition": "The pouch is visibly puffed up. Gas from internal degradation is pushing against the back glass.",
+      "effect": { "outcome": "thermal-shutdown", "tempC": 18, "symptom": "Swollen, degraded cell: voltage sags under load, it heats up and the phone shuts down at 20-30%." },
+      "color": "#5a4636"
+    },
+    {
+      "id": "battery-punctured",
+      "name": "Punctured battery",
+      "kind": "battery",
+      "compatible": ["galaxy-s23-ultra"],
+      "damaged": true,
+      "condition": "A pry tool went through the pouch during removal.",
+      "effect": { "outcome": "short-circuit", "tempC": 45, "symptom": "Punctured lithium-ion cell: internal short circuit, rapid heating and smoke (thermal runaway)." },
+      "color": "#6b2f2f"
+    },
+    { "id": "battery-uncertified", "name": "Uncertified 4,500 mAh battery", "kind": "battery", "compatible": [], "note": "Cheap third-party cell without the authentication data the phone expects.", "color": "#4b4b4b" },
+    { "id": "camera-other-model", "name": "Main camera from another phone model", "kind": "camera-main", "compatible": [], "note": "Same connector shape, different sensor and firmware." },
+    { "id": "thermal-paste-new", "name": "Fresh thermal paste", "kind": "thermal-interface", "compatible": ["galaxy-s23-ultra"] },
+    {
+      "id": "thermal-paste-dried",
+      "name": "Dried-out thermal paste",
+      "kind": "thermal-interface",
+      "compatible": ["galaxy-s23-ultra"],
+      "damaged": true,
+      "condition": "Chalky, cracked, and only covering part of the chip.",
+      "color": "#8d8a80"
+    },
+    { "id": "charging-board-new", "name": "New USB-C charging board (genuine)", "kind": "charging-board", "compatible": ["galaxy-s23-ultra"] },
+    {
+      "id": "charging-board-damaged",
+      "name": "Damaged USB-C charging board",
+      "kind": "charging-board",
+      "compatible": ["galaxy-s23-ultra"],
+      "damaged": true,
+      "condition": "USB-C port pins are bent and corroded inside the socket.",
+      "effect": { "outcome": "degraded", "symptom": "Damaged USB-C charging board: cable charging and data transfer do not work." },
+      "color": "#3f4f3f"
+    },
+    { "id": "screen-cable-new", "name": "New display flex cable (genuine)", "kind": "screen-cable", "compatible": ["galaxy-s23-ultra"] },
+    {
+      "id": "screen-cable-damaged",
+      "name": "Torn display flex cable",
+      "kind": "screen-cable",
+      "compatible": ["galaxy-s23-ultra"],
+      "damaged": true,
+      "condition": "Flex cable is creased and copper traces are severed near the connector.",
+      "effect": { "outcome": "degraded", "symptom": "Severed display flex cable: video signal does not reach the screen." },
+      "color": "#745814"
+    },
+    { "id": "main-camera-new", "name": "New 200 MP main camera (genuine)", "kind": "camera-main", "compatible": ["galaxy-s23-ultra"] },
+    {
+      "id": "main-camera-damaged",
+      "name": "Damaged 200 MP main camera",
+      "kind": "camera-main",
+      "compatible": ["galaxy-s23-ultra"],
+      "damaged": true,
+      "condition": "Internal OIS motor magnets broken from a heavy drop.",
+      "effect": { "outcome": "degraded", "symptom": "Main camera OIS motor damaged: image vibrates and focus fails." },
+      "color": "#22252a"
+    }
+  ],
+  "cases": [
+    {
+      "id": "s23u-001",
+      "title": "The Bulging Back",
+      "level": "beginner",
+      "brief": "A customer says their phone dies at around 30%, gets hot while charging, and one corner of the back glass has started to lift.",
+      "symptoms": ["Shuts down at 20-30% battery", "Hot while charging", "Back glass lifting at a corner"],
+      "setup": { "battery": "battery-swollen" },
+      "culprit": "battery",
+      "spares": ["battery-new"],
+      "targetSeconds": 240,
+      "explanation": "Lithium-ion pouch cells release gas as they age or get stressed by heat, so they swell. A swollen cell can't deliver steady voltage under load, runs hot, and can push the back glass off. Replace it, and never press on or puncture a swollen battery."
+    },
+    {
+      "id": "s23u-002",
+      "title": "Hot Under Pressure",
+      "level": "intermediate",
+      "brief": "The phone overheats during games and shuts itself down. Battery health looks fine. Another shop worked on it last month.",
+      "symptoms": ["Very hot near the cameras under load", "Lag, then shutdown during games", "Battery health reported as good"],
+      "setup": { "thermal-paste": "thermal-paste-dried" },
+      "culprit": "thermal-paste",
+      "spares": ["thermal-paste-new", "battery-new"],
+      "targetSeconds": 600,
+      "explanation": "Thermal paste fills the microscopic gaps between the processor and the cooling system. When it dries out or is applied badly, heat can't escape: the chip throttles, then the phone shuts down to protect itself. The battery was a red herring."
+    },
+    {
+      "id": "s23u-003",
+      "title": "The Loose Plug",
+      "level": "intermediate",
+      "brief": "The customer says their phone won't charge when plugged in, and USB file transfers don't respond. Wireless charging works fine.",
+      "symptoms": ["Wired charging doesn't respond", "USB data connection not detected", "Wireless charging functions normally"],
+      "setup": { "charging-board": "charging-board-damaged" },
+      "culprit": "charging-board",
+      "spares": ["charging-board-new"],
+      "targetSeconds": 420,
+      "explanation": "The USB-C port is a high-wear component subjected to mechanical stress. Bent pins or moisture corrosion inside the port cut off power and data transmission. Replacing the charging daughterboard restores wired charging and data without touching the main motherboard."
+    },
+    {
+      "id": "s23u-004",
+      "title": "Vibrations Without Vision",
+      "level": "intermediate",
+      "brief": "The phone vibrates when notifications arrive and rings on incoming calls, but the screen stays pitch black with no image.",
+      "symptoms": ["Phone rings and vibrates normally", "Screen is pitch black with no image", "Display glass is completely uncracked"],
+      "setup": { "screen-cable": "screen-cable-damaged" },
+      "culprit": "screen-cable",
+      "spares": ["screen-cable-new"],
+      "targetSeconds": 360,
+      "explanation": "The display flex cable transfers display data and power from the motherboard to the OLED panel. A damaged or severed flex cable cuts off the video feed, leaving a black screen even though the motherboard and display panel are functional."
+    },
+    {
+      "id": "s23u-005",
+      "title": "Shaky Shutter",
+      "level": "intermediate",
+      "brief": "The customer dropped their phone while mounted on a bike handlebar. Now opening the camera app in 1x mode causes a vibrating sound and a blurry picture.",
+      "symptoms": ["1x main camera image vibrates constantly", "Blurry focus in 1x photo mode", "Selfie and ultra-wide cameras work normally"],
+      "setup": { "main-camera": "main-camera-damaged" },
+      "culprit": "main-camera",
+      "spares": ["main-camera-new", "camera-other-model"],
+      "targetSeconds": 480,
+      "explanation": "The 200 MP main camera includes delicate optical image stabilisation (OIS) magnets. High-frequency vibrations or heavy drops can break the internal OIS voice coils, making the lens shake uncontrollably. Swapping the camera module fixes the optical system."
+    }
+  ]
+}
