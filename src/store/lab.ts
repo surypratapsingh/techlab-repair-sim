@@ -6,6 +6,7 @@ import { playSound } from '../audio/sound'
 import * as engine from '../engine/engine'
 import type { Device, LabState, RunResult } from '../engine/types'
 import { type CaseScore, scoreCase } from '../game/game'
+import { getLocalDateString } from '../game/daily'
 import { useProgress } from './progress'
 
 export type Mode = 'explore' | 'sandbox' | 'repair'
@@ -185,6 +186,9 @@ export const useLab = create<Lab>()(
           const xp = progress().finishCase(k.id, score.total)
           progress().unlock('first-fix')
           if (score.total >= 95) progress().unlock('perfectionist')
+          if (typeof location !== 'undefined' && location.hash.includes('daily=1')) {
+            progress().recordDaily(getLocalDateString(), score.total)
+          }
           // Let the boot animation play before the score card appears.
           // Skip if the player reset or left the case in the meantime.
           setTimeout(() => get().repair?.startedAt === repair.startedAt && set({ repair: { ...get().repair!, done: { ...score, xp } } }), RUN_MS)

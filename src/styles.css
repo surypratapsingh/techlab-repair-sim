@@ -305,6 +305,31 @@ ul.plain {
 .card.soon {
   opacity: 0.55;
 }
+.card.daily-card {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, var(--panel), color-mix(in srgb, var(--accent) 8%, var(--panel)));
+  margin-bottom: 1.5rem;
+}
+.daily-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+.tag.highlight {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+.streak-badge {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--panel-2);
+  padding: 0.2em 0.6em;
+  border-radius: 99px;
+  border: 1px solid var(--line);
+}
 .card.ach.got {
   border-color: var(--good);
 }

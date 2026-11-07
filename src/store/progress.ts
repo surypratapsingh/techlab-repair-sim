@@ -2,6 +2,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { type AchievementId, XP } from '../game/game'
+import { calculateStreak, getLocalDateString } from '../game/daily'
 import type { Outcome } from '../engine/types'
 
 interface Progress {
@@ -15,15 +16,30 @@ interface Progress {
   outcomes: Record<string, Outcome[]>
   /** Latest unlock, for the toast. */
   lastUnlock: AchievementId | null
+  /** local date (YYYY-MM-DD) -> best daily challenge score */
+  daily: Record<string, number>
+  /** Current day streak */
+  dailyStreak: number
   discover: (deviceId: string, componentId: string) => boolean
   unlock: (id: AchievementId) => void
   seeOutcome: (deviceId: string, o: Outcome) => void
   /** Returns XP gained. */
   finishCase: (caseId: string, total: number) => number
+  /** Records a daily challenge result for a given date. */
+  recordDaily: (dateStr: string, score: number) => void
   reset: () => void
 }
 
-const empty = { xp: 0, discovered: {}, cases: {}, achievements: [], outcomes: {}, lastUnlock: null }
+const empty = {
+  xp: 0,
+  discovered: {},
+  cases: {},
+  achievements: [],
+  outcomes: {},
+  lastUnlock: null,
+  daily: {},
+  dailyStreak: 0,
+}
 
 export const useProgress = create<Progress>()(
   persist(
@@ -51,8 +67,31 @@ export const useProgress = create<Progress>()(
         set((s) => ({ xp: s.xp + gain, cases: { ...s.cases, [caseId]: Math.max(best ?? 0, total) } }))
         return gain
       },
+      recordDaily: (dateStr, score) => {
+        const prev = get().daily[dateStr]
+        const best = Math.max(prev ?? 0, score)
+        const newDaily = { ...get().daily, [dateStr]: best }
+        const streak = calculateStreak(newDaily, dateStr)
+        set({ daily: newDaily, dailyStreak: streak })
+      },
       reset: () => set(empty),
     }),
-    { name: 'techlab-progress', version: 1, partialize: ({ lastUnlock: _, ...rest }) => rest },
+    {
+      name: 'techlab-progress',
+      version: 2,
+      partialize: ({ lastUnlock: _, ...rest }) => rest,
+      migrate: (persistedState: any, version: number) => {
+        if (version < 2) {
+          const s = persistedState as Partial<Progress>
+          const daily = s.daily ?? {}
+          return {
+            ...s,
+            daily,
+            dailyStreak: s.dailyStreak ?? calculateStreak(daily, getLocalDateString()),
+          }
+        }
+        return persistedState
+      },
+    },
   ),
 )

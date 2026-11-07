@@ -1,6 +1,21 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-07 - T5: Daily Repair Challenge
+- Done:
+  - Created `src/game/daily.ts` with deterministic avalanche `hashString`, calendar date utilities, `calculateStreak`, and `pickDailyCase`.
+  - Extended `src/store/progress.ts` to persist daily scores map and `dailyStreak` to localStorage under `techlab-progress` with version 2 migration.
+  - Added Daily challenge card to Cases page in `src/ui/pages.tsx` showing date, streak, today's case, and replay/play actions.
+  - Added daily challenge completion hook in `src/store/lab.ts` to record daily score on repair clear.
+  - Added daily streak indicator to ProgressPage in `src/ui/pages.tsx`.
+  - Styled daily card, metadata, highlight tag, and streak badge in `src/styles.css`.
+  - Added unit tests in `src/game/daily.test.ts` covering deterministic selection, 60-day distribution across all 10 cases, month-end/leap-year/missed-day streak math, and progress store recording.
+  - Ticked `plan.md` for Daily repair challenge.
+- Tested:
+  - Ran `npm run typecheck`, `npm test`, and `npm run build`: 6/6 test files pass (39 tests), TypeScript typecheck clean, Vite production build clean.
+- Could not do: None.
+- Unsure of: None.
+
 ## 2026-11-07 - T4: Google Pixel 7 Device and Repair Cases
 - Done:
   - Researched Google Pixel 7 hardware architecture using iFixit screen & battery replacement guides, Google Store official specifications, and PBKreviews disassembly.

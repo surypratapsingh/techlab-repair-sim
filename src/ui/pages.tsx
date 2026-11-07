@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { loadDevice, loadIndex } from '../data'
 import type { Device, DeviceSummary } from '../engine/types'
 import { ACHIEVEMENTS, levelFor, xpForLevel } from '../game/game'
+import { calculateStreak, getLocalDateString, pickDailyCase } from '../game/daily'
 import { useProgress } from '../store/progress'
 
 export function useLoad<T>(fn: () => Promise<T>, deps: unknown[]) {
@@ -105,10 +106,38 @@ export function Library({ mode }: { mode: 'explore' | 'sandbox' }) {
 export function Cases() {
   const { data, error } = useLoad(loadAvailable, [])
   const best = useProgress((s) => s.cases)
+  const dailyScores = useProgress((s) => s.daily)
   if (!data) return <Status error={error} />
+  const allCases = data.flatMap((d) => d.cases.map((k) => ({ d, k })))
+  const todayStr = getLocalDateString()
+  const daily = pickDailyCase(allCases, todayStr)
+  const todayDailyScore = dailyScores[todayStr]
+  const currentStreak = calculateStreak(dailyScores, todayStr)
   return (
     <main className="page">
       <h2>Repair cases</h2>
+      {daily && (
+        <section>
+          <h3>Daily challenge</h3>
+          <article className="card daily-card">
+            <div className="daily-meta">
+              <span className="tag highlight">Today · {todayStr}</span>
+              <span className="streak-badge">🔥 {currentStreak} day streak</span>
+            </div>
+            <h4>{daily.k.title}</h4>
+            <small>
+              {daily.d.name} · Level: <span className="cap">{daily.k.level}</span>
+            </small>
+            <p>{daily.k.brief}</p>
+            <div className="row">
+              <a className="btn primary" href={`#/lab/${daily.d.id}/repair/${daily.k.id}?daily=1`}>
+                {todayDailyScore !== undefined ? 'Replay daily' : 'Play daily'}
+              </a>
+              {todayDailyScore !== undefined && <span className="tag good">Best {todayDailyScore}/100</span>}
+            </div>
+          </article>
+        </section>
+      )}
       {(['beginner', 'intermediate', 'advanced'] as const).map((level) => {
         const list = data.flatMap((d) => d.cases.filter((k) => k.level === level).map((k) => ({ d, k })))
         return list.length ? (
@@ -155,6 +184,7 @@ export function ProgressPage() {
         </div>
         <small>
           {p.xp} XP · {to - p.xp} XP to level {level + 1}
+          {p.dailyStreak > 0 && ` · 🔥 ${p.dailyStreak} day streak`}
         </small>
       </section>
       <h3>Achievements</h3>
