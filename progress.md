@@ -1,6 +1,22 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-07 - T4: Google Pixel 7 Device and Repair Cases
+- Done:
+  - Researched Google Pixel 7 hardware architecture using iFixit screen & battery replacement guides, Google Store official specifications, and PBKreviews disassembly.
+  - Added `public/data/devices/pixel-7.json` (content lane only, engine unchanged):
+    - 13 components with front-opening assembly order: `screen`, `sim-tray`, `display-cable-bracket`, `midframe-bracket`, `battery-connector-bracket`, `battery`, `front-camera`, `rear-cameras`, `motherboard`, `loudspeaker`, `thermal-paste`, `wireless-charging-coil`, `rear-chassis`.
+    - Unconfirmed SoC thermal paste parameters set to `verified: false` with explanatory `note`; device verification status set to `"draft"`.
+    - Added 4 spare parts (`battery-new`, `battery-degraded`, `screen-new`, `screen-damaged`).
+    - Added 2 repair cases: `p7-001` (Swollen Cell Syndrome) and `p7-002` (Cracked Canvas).
+  - Added `pixel-7` to `public/data/devices/index.json` with `"available": true`.
+  - Ticked `plan.md` for "One more Android phone".
+- Tested:
+  - `cmd.exe /c "npm run typecheck && npm test && npm run build"`: all 33 unit tests pass (including content validator tests proving stock boot, strict teardown & reassembly, and both repair cases solvable with spares).
+  - Browser test in headless Edge on live Vite dev server: navigated to `#/lab/pixel-7/explore`, executed strict-mode teardown across all 13 components, verified power cut when connector became accessible, reassembled in reverse order with power reconnection, and ran device test run (`ok: true`, 29 log events).
+- Could not do: None.
+- Unsure of: None.
+
 ## 2026-11-07 - T3: Content Pipeline and Source Citation Validation
 - Done:
   - Authored `docs/content-pipeline.md`: (a) complete research template mapping directly to `src/engine/types.ts` device schema; (b) source checklist requiring primary teardown guide (iFixit), maker specification page, and an independent third source (e.g. PBKreviews/FCC), with mandatory source ID tagging; (c) review protocol detailing author, technical, and model reviewer roles and criteria for promoting components to `verified: true` and devices to `status: "verified"`.

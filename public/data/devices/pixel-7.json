@@ -1,0 +1,512 @@
+{
+  "id": "pixel-7",
+  "name": "Google Pixel 7",
+  "brand": "Google",
+  "category": "phone",
+  "released": 2022,
+  "summary": "Front-opening flagship with a 6.3-inch 90 Hz OLED screen, aluminum midframe shield, Tensor G2 SoC, and signature camera visor.",
+  "dimensionsMm": [73.2, 155.6, 8.7],
+  "specs": {
+    "SoC": "Google Tensor G2 (5 nm) + Titan M2 security coprocessor",
+    "Display": "6.3\" AMOLED, 1080x2400 (416 ppi), 90 Hz, Gorilla Glass Victus",
+    "Battery": "4355 mAh (16.77 Wh), 20 W USB-PD PPS fast charging",
+    "Rear Cameras": "50 MP wide (f/1.9, OIS) + 12 MP ultrawide (114° FoV)",
+    "Front Camera": "10.8 MP (f/2.2)",
+    "Weight": "197 g"
+  },
+  "verification": {
+    "status": "draft",
+    "sources": [
+      {
+        "id": "src-ifixit-screen",
+        "title": "iFixit: Google Pixel 7 Screen Replacement",
+        "url": "https://www.ifixit.com/Guide/Google+Pixel+7+Screen+Replacement/159840"
+      },
+      {
+        "id": "src-ifixit-battery",
+        "title": "iFixit: Google Pixel 7 Battery Replacement",
+        "url": "https://www.ifixit.com/Guide/Google+Pixel+7+Battery+Replacement/162002"
+      },
+      {
+        "id": "src-google-specs",
+        "title": "Google Store: Pixel 7 Technical Specifications",
+        "url": "https://store.google.com/product/pixel_7_specs"
+      },
+      {
+        "id": "src-pbkreviews-teardown",
+        "title": "PBKreviews: Google Pixel 7 Teardown Disassembly and Repair Assessment",
+        "url": "https://www.youtube.com/watch?v=FjC2eR0vQks"
+      }
+    ],
+    "notes": "Removal order, fasteners, and battery safety sequence derived from iFixit teardown guides and PBKreviews disassembly. Front-opening architecture requires removing the display assembly and midframe shield before reaching the battery connector."
+  },
+  "components": [
+    {
+      "id": "screen",
+      "name": "6.3-inch AMOLED Display",
+      "kind": "screen",
+      "system": "display",
+      "difficulty": "medium",
+      "requires": [],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "info": {
+        "what": "6.3-inch 90 Hz OLED panel with integrated optical fingerprint scanner and Corning Gorilla Glass Victus cover glass.",
+        "does": "Renders the visual operating system interface and digitizes multi-touch user input.",
+        "ifFails": "Black screen, cracked glass, dead pixels, or vertical colored line artifacts."
+      },
+      "specs": {
+        "Resolution": "1080 x 2400 (416 ppi)",
+        "Refresh Rate": "90 Hz",
+        "Panel": "Rigid OLED with under-display optical fingerprint reader"
+      },
+      "fastening": "Waterproof perimeter adhesive gasket and display flex cable shield bracket.",
+      "fasteners": [
+        { "type": "adhesive", "tool": "heat-gun", "notes": "Perimeter display adhesive requiring heat softening" },
+        { "type": "clip", "tool": "suction-pick", "notes": "Perimeter alignment clips" }
+      ],
+      "layer": 0,
+      "exit": [0, 0, -1],
+      "shapes": [
+        { "type": "box", "size": [73.2, 155.6, 0.9], "pos": [0, 0, -3.9], "color": "#111317", "screen": true }
+      ],
+      "onMissing": { "outcome": "no-boot", "symptom": "No display panel connected; device cannot initialize visual output" },
+      "onDamaged": { "outcome": "degraded", "symptom": "Display shows vertical green lines and partial touch unresponsiveness" },
+      "verified": true,
+      "sources": ["src-ifixit-screen", "src-google-specs"]
+    },
+    {
+      "id": "sim-tray",
+      "name": "SIM Card Tray",
+      "kind": "tray",
+      "system": "connectivity",
+      "difficulty": "easy",
+      "requires": [],
+      "connectsTo": ["motherboard"],
+      "info": {
+        "what": "Nano-SIM card retention sled with silicone water-resistant O-ring seal.",
+        "does": "Seats the physical carrier SIM card against the motherboard reader contacts.",
+        "ifFails": "No cellular network service; emergency calls only."
+      },
+      "specs": {
+        "Format": "Nano-SIM (4FF)",
+        "Seal": "Rubber water-ingress gasket"
+      },
+      "fastening": "Internal spring-loaded latch.",
+      "fasteners": [
+        { "type": "clip", "tool": "sim-tool", "notes": "Push-pin eject mechanism on left edge" }
+      ],
+      "layer": 1,
+      "exit": [-1, 0, 0],
+      "shapes": [
+        { "type": "box", "size": [1.2, 14, 2], "pos": [-36.5, 20, 0], "color": "#808892", "metalness": 0.8 }
+      ],
+      "onMissing": { "outcome": "degraded", "symptom": "No SIM card detected; mobile data and voice calls disabled" },
+      "verified": true,
+      "sources": ["src-pbkreviews-teardown", "src-ifixit-screen"]
+    },
+    {
+      "id": "display-cable-bracket",
+      "name": "Display Connector Shield Bracket",
+      "kind": "shield",
+      "system": "structure",
+      "difficulty": "easy",
+      "requires": ["screen"],
+      "connectsTo": ["motherboard"],
+      "info": {
+        "what": "Stamped metal shield plate covering the display flex cable press-fit connector.",
+        "does": "Prevents the display cable from disconnecting under drop impacts and provides electrical shielding.",
+        "ifFails": "Display cable may dislodge during drops, causing an intermittent or black display."
+      },
+      "fastening": "One Torx screw securing the bracket to the motherboard frame.",
+      "fasteners": [
+        { "type": "screw", "count": 1, "tool": "phillips-00", "notes": "One small retaining screw" }
+      ],
+      "layer": 1,
+      "exit": [0, 0, -1],
+      "shapes": [
+        { "type": "box", "size": [12, 18, 0.4], "pos": [-22, 10, -2.8], "color": "#a0aab4", "metalness": 0.9 }
+      ],
+      "onMissing": { "outcome": "degraded", "symptom": "Display connector is unshielded and vulnerable to impact disconnection" },
+      "verified": true,
+      "sources": ["src-ifixit-screen"]
+    },
+    {
+      "id": "midframe-bracket",
+      "name": "Aluminum Midframe Shield & Thermal Plate",
+      "kind": "midframe",
+      "system": "thermal",
+      "difficulty": "medium",
+      "requires": ["screen", "display-cable-bracket"],
+      "connectsTo": ["rear-chassis"],
+      "info": {
+        "what": "Internal stamped aluminum plate with large graphite thermal dissipation sheet.",
+        "does": "Adds structural rigidity against bending and conducts heat away from the Tensor G2 SoC and battery across the display rear.",
+        "ifFails": "Structural weakness and rapid thermal throttling under compute tasks."
+      },
+      "fastening": "Ten Torx/Phillips screws around the chassis perimeter and central bridge.",
+      "fasteners": [
+        { "type": "screw", "count": 10, "tool": "phillips-00", "notes": "Ten retaining screws" }
+      ],
+      "layer": 2,
+      "exit": [0, 0, -1],
+      "shapes": [
+        { "type": "box", "size": [69, 148, 0.6], "pos": [0, 0, -2.4], "color": "#2a2e34", "roughness": 0.8 }
+      ],
+      "onMissing": { "outcome": "thermal-shutdown", "symptom": "Thermal dissipation plate missing; SoC overheats rapidly under load", "tempC": 18 },
+      "verified": true,
+      "sources": ["src-ifixit-battery", "src-pbkreviews-teardown"]
+    },
+    {
+      "id": "battery-connector-bracket",
+      "name": "Battery Connector Shield Bracket",
+      "kind": "bracket",
+      "system": "structure",
+      "difficulty": "easy",
+      "requires": ["midframe-bracket"],
+      "connectsTo": ["motherboard"],
+      "info": {
+        "what": "Small metal shield securing the battery terminal press-fit connector to the motherboard.",
+        "does": "Protects the battery connection from vibration and unseating.",
+        "ifFails": "Sudden uncommanded power cuts when the phone experiences sudden movement."
+      },
+      "fastening": "Two small retaining screws.",
+      "fasteners": [
+        { "type": "screw", "count": 2, "tool": "phillips-00", "notes": "Two screws securing the battery contact shield" }
+      ],
+      "layer": 3,
+      "exit": [0, 0, -1],
+      "shapes": [
+        { "type": "box", "size": [10, 16, 0.4], "pos": [-8, -5, -1.8], "color": "#b0bac4", "metalness": 0.9 }
+      ],
+      "onMissing": { "outcome": "degraded", "symptom": "Battery connector unshielded; high risk of loose power contact" },
+      "verified": true,
+      "sources": ["src-ifixit-battery"]
+    },
+    {
+      "id": "battery",
+      "name": "4355 mAh Lithium-Ion Battery",
+      "kind": "battery",
+      "system": "power",
+      "difficulty": "medium",
+      "powerSource": true,
+      "electrical": true,
+      "requires": ["midframe-bracket", "battery-connector-bracket"],
+      "connectorAccess": ["screen", "display-cable-bracket", "midframe-bracket", "battery-connector-bracket"],
+      "connectsTo": ["motherboard"],
+      "info": {
+        "what": "High-density single-cell lithium-ion polymer rechargeable battery pouch.",
+        "does": "Supplies regulated DC current to the motherboard and all subsystem peripherals.",
+        "ifFails": "Device fails to power on, shuts down abruptly under load, or exhibits cell swelling."
+      },
+      "specs": {
+        "Capacity": "4355 mAh / 16.77 Wh",
+        "Nominal Voltage": "3.85 V",
+        "Fast Charging": "Up to 20 W USB-PD PPS"
+      },
+      "fastening": "Two stretch-release pull tabs and underlying pressure-sensitive adhesive.",
+      "fasteners": [
+        { "type": "adhesive", "tool": "spudger", "notes": "Two adhesive pull tabs adhering the pouch to the frame recess" }
+      ],
+      "layer": 4,
+      "exit": [0, 0, -1],
+      "shapes": [
+        { "type": "box", "size": [44, 82, 4.4], "pos": [-10, -18, -0.4], "color": "#1c1e22", "roughness": 0.6 }
+      ],
+      "onMissing": { "outcome": "no-power", "symptom": "No primary battery connected; phone completely unpowered" },
+      "onDamaged": { "outcome": "short-circuit", "symptom": "Battery cell punctured or deformed; thermal event imminent", "tempC": 35 },
+      "verified": true,
+      "sources": ["src-ifixit-battery", "src-google-specs"]
+    },
+    {
+      "id": "front-camera",
+      "name": "10.8 MP Front Selfie Camera",
+      "kind": "front-camera",
+      "system": "imaging",
+      "difficulty": "easy",
+      "requires": ["midframe-bracket"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "info": {
+        "what": "10.8 megapixel front-facing camera module seated in the top frame cutout.",
+        "does": "Captures selfie video/photos and handles Face Unlock biometrics.",
+        "ifFails": "Front camera preview is black; Face Unlock fails to detect face."
+      },
+      "specs": {
+        "Resolution": "10.8 MP",
+        "Aperture": "f/2.2",
+        "Field of View": "92.8° ultrawide"
+      },
+      "fastening": "Press-fit connector and rubber dust gasket.",
+      "fasteners": [
+        { "type": "press-connector", "tool": "spudger" }
+      ],
+      "layer": 4,
+      "exit": [0, 0, -1],
+      "shapes": [
+        { "type": "cylinder", "size": [2.5, 3.5, 0], "pos": [0, 64, -1.5], "color": "#15181c" }
+      ],
+      "onMissing": { "outcome": "degraded", "symptom": "Front selfie camera and Face Unlock unavailable" },
+      "verified": true,
+      "sources": ["src-pbkreviews-teardown", "src-google-specs"]
+    },
+    {
+      "id": "rear-cameras",
+      "name": "50 MP Wide & 12 MP Ultrawide Dual Rear Cameras",
+      "kind": "rear-camera",
+      "system": "imaging",
+      "difficulty": "medium",
+      "requires": ["midframe-bracket"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "info": {
+        "what": "Dual rear camera module containing a 50 MP Octa PD primary sensor with optical image stabilization and a 12 MP ultrawide sensor.",
+        "does": "Captures high-resolution photos, 4K video, and night-sight computational photography.",
+        "ifFails": "Camera application crashes immediately on launch, rear view remains black, or OIS buzzes."
+      },
+      "specs": {
+        "Main": "50 MP 1/1.31\" sensor, f/1.85, OIS, laser autofocus",
+        "Ultrawide": "12 MP, f/2.2, 114° FoV"
+      },
+      "fastening": "Two bracket screws and two motherboard flex connectors.",
+      "fasteners": [
+        { "type": "screw", "count": 2, "tool": "phillips-00" },
+        { "type": "press-connector", "tool": "spudger" }
+      ],
+      "layer": 4,
+      "exit": [0, 0, -1],
+      "shapes": [
+        { "type": "box", "size": [40, 24, 6], "pos": [-12, 48, 1.2], "color": "#22262c" },
+        { "type": "cylinder", "size": [5.5, 4.5, 0], "pos": [-18, 48, 2.8], "color": "#111418", "metalness": 0.9 },
+        { "type": "cylinder", "size": [4.5, 4.0, 0], "pos": [-5, 48, 2.8], "color": "#111418", "metalness": 0.9 }
+      ],
+      "onMissing": { "outcome": "degraded", "symptom": "Rear cameras disconnected; camera application throws hardware error" },
+      "onDamaged": { "outcome": "degraded", "symptom": "Rear camera OIS actuator damaged; photos are blurry and focus hunts" },
+      "verified": true,
+      "sources": ["src-pbkreviews-teardown", "src-google-specs"]
+    },
+    {
+      "id": "motherboard",
+      "name": "Google Tensor G2 Motherboard",
+      "kind": "motherboard",
+      "system": "compute",
+      "difficulty": "hard",
+      "requires": ["midframe-bracket", "battery-connector-bracket", "front-camera", "rear-cameras", "sim-tray"],
+      "connectsTo": ["rear-chassis"],
+      "electrical": true,
+      "info": {
+        "what": "High-density multi-layer printed circuit board hosting the Google Tensor G2 SoC, Titan M2 security chip, LPDDR5 RAM, storage, and power management ICs.",
+        "does": "Executes operating system logic, controls peripherals, and manages power distribution.",
+        "ifFails": "Device completely non-functional (no boot, no charging, no LED feedback)."
+      },
+      "specs": {
+        "Processor": "Google Tensor G2 (2x Cortex-X1 @ 2.85 GHz, 2x A76, 4x A55)",
+        "Security": "Titan M2 dedicated coprocessor",
+        "RAM": "8 GB LPDDR5",
+        "USB": "Type-C 3.2 Gen 2 (soldered to mainboard)"
+      },
+      "fastening": "Four Torx/Phillips screws securing the PCB to the chassis standoffs.",
+      "fasteners": [
+        { "type": "screw", "count": 4, "tool": "phillips-00" }
+      ],
+      "layer": 5,
+      "exit": [0, 0, -1],
+      "shapes": [
+        { "type": "box", "size": [68, 62, 1.2], "pos": [0, 42, 0.2], "color": "#163820" },
+        { "type": "box", "size": [22, 22, 1.0], "pos": [8, 40, -0.6], "color": "#a0a8b0", "metalness": 0.9 }
+      ],
+      "onMissing": { "outcome": "no-power", "symptom": "Motherboard missing; phone cannot power on or boot" },
+      "onDamaged": { "outcome": "no-boot", "symptom": "Kernel panic on boot; memory or Tensor G2 core failure" },
+      "verified": true,
+      "sources": ["src-pbkreviews-teardown", "src-google-specs"]
+    },
+    {
+      "id": "loudspeaker",
+      "name": "Bottom Loudspeaker & Antenna Assembly",
+      "kind": "speaker",
+      "system": "audio",
+      "difficulty": "easy",
+      "requires": ["midframe-bracket"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "info": {
+        "what": "Acoustic enclosure chamber with stereo loudspeaker driver and cellular antenna trace array.",
+        "does": "Produces media playback and speakerphone audio while radiating lower RF antenna signals.",
+        "ifFails": "Muffled or distorted sound, no speaker audio, and degraded cellular reception."
+      },
+      "specs": {
+        "Audio": "Stereo bottom-firing transducer with tuned acoustic cavity"
+      },
+      "fastening": "Four screws securing the lower assembly into the chassis.",
+      "fasteners": [
+        { "type": "screw", "count": 4, "tool": "phillips-00" }
+      ],
+      "layer": 4,
+      "exit": [0, 0, -1],
+      "shapes": [
+        { "type": "box", "size": [68, 20, 5.0], "pos": [0, -68, 0.4], "color": "#202428" }
+      ],
+      "onMissing": { "outcome": "degraded", "symptom": "Loudspeaker and bottom antenna missing; no speaker audio or haptics" },
+      "verified": true,
+      "sources": ["src-pbkreviews-teardown"]
+    },
+    {
+      "id": "thermal-paste",
+      "name": "SoC Thermal Interface Paste",
+      "kind": "thermal-paste",
+      "system": "thermal",
+      "difficulty": "easy",
+      "requires": ["motherboard"],
+      "connectsTo": ["rear-chassis"],
+      "info": {
+        "what": "Viscous thermal compound applied between the Tensor G2 processor shield and the aluminum chassis heatsink well.",
+        "does": "Conducts heat from the high-performance CPU/GPU cores into the metal chassis.",
+        "ifFails": "Aggressive thermal throttling under prolonged gaming or computational camera processing."
+      },
+      "shapes": [
+        { "type": "box", "size": [16, 16, 0.3], "pos": [8, 40, 1.3], "color": "#848c94" }
+      ],
+      "onMissing": { "outcome": "degraded", "symptom": "Thermal paste missing; SoC throttles heavily under processing load", "tempC": 12 },
+      "verified": false,
+      "note": "Thermal paste application over Tensor G2 confirmed in PBKreviews teardown, but exact factory thermal conductivity rating and OEM volume remain unverified."
+    },
+    {
+      "id": "wireless-charging-coil",
+      "name": "Qi Wireless Charging & NFC Antenna",
+      "kind": "coil",
+      "system": "charging",
+      "difficulty": "easy",
+      "requires": ["battery", "motherboard"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "info": {
+        "what": "Copper induction coil with ferrite backing and perimeter NFC antenna ribbon.",
+        "does": "Enables Qi wireless charging, reverse Battery Share, and Google Pay NFC transactions.",
+        "ifFails": "Wireless charging pads do not register the device; contactless payments fail."
+      },
+      "specs": {
+        "Standard": "Qi wireless fast charging (up to 20 W) with reverse Battery Share"
+      },
+      "fastening": "Pressure-sensitive adhesive adhering to the inner rear glass surface.",
+      "fasteners": [
+        { "type": "adhesive", "notes": "Adhesive backing against the rear chassis interior" }
+      ],
+      "layer": 6,
+      "exit": [0, 0, -1],
+      "shapes": [
+        { "type": "cylinder", "size": [22, 0.4, 0], "pos": [0, -10, 2.4], "color": "#b87333", "metalness": 0.8 }
+      ],
+      "onMissing": { "outcome": "degraded", "symptom": "Qi wireless charging and Google Pay NFC transactions unavailable" },
+      "verified": true,
+      "sources": ["src-pbkreviews-teardown", "src-google-specs"]
+    },
+    {
+      "id": "rear-chassis",
+      "name": "Aluminum Chassis Frame & Camera Visor",
+      "kind": "chassis",
+      "system": "structure",
+      "difficulty": "hard",
+      "requires": ["motherboard", "battery", "loudspeaker", "wireless-charging-coil", "thermal-paste"],
+      "connectsTo": [],
+      "info": {
+        "what": "100% recycled aluminum structural frame with integrated matte camera visor bar and Gorilla Glass rear cover.",
+        "does": "Forms the rigid backbone of the device, grounds internal RF circuitry, and houses the camera lenses.",
+        "ifFails": "Structural collapse, broken rear glass, or water seal failure."
+      },
+      "specs": {
+        "Material": "100% recycled aluminum frame with Corning Gorilla Glass back",
+        "Water Resistance": "IP68 dust/water resistant (up to 1.5 m for 30 minutes)"
+      },
+      "layer": 7,
+      "exit": [0, 0, 1],
+      "shapes": [
+        { "type": "box", "size": [73.2, 155.6, 2.0], "pos": [0, 0, 3.3], "color": "#2b3036", "metalness": 0.6 },
+        { "type": "box", "size": [73.2, 28.0, 3.2], "pos": [0, 48, 4.2], "color": "#626972", "metalness": 0.9 }
+      ],
+      "onMissing": { "outcome": "no-power", "symptom": "Structural housing missing" },
+      "verified": true,
+      "sources": ["src-google-specs", "src-pbkreviews-teardown"]
+    }
+  ],
+  "spares": [
+    {
+      "id": "battery-new",
+      "name": "New Genuine 4355 mAh Battery",
+      "kind": "battery",
+      "compatible": ["pixel-7"],
+      "damaged": false,
+      "condition": "Brand new OEM lithium-ion replacement cell (100% health)"
+    },
+    {
+      "id": "battery-degraded",
+      "name": "Degraded Swollen Battery",
+      "kind": "battery",
+      "compatible": ["pixel-7"],
+      "damaged": true,
+      "condition": "Swollen pouch with elevated internal resistance and depleted capacity",
+      "effect": {
+        "outcome": "degraded",
+        "symptom": "Battery health degraded; unexpected shutdown under high CPU compute loads",
+        "tempC": 15
+      }
+    },
+    {
+      "id": "screen-new",
+      "name": "New Genuine 6.3\" AMOLED Display Assembly",
+      "kind": "screen",
+      "compatible": ["pixel-7"],
+      "damaged": false,
+      "condition": "Factory new 90 Hz AMOLED panel with pre-installed fingerprint sensor"
+    },
+    {
+      "id": "screen-damaged",
+      "name": "Damaged Display Assembly",
+      "kind": "screen",
+      "compatible": ["pixel-7"],
+      "damaged": true,
+      "condition": "Cracked OLED matrix displaying vertical green lines and dead touch rows",
+      "effect": {
+        "outcome": "degraded",
+        "symptom": "Display shows vertical green lines and touch digitization dead zones"
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "p7-001",
+      "title": "Swollen Cell Syndrome",
+      "level": "beginner",
+      "brief": "The Pixel 7 unexpectedly shuts down under load and the front screen is bulging slightly along the left edge. Diagnose the degraded power source, disconnect power safely, and swap in a fresh battery pack.",
+      "symptoms": [
+        "Sudden shutdown under heavy CPU load",
+        "Reduced battery runtime",
+        "Thermal throttling under charging"
+      ],
+      "setup": {
+        "battery": "battery-degraded"
+      },
+      "culprit": "battery",
+      "spares": ["battery-new", "battery-degraded"],
+      "targetSeconds": 120,
+      "explanation": "Lithium-ion degradation caused increased internal resistance and cell swelling. Swapping the swollen cell with a fresh OEM battery restored 4355 mAh capacity and stable voltage regulation under load."
+    },
+    {
+      "id": "p7-002",
+      "title": "Cracked Canvas",
+      "level": "intermediate",
+      "brief": "After an impact to the front glass, the display panel shows green lines and partial touch unresponsiveness. Carefully unseat the display assembly, disconnect the display flex cable beneath its bracket, and replace the screen.",
+      "symptoms": [
+        "Vertical green lines across AMOLED panel",
+        "Touch digitization dead zones",
+        "Flickering display"
+      ],
+      "setup": {
+        "screen": "screen-damaged"
+      },
+      "culprit": "screen",
+      "spares": ["screen-new", "screen-damaged"],
+      "targetSeconds": 150,
+      "explanation": "The rigid OLED substrate was fractured beneath the Gorilla Glass Victus cover glass. Replacing the display module and seating the flex connector beneath the shield bracket restored display output and touch response."
+    }
+  ]
+}
