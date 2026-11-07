@@ -1,6 +1,15 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-07 - T1: GitHub Actions CI Workflow
+- Done:
+  - Added `.github/workflows/ci.yml` with triggers on `push` and `pull_request`, running on `ubuntu-latest`, using `actions/checkout@v4` and `actions/setup-node@v4` (node-version 24, npm cache). Workflow runs `npm ci`, `npm run typecheck`, `npm test`, and `npm run build`. Contains no secrets.
+  - Added CI workflow badge to `README.md`: `![CI](https://github.com/surypratapsingh/techlab-repair-sim/actions/workflows/ci.yml/badge.svg)`.
+- Tested:
+  - Ran `npm ci && npm run typecheck && npm test && npm run build` locally; all commands exited with code 0 (31/31 unit tests passed, typecheck clean, static build generated in `dist/`).
+- Could not do: None.
+- Unsure of: None.
+
 ## 2026-10-17 - Opt-in Sound Effects Synthesizer (T-015)
 - Done:
   - Created `src/audio/sound.ts`: pure procedural Web Audio API sound synthesizer with 8 sound types (button click, screwdriver ratchet, component snap install, part lift removal, ascending chord boot chime, electrical short-circuit buzz/crackle, thermal-shutdown alarm, diagnostic warning tone, and achievement arpeggio). Zero asset files or network weight.

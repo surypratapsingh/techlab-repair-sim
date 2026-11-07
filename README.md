@@ -1,5 +1,7 @@
 # TechLab
 
+![CI](https://github.com/surypratapsingh/techlab-repair-sim/actions/workflows/ci.yml/badge.svg)
+
 **Live:** https://techlab-repair-sim.vercel.app/
 
 A free browser-based 3D lab where you open real phones, learn what every part does, and repair broken devices.
