@@ -330,6 +330,84 @@ ul.plain {
   border-radius: 99px;
   border: 1px solid var(--line);
 }
+.card.course-card {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+  background: linear-gradient(135deg, var(--panel), color-mix(in srgb, var(--good) 6%, var(--panel)));
+  margin-bottom: 1.5rem;
+}
+.course-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+.course-progress-badge {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--panel-2);
+  padding: 0.2em 0.6em;
+  border-radius: 99px;
+  border: 1px solid var(--line);
+}
+.course-guide {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem;
+  background: var(--panel);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+.course-guide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.course-step-count {
+  font-size: 0.8em;
+  color: var(--muted);
+  font-weight: 600;
+}
+.course-step-body h5 {
+  margin: 0 0 0.3rem;
+  font-size: 1rem;
+  color: var(--text);
+}
+.course-instruction {
+  margin: 0 0 0.5rem;
+  font-size: 0.9em;
+  color: var(--text);
+}
+.course-explanation {
+  background: var(--panel-2);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border-left: 3px solid var(--accent);
+  margin-bottom: 0.6rem;
+}
+.course-progress-bar {
+  height: 6px;
+  background: var(--panel-2);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.course-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+.good-text {
+  color: var(--good);
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+}
+.course-desc {
+  margin: 0 0 0.8rem;
+  font-size: 0.9em;
+  color: var(--muted);
+}
 .card.ach.got {
   border-color: var(--good);
 }

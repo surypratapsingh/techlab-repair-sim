@@ -4,6 +4,7 @@ import { loadDevice, loadIndex } from '../data'
 import type { Device, DeviceSummary } from '../engine/types'
 import { ACHIEVEMENTS, levelFor, xpForLevel } from '../game/game'
 import { calculateStreak, getLocalDateString, pickDailyCase } from '../game/daily'
+import { COURSES } from '../game/courses'
 import { useProgress } from '../store/progress'
 
 export function useLoad<T>(fn: () => Promise<T>, deps: unknown[]) {
@@ -66,11 +67,47 @@ const CATEGORY: Record<DeviceSummary['category'], string> = { phone: 'Phones', l
 
 export function Library({ mode }: { mode: 'explore' | 'sandbox' }) {
   const { data, error } = useLoad(loadIndex, [])
+  const coursesProgress = useProgress((s) => s.courses)
   if (!data) return <Status error={error} />
   const groups = Object.entries(CATEGORY).map(([cat, label]) => [label, data.filter((d) => d.category === cat)] as const)
   return (
     <main className="page">
       <h2>{mode === 'sandbox' ? 'Sandbox: pick a device to experiment on' : 'Device library'}</h2>
+      {mode === 'explore' && (
+        <section>
+          <h3>Interactive courses</h3>
+          <div className="cards">
+            {COURSES.map((course) => {
+              const completedSteps = coursesProgress[course.id] ?? 0
+              const isDone = completedSteps >= course.steps.length
+              return (
+                <article key={course.id} className="card course-card">
+                  <div className="course-meta">
+                    <span className="tag highlight">{course.category}</span>
+                    <span className="course-progress-badge">
+                      {isDone ? '✓ Completed' : `Step ${completedSteps}/${course.steps.length}`}
+                    </span>
+                  </div>
+                  <h4>{course.title}</h4>
+                  <small>
+                    Device: Galaxy S23 Ultra · {course.steps.length} guided steps
+                  </small>
+                  <p>{course.description}</p>
+                  <div className="row">
+                    <a
+                      className="btn primary"
+                      href={`#/lab/${course.deviceId}/explore?course=${course.id}`}
+                    >
+                      {isDone ? 'Review course' : completedSteps > 0 ? 'Continue course' : 'Start course'}
+                    </a>
+                    {isDone && <span className="tag good">+50 XP earned</span>}
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+        </section>
+      )}
       {groups.map(([label, list]) =>
         list.length ? (
           <section key={label}>
@@ -197,6 +234,18 @@ export function ProgressPage() {
           </article>
         ))}
       </div>
+      <h3>Courses</h3>
+      <ul className="plain">
+        {COURSES.map((c) => {
+          const completed = p.courses[c.id] ?? 0
+          const done = completed >= c.steps.length
+          return (
+            <li key={c.id}>
+              {c.title}: {done ? 'Completed (5/5 steps) ✓' : `${completed}/${c.steps.length} steps completed`}
+            </li>
+          )
+        })}
+      </ul>
       <h3>Devices</h3>
       <ul className="plain">
         {data?.map((d) => (

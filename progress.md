@@ -1,6 +1,41 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-07 - Final Summary: Autonomous Session (T1 - T6 Complete)
+- Status: All items (T1 through T6) successfully completed, verified, and committed locally.
+- T1 (CI Workflow & Badge): Added `.github/workflows/ci.yml` (Ubuntu, Node 24, checkout@v4, setup-node@v4 with cache, npm ci, typecheck, test, build) and CI badge to `README.md`.
+- T2 (T-010 Match Loop Self-Test): Fixed Windows `EBUSY` file locking on `DevToolsActivePort` with retry polling; executed synthetic self-test (lens perturbation scored 94.7, tune recovered to 98.61 in 42 iterations); moved T-010 to Done in `todo.md`.
+- T3 (Content Pipeline & Validation): Wrote `docs/content-pipeline.md` (research template, 3-source checklist with IDs, reviewer checklist); updated `src/engine/validate.ts` to enforce valid source citations for `verified: true` components with unit test in `engine.test.ts`. Documented architectural decision in `decisions.md`.
+- T4 (Google Pixel 7): Created `public/data/devices/pixel-7.json` (13 components, 4 spares, 2 cases, fully sourced); added to `index.json`; verified in browser via dev server with full teardown, battery isolation, reassembly, and boot test (`ok: true`).
+- T5 (Daily Repair Challenge): Created `src/game/daily.ts` with 32-bit Murmur-style avalanche hash, date arithmetic, streak tracking across months/leap years/missed days; persisted `daily` scores and `dailyStreak` in `useProgress` (v2 migration); added daily challenge card to Cases page; unit tests in `src/game/daily.test.ts`.
+- T6 (Interactive Starter Course): Created `src/game/courses.ts` with 5-step "Phone battery safety" guided interactive course on Galaxy S23 Ultra using Explore mode actions; persisted course progress in `useProgress` (v3 migration) with +50 XP bonus; created `CourseGuide` component in lab, course card in Library, and course tracker in ProgressPage; unit tests in `src/game/courses.test.ts` (8/8 tests pass). Engine types schema remained 100% untouched.
+- Quality gates:
+  - `npm run typecheck`: clean (0 errors)
+  - `npm test`: 7/7 test suites pass (47 tests passed)
+  - `npm run build`: static production bundle built cleanly in `dist/`
+
+## 2026-11-07 - T6: Interactive Starter Course ("Phone Battery Safety")
+- Done:
+  - Implemented starter interactive course "Phone battery safety" in `src/game/courses.ts` consisting of 5 guided steps on `galaxy-s23-ultra` using existing Explore mode actions (`select`, `remove`, `power`):
+    1. Inspect battery hazard and specifications (`select('battery')`).
+    2. Remove back cover to access phone interior (`remove('back-cover')`).
+    3. Remove wireless charging coil assembly shielding battery connector (`remove('coil-speaker')`).
+    4. Disconnect battery power before touching motherboard electronics (`power(false)`).
+    5. Safely extract battery cell with zero safety violations (`remove('battery')` with 0 violations).
+  - Maintained `src/engine/types.ts` strictly unchanged (no schema changes needed).
+  - Extended `src/store/progress.ts` to store `courses: Record<string, number>` in `localStorage` under `techlab-progress`, bumping persist version to 3 with migration and awarding a 50 XP completion bonus.
+  - Created `src/ui/lab/CourseGuide.tsx` providing in-lab step guidance, instructions, safety context explanations, dynamic completion detection, progress bar, and completion actions.
+  - Integrated `CourseGuide` into `src/ui/lab/LabPage.tsx` active in Explore mode when `?course=phone-battery-safety` is present.
+  - Added "Interactive courses" card section to `Library()` in `src/ui/pages.tsx` when browsing in Explore mode, showing real-time step progress and navigation.
+  - Added course completion status to `ProgressPage()` in `src/ui/pages.tsx`.
+  - Added dedicated styling for courses and guide panels in `src/styles.css`.
+  - Added unit tests in `src/game/courses.test.ts` verifying each step check, end-to-end simulation using real S23 Ultra device and engine rules, and progress persistence.
+  - Ticked `plan.md` for Interactive hardware courses.
+- Tested:
+  - Ran `npm run typecheck`, `npm test`, and `npm run build`: all 7 test files pass (47 unit tests), TypeScript typecheck clean, Vite production build clean.
+- Could not do: None.
+- Unsure of: None.
+
 ## 2026-11-07 - T5: Daily Repair Challenge
 - Done:
   - Created `src/game/daily.ts` with deterministic avalanche `hashString`, calendar date utilities, `calculateStreak`, and `pickDailyCase`.

@@ -20,6 +20,8 @@ interface Progress {
   daily: Record<string, number>
   /** Current day streak */
   dailyStreak: number
+  /** courseId -> count of completed steps */
+  courses: Record<string, number>
   discover: (deviceId: string, componentId: string) => boolean
   unlock: (id: AchievementId) => void
   seeOutcome: (deviceId: string, o: Outcome) => void
@@ -27,6 +29,10 @@ interface Progress {
   finishCase: (caseId: string, total: number) => number
   /** Records a daily challenge result for a given date. */
   recordDaily: (dateStr: string, score: number) => void
+  /** Advances course progress when a step is completed. */
+  advanceCourse: (courseId: string, completedStepCount: number) => void
+  /** Resets progress for a specific course. */
+  resetCourse: (courseId: string) => void
   reset: () => void
 }
 
@@ -39,6 +45,7 @@ const empty = {
   lastUnlock: null,
   daily: {},
   dailyStreak: 0,
+  courses: {},
 }
 
 export const useProgress = create<Progress>()(
@@ -74,23 +81,45 @@ export const useProgress = create<Progress>()(
         const streak = calculateStreak(newDaily, dateStr)
         set({ daily: newDaily, dailyStreak: streak })
       },
+      advanceCourse: (courseId, completedStepCount) => {
+        const prev = get().courses[courseId] ?? 0
+        if (completedStepCount > prev) {
+          const bonus = completedStepCount >= 5 && prev < 5 ? 50 : 0
+          set((s) => ({
+            xp: s.xp + bonus,
+            courses: { ...s.courses, [courseId]: completedStepCount },
+          }))
+        }
+      },
+      resetCourse: (courseId) => {
+        set((s) => {
+          const { [courseId]: _, ...rest } = s.courses
+          return { courses: rest }
+        })
+      },
       reset: () => set(empty),
     }),
     {
       name: 'techlab-progress',
-      version: 2,
+      version: 3,
       partialize: ({ lastUnlock: _, ...rest }) => rest,
       migrate: (persistedState: any, version: number) => {
+        let state = persistedState as Partial<Progress>
         if (version < 2) {
-          const s = persistedState as Partial<Progress>
-          const daily = s.daily ?? {}
-          return {
-            ...s,
+          const daily = state.daily ?? {}
+          state = {
+            ...state,
             daily,
-            dailyStreak: s.dailyStreak ?? calculateStreak(daily, getLocalDateString()),
+            dailyStreak: state.dailyStreak ?? calculateStreak(daily, getLocalDateString()),
           }
         }
-        return persistedState
+        if (version < 3) {
+          state = {
+            ...state,
+            courses: state.courses ?? {},
+          }
+        }
+        return state
       },
     },
   ),

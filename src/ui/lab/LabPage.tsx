@@ -4,6 +4,7 @@ import LabScene from '../../scene/LabScene'
 import { type Mode, useLab } from '../../store/lab'
 import { useLoad } from '../pages'
 import { CasePanel, CaseResult } from './CasePanel'
+import { CourseGuide } from './CourseGuide'
 import { Bench, Log, Toolbar } from './Controls'
 import { InfoPanel } from './InfoPanel'
 import { PartsPanel } from './PartsPanel'
@@ -62,6 +63,9 @@ function SafeScene({ device }: { device: import('../../engine/types').Device }) 
 export default function LabPage({ deviceId, mode, caseId }: { deviceId: string; mode: Mode; caseId: string | null }) {
   const { data: device, error } = useLoad(() => loadDevice(deviceId), [deviceId])
   const ready = useLab((s) => s.device === device && !!device)
+  const courseId = typeof location !== 'undefined'
+    ? new URLSearchParams(location.hash.split('?')[1] ?? '').get('course')
+    : null
   useEffect(() => {
     if (!device) return
     if (mode === 'repair' && !device.cases.some((k) => k.id === caseId)) return
@@ -96,6 +100,7 @@ export default function LabPage({ deviceId, mode, caseId }: { deviceId: string; 
       </div>
       <aside className="left">
         {mode === 'repair' && <CasePanel />}
+        {mode === 'explore' && courseId && <CourseGuide courseId={courseId} />}
         <PartsPanel />
       </aside>
       <section className="stage" aria-label="3D device view. Use the parts list for keyboard access.">

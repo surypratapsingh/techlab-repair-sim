@@ -66,4 +66,4 @@ Goal: the 3D model looks like the real object. Photos of the real device are the
 ### V3 — The real TechLab
 - [ ] Optional accounts and cloud saves
 - [x] Daily repair challenge (offline, deterministic date hash, day streak in localStorage)
-- [ ] Interactive hardware courses
+- [x] Interactive hardware courses (Phone battery safety starter course)
