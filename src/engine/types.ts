@@ -33,6 +33,7 @@ export interface Shape {
 }
 
 export interface Source {
+  id?: string
   title: string
   url: string
 }
@@ -83,6 +84,9 @@ export interface Component {
   onIncompatible?: Effect
   /** Verification status of THIS component's data. */
   verified: boolean
+  /** Source IDs (from device.verification.sources) supporting this component's facts. */
+  sources?: string[]
+  sourceId?: string
   /** Where the data came from / what still needs checking. */
   note?: string
 }

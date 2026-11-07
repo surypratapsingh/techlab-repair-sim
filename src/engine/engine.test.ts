@@ -21,6 +21,13 @@ describe('content', () => {
     e.cases.push({ ...e.cases[0], id: 'bad', setup: {} })
     expect(validateDevice(e).join()).toMatch(/already boots/)
   })
+  it('validator rejects verified component without valid source id', () => {
+    const d: Device = structuredClone(devices[0])
+    d.components[0].verified = true
+    d.components[0].sources = ['non-existent-source-id']
+    expect(validateDevice(d).join()).toMatch(/cites no source id that exists in the device's sources list/)
+    expect(validateDevice(d).join()).toMatch(/cites unknown source/)
+  })
 })
 
 // Tiny fixture so engine rules are tested independently of real content.

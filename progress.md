@@ -1,6 +1,18 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-07 - T3: Content Pipeline and Source Citation Validation
+- Done:
+  - Authored `docs/content-pipeline.md`: (a) complete research template mapping directly to `src/engine/types.ts` device schema; (b) source checklist requiring primary teardown guide (iFixit), maker specification page, and an independent third source (e.g. PBKreviews/FCC), with mandatory source ID tagging; (c) review protocol detailing author, technical, and model reviewer roles and criteria for promoting components to `verified: true` and devices to `status: "verified"`.
+  - Added optional `id?: string` to `Source` and optional `sources?: string[]` and `sourceId?: string` to `Component` in `src/engine/types.ts`. Documented architectural decision in `decisions.md`.
+  - Extended `src/engine/validate.ts` to reject any component that is `verified: true` but cites no source ID that exists in the device's sources list (when sources are cited or when `device.verification.status === 'verified'`), and verify that all cited source IDs match `device.verification.sources`.
+  - Added unit test in `src/engine/engine.test.ts` verifying validator rejection of a verified component citing a non-existent source ID.
+  - Ticked `plan.md` for Content pipeline.
+- Tested:
+  - `cmd.exe /c "npm run typecheck && npm test && npm run build"`: all 32 unit tests pass, typecheck clean, static build succeeds.
+- Could not do: None.
+- Unsure of: None.
+
 ## 2026-11-07 - T2: T-010 Match Loop Self-Test
 - Done:
   - Fixed Windows file lock (`EBUSY: resource busy or locked`) when reading `DevToolsActivePort` in `tools/match.mjs` by adding retry logic when reading the port file and polling the DevTools HTTP `/json/list` endpoint.

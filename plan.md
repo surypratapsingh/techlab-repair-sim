@@ -60,7 +60,7 @@ Goal: the 3D model looks like the real object. Photos of the real device are the
 - [x] iPhone 12 (front-opening phone; tests the schema)
 - [ ] One more Android phone
 - [ ] Laptop, then audio, consoles, TVs
-- [ ] Content pipeline: research template, source checklist, review step
+- [x] Content pipeline: research template, source checklist, review step
 - [ ] Cross-device parts and compatibility experiments
 
 ### V3 — The real TechLab

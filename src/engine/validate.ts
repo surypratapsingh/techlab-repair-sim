@@ -12,11 +12,29 @@ export function validateDevice(d: Device): string[] {
   const powers = d.components.filter((c) => c.powerSource)
   if (powers.length !== 1) err(`needs exactly one powerSource component, found ${powers.length}`)
 
+  const sourceIds = new Set(
+    (d.verification?.sources ?? [])
+      .map((s) => s.id)
+      .filter((id): id is string => typeof id === 'string' && id.length > 0)
+  )
+
   for (const c of d.components) {
     for (const ref of [...c.requires, ...c.connectsTo, ...(c.connectorAccess ?? [])])
       if (!compIds.has(ref) || ref === c.id) err(`${c.id} references bad component "${ref}"`)
     if (!c.shapes.length) err(`${c.id} has no shapes`)
     if (!c.info.what || !c.info.does || !c.info.ifFails) err(`${c.id} is missing what/does/ifFails`)
+    const citedSources = [
+      ...(c.sources ?? []),
+      ...(c.sourceId ? [c.sourceId] : []),
+    ]
+    for (const s of citedSources) {
+      if (!sourceIds.has(s)) err(`${c.id} cites unknown source "${s}"`)
+    }
+    if (c.verified && (c.sources !== undefined || c.sourceId !== undefined || d.verification?.status === 'verified')) {
+      if (!citedSources.some((s) => sourceIds.has(s))) {
+        err(`${c.id} is verified: true but cites no source id that exists in the device's sources list`)
+      }
+    }
     if (c.fasteners) {
       const validTypes = new Set(['screw', 'adhesive', 'clip', 'press-connector'])
       const validTools = new Set(['phillips-00', 'tri-point-y000', 'pentalobe-p2', 'spudger', 'suction-pick', 'sim-tool', 'heat-gun'])

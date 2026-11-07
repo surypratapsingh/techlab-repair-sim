@@ -113,3 +113,9 @@ Format per entry:
 - Alternatives rejected: Bundling MP3/WAV/OGG sound files (increases site payload and latency; requires asset licensing); Web Audio tone generators without envelope shaping (sounds artificial and harsh).
 - Consequences: Zero download overhead (0 kB audio files). Operates completely client-side. Respects autoplay policy by initializing audio context upon user gesture. Opt-in toggle is easily accessible in the top navigation bar and lab toolbar.
 
+
+## 2026-11-07 - Component source citations and verification validation
+- Decision: Add optional `id?: string` to `Source` and optional `sources?: string[]` and `sourceId?: string` to `Component` in `src/engine/types.ts`. Update `validateDevice` in `src/engine/validate.ts` to verify that any cited source exists in `device.verification.sources`, and reject any component that is `verified: true` but cites no source id that exists in the device's sources list (when source citations are present or when `device.verification.status === 'verified'`).
+- Context: Content pipeline requirement (docs/content-pipeline.md) to cross-reference component hardware facts to specific teardowns and spec pages.
+- Alternatives rejected: Free-form text in `note` only (cannot be mechanically validated against `verification.sources`); breaking backward compatibility with existing draft devices by requiring retrofitting unverified sources before review.
+- Consequences: New devices and verified devices must cite source IDs matching `verification.sources`.
