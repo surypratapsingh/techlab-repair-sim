@@ -1,6 +1,19 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-07 - T2: T-010 Match Loop Self-Test
+- Done:
+  - Fixed Windows file lock (`EBUSY: resource busy or locked`) when reading `DevToolsActivePort` in `tools/match.mjs` by adding retry logic when reading the port file and polling the DevTools HTTP `/json/list` endpoint.
+  - Ran synthetic self-test chain on `galaxy-s23-ultra` using perturbed lens (`pos.x += 4`, `pos.y -= 3`, `size.x -= 1`).
+  - Rendered baseline fake photo to `match/out/selftest/device-back.png`.
+  - Ran `judge`: scored 94.7 (silhouette 1.0, edges 0.83, color 0.99, aspect 1.0; below the 97 threshold).
+  - Ran `tune` with `--parts main-camera --iters 60 --target 99`: successfully recovered camera lens from 94.7 to 98.61 (+3.91 points, exceeding the required 3-point gain) in 42 iterations across 3 shape parameters.
+  - Moved T-010 to Done in `todo.md`.
+- Tested:
+  - `cmd.exe /c "npm run typecheck && npm test && npm run build"`: all 31 unit tests pass, typecheck clean, static build succeeds.
+- Could not do: None.
+- Unsure of: None.
+
 ## 2026-11-07 - T1: GitHub Actions CI Workflow
 - Done:
   - Added `.github/workflows/ci.yml` with triggers on `push` and `pull_request`, running on `ubuntu-latest`, using `actions/checkout@v4` and `actions/setup-node@v4` (node-version 24, npm cache). Workflow runs `npm ci`, `npm run typecheck`, `npm test`, and `npm run build`. Contains no secrets.

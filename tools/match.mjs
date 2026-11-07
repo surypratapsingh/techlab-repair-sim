@@ -159,12 +159,37 @@ async function openSession() {
   let page
   try {
     const portFile = path.join(profile, 'DevToolsActivePort')
-    for (let i = 0; !(fs.existsSync(portFile) && fs.readFileSync(portFile, 'utf8').includes('\n')); i++) {
-      if (i > 150) throw new Error('browser did not start')
+    let rawPort = ''
+    for (let i = 0; i <= 150; i++) {
+      if (fs.existsSync(portFile)) {
+        try {
+          const content = fs.readFileSync(portFile, 'utf8')
+          if (content.includes('\n')) {
+            rawPort = content
+            break
+          }
+        } catch {
+          // File may be locked by the browser on Windows while writing; retry.
+        }
+      }
+      if (i === 150) throw new Error('browser did not start')
       await sleep(100)
     }
-    const port = fs.readFileSync(portFile, 'utf8').split('\n')[0].trim()
-    const targets = await (await fetch(`http://127.0.0.1:${port}/json/list`)).json()
+    const port = rawPort.split('\n')[0].trim()
+    let targets
+    for (let i = 0; i < 50; i++) {
+      try {
+        const res = await fetch(`http://127.0.0.1:${port}/json/list`)
+        if (res.ok) {
+          targets = await res.json()
+          if (targets.some((t) => t.type === 'page')) break
+        }
+      } catch {
+        // Wait for devtools HTTP server to be ready
+      }
+      await sleep(100)
+    }
+    if (!targets) throw new Error('devtools HTTP server did not respond')
     page = await connect(targets.find((t) => t.type === 'page').webSocketDebuggerUrl)
     await page.send('Page.navigate', { url: `${base}#/render/${deviceId}` })
     for (let i = 0; !(await page.evaluate('!!window.techlabMatch?.ready').catch(() => false)); i++) {

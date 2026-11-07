@@ -28,19 +28,6 @@ How to use (people and agents):
 - Work: take `device-back`, `device-front`, `device-left`, `device-right` (and `device-top`, `device-bottom` if you can) following CLAUDE.md "Match loop" photo rules. Prefer PNG cut-outs with a transparent background. Add `match/refs/galaxy-s23-ultra/SOURCES.md` with who took each photo, when, and the phone colour.
 - Accept: `npm run match -- render galaxy-s23-ultra --view <v>` shows the same orientation as each photo; `npm run match -- judge galaxy-s23-ultra` finds the object in every photo (no "no object found" hint).
 
-### T-010 Self-test the match loop on your machine (no photos needed)
-- Lane: match (writes only `match/out/`)
-- Status: open for any agent on a new machine. Passed on the owner's machine on 2026-10-07 (94.7 -> 98.6).
-- Work: run this chain. It moves the main camera lens in a copy of the device, renders that copy as a fake photo, then lets `tune` find the lens again.
-```bash
-mkdir -p match/out/selftest
-node -e "const f=require('fs');const d=JSON.parse(f.readFileSync('public/data/devices/galaxy-s23-ultra.json','utf8'));const s=d.components.find(c=>c.id==='main-camera').shapes[1];s.pos[0]+=4;s.pos[1]-=3;s.size[0]-=1;f.writeFileSync('match/out/selftest/perturbed.json',JSON.stringify(d))"
-npm run match -- render galaxy-s23-ultra --from match/out/selftest/perturbed.json --out match/out/selftest/device-back.png
-npm run match -- judge galaxy-s23-ultra --refs match/out/selftest
-npm run match -- tune galaxy-s23-ultra --refs match/out/selftest --parts main-camera --iters 60 --target 99
-```
-- Accept: `judge` prints a score below 97, finishes in about 10 s, and `tune` ends at least 3 points higher. If the browser does not start, set `TECHLAB_BROWSER` to an Edge or Chrome executable.
-
 ### T-011 Match the S23 Ultra exterior to the photos (Match Score >= 85 on every view)
 - Lane: match, plus `apply` into `public/data/devices/galaxy-s23-ultra.json`
 - Status: blocked by T-009 (photos)
@@ -72,6 +59,7 @@ npm run match -- status galaxy-s23-ultra
 (none)
 
 ## Done
+- 2026-11-07 T-010: Self-test of the match loop on Windows machine. Resolved Windows file locking (`EBUSY`) on `DevToolsActivePort` with retry polling. Initial judge scored 94.7 (below 97), tune recovered the perturbed camera lens from 94.7 to 98.61 (+3.91 gain) in 42 iterations.
 - 2026-10-17 T-015: Opt-in sound effects via Web Audio API (`src/audio/sound.ts`). Synthesizes 8 procedural sound effects (click, screw ratchets, component snap install, part lift removal, ascending boot chime, electrical short-circuit spark crackle, thermal-shutdown alarm, alert warning, and achievement arpeggio). Zero asset footprint. Opt-in toggle button in top bar and toolbar with localStorage persistence. Unit tested in `src/audio/sound.test.ts` (31/31 tests pass).
 - 2026-10-16 T-014: Full photorealistic component texture and shape overhaul for iPhone 12. Generated and integrated high-resolution teardown textures for all remaining components: Super Retina XDR display (`screen_front.jpg`), rear chassis back glass with Apple logo (`rear_chassis.jpg`), MagSafe copper wireless charging coil with magnet array (`magsafe_coil.jpg`), bottom loudspeaker module (`loudspeaker.jpg`), Lightning connector flex cable assembly (`lightning.jpg`), TrueDepth infrared & selfie camera module (`truedepth.jpg`), and earpiece speaker & sensor assembly (`earpiece.jpg`). All 25 unit tests, content validation, and TypeScript check pass cleanly.
 - 2026-10-15 Match loop review fixes: `judge` no longer waits 60 s after finishing; `tune` bounded by the published design across `--from` runs; `apply` copies only shapes; dead browser connection fails fast; `--refs` on another drive rejected. Lab slot fade now keeps each shape's opacity.
