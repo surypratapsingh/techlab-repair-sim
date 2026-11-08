@@ -1,6 +1,17 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-08 - H-TECH lane: missing tests
+- Done:
+  - `src/store/progress.test.ts`: XP for discover, case replay, achievement unlock, course bonus (4 tests).
+  - `src/data.test.ts`: bad device id rejected before fetch; index load (2 tests).
+  - F2 FAIL check: no FAIL line for a TechLab commit. Nothing to fix.
+  - `src/engine/validate.ts`: already exercised by `engine.test.ts` on every device JSON. No new test.
+- Tested: `npm test` 64/64, `npm run typecheck` clean.
+- Blocked (owner): T-001, T-002, T-009, T-011, T-012, T-013 (photos, teardown check, host choice). Not touched.
+- Unsure: plan "Cross-device parts and compatibility experiments" has no spec. Not started.
+- Next: owner input on the blocked items above. Cross-device spec if owner wants it.
+
 ## 2026-11-08 - Final Summary: Wave 2 Complete (T7 - T10)
 - Status: All Wave 2 items (T7, T8, T9, T10) successfully completed, thoroughly verified, and committed locally.
 - T7 (Laptop Research): Authored `docs/research-laptop-thinkpad-t14.md` for Lenovo ThinkPad T14 Gen 3 following `docs/content-pipeline.md` with 3-source checklist (`src-lenovo-psref`, `src-ifixit-t14`, `src-laptopmedia-teardown`), component disassembly DAG, fastener specs, and proposed repair cases. No device JSON added in T7.
