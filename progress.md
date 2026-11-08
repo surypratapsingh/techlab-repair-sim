@@ -1,6 +1,20 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-08 - T7: Laptop Research (Lenovo ThinkPad T14 Gen 3)
+- Done:
+  - Researched hardware architecture and teardown specifications for Lenovo ThinkPad T14 Gen 3 following `docs/content-pipeline.md`.
+  - Authored `docs/research-laptop-thinkpad-t14.md` containing complete research dossier:
+    - Device metadata (dimensions 317.7 x 226.9 x 17.9 mm, Intel 12th/13th Gen, 52.5 Wh battery, M.2 2280 NVMe SSD, SO-DIMM expansion slot, heatsink/fan unit, integrated keyboard chassis).
+    - Three-source checklist with IDs and canonical URLs: `src-lenovo-psref` (official PSREF/manual), `src-ifixit-t14` (primary teardown guide), `src-laptopmedia-teardown` (independent lab disassembly).
+    - Detailed component breakdown, DAG order (base cover -> battery/SSD/RAM/fan -> motherboard -> keyboard), fastener specs (Phillips #00 screws, clips, spudger tool), and electrical rules.
+    - Proposed spare parts and 3 proposed repair cases (battery swap, SSD upgrade, fan cleaning).
+  - Maintained repository strictly free of device JSON for T7.
+- Tested:
+  - `cmd.exe /c "npm run typecheck && npm test && npm run build"`: all 7 test suites pass (47 tests), typecheck clean, static production build succeeds.
+- Could not do: None.
+- Unsure of: None.
+
 ## 2026-11-07 - Final Summary: Autonomous Session (T1 - T6 Complete)
 - Status: All items (T1 through T6) successfully completed, verified, and committed locally.
 - T1 (CI Workflow & Badge): Added `.github/workflows/ci.yml` (Ubuntu, Node 24, checkout@v4, setup-node@v4 with cache, npm ci, typecheck, test, build) and CI badge to `README.md`.
