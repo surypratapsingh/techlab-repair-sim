@@ -138,3 +138,9 @@ Format per entry:
 - Alternatives: AirPods Pro 2 (undocumented); both cups (iFixit's guides disagree on which cup holds which board; no USB-port guide, so no charging-port case).
 - Effect: no USB-C case. Cases cover the battery, ear pad and touch sensor.
 
+
+## 2026-11-09 - PS5: no battery, so the power supply is the `powerSource`
+- Context: the engine requires exactly one `powerSource` with `connectorAccess` (non-empty, so `teardownAndRebuild` reconnects power).
+- Decision: model the PS5 power supply as the power source, `connectorAccess: ["faceplate-right"]`. "Disconnect" means unplug the mains. The UI label "Battery" is cosmetic and misleading for mains devices. Engine and UI unchanged.
+- Also: TR8/TR9 Torx are not in the fastener tool enum, so tools go in `notes`. Index id renamed `ps5` to `sony-ps5` to match the file, as for `sony-wh-1000xm4`. Branch cut from `friend/v2-audio-device` because both edit `index.json`, `plan.md`, `progress.md`.
+- Follow-up (UI lane): label the power source by device ("Mains") and frame large devices in the camera.
