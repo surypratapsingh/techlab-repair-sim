@@ -131,3 +131,10 @@ Format per entry:
 - Decision: swap the dependency (cameras require `motherboard`). Cameras stay `verified: false`: the only Ultra-specific evidence is the absence of camera steps, there is no Ultra camera guide or photo.
 - Alternatives: keep the old order (contradicts both iFixit guides); mark cameras verified (no Ultra-specific proof, fails the promotion checklist in `docs/content-pipeline.md`).
 - Effect: repair case `s23u-005` (main camera) now needs the motherboard out first. `npm test` proves it is still solvable.
+
+## 2026-11-08 - First audio device: Sony WH-1000XM4, right ear cup only
+- Context: V2 lists audio next. AirPods Pro 2 has no iFixit repair guide, so its removal order could not be cited. The XM4 has iFixit guides for battery, ear pads, touch sensor, motherboard and swivel.
+- Decision: model the right cup (battery side) only, as one device, with the existing schema and engine (0 engine changes). The ear pad is the open side (layer 6, exit out of the back); the cup cover is the battery's `connectorAccess`, matching the iFixit order. Draft status; four components stay `verified: false` (see the research doc).
+- Alternatives: AirPods Pro 2 (undocumented); both cups (iFixit's guides disagree on which cup holds which board; no USB-port guide, so no charging-port case).
+- Effect: no USB-C case. Cases cover the battery, ear pad and touch sensor.
+

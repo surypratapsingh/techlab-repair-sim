@@ -1,6 +1,16 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-08 - V2 audio: Sony WH-1000XM4 (branch friend/v2-audio-device, cut from friend/t001-verify-s23)
+- Done:
+  - `docs/research-audio-sony-wh-1000xm4.md`: template values, 8 sources, removal DAG, open points.
+  - `public/data/devices/sony-wh-1000xm4.json`: 8 slots (right ear cup: ear pad, foam liner, cup cover with touch sensor, thermal sensor, battery, main board, swivel, housing and driver), 7 spares, 3 cases (`xm4-001` battery, `xm4-002` ear pad, `xm4-003` touch sensor). Added to `index.json` (`available: true`).
+  - `src/engine/xm4.test.ts` (2 tests). Engine unchanged. `plan.md` V2 line updated; decision logged.
+- Draft: 4 components `verified: false` (thermal-sensor, mainboard, swivel, ear-cup-frame) with notes; iFixit's motherboard and swivel guides disagree on screw count and cup.
+- Tested: `npm test` 67/67, `npm run typecheck` clean, `npm run build` ok. Browser: `#/lab/sony-wh-1000xm4/explore` renders, Explode separates the layers, no console errors. Dev server stopped.
+- Not done: no USB-C case (no iFixit guide), left cup not modelled, Match loop photos (owner), glTF (optional, skipped). Sony spec page returned 403; specs read from search excerpts.
+- Next: owner check of a physical XM4 (main board cup, screw count); consoles and TVs for V2.
+
 ## 2026-11-08 - T-001: S23 Ultra verification check (branch friend/t001-verify-s23)
 - Done:
   - Checked `main-camera`, `aux-cameras`, `thermal-paste` against iFixit (Ultra motherboard removal, base-S23 rear cameras guide, S23+ teardown) and secondary articles on the vapor chamber.

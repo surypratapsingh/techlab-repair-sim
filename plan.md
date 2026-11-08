@@ -59,7 +59,7 @@ Goal: the 3D model looks like the real object. Photos of the real device are the
 ### V2 — More devices (engine unchanged, content only)
 - [x] iPhone 12 (front-opening phone; tests the schema)
 - [x] One more Android phone (Google Pixel 7; front-opening phone)
-- [x] Laptop, then audio, consoles, TVs (ThinkPad T14 added)
+- [x] Laptop, then audio, consoles, TVs (ThinkPad T14 and Sony WH-1000XM4 added; consoles and TVs still to do)
 - [x] Content pipeline: research template, source checklist, review step
 - [ ] Cross-device parts and compatibility experiments
 
