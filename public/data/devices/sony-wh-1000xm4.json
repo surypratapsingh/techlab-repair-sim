@@ -1,0 +1,817 @@
+{
+  "id": "sony-wh-1000xm4",
+  "name": "Sony WH-1000XM4",
+  "brand": "Sony",
+  "category": "audio",
+  "released": 2020,
+  "summary": "Over-ear Bluetooth noise-cancelling headphones. The ear pad snaps off, then four screws free the cup cover, exposing the battery, touch sensor and main board. The right ear cup is modelled.",
+  "dimensionsMm": [
+    100,
+    108,
+    36
+  ],
+  "specs": {
+    "Type": "Over-ear, wireless, active noise cancelling",
+    "Driver": "40 mm dome",
+    "Playback": "About 30 h (NC on)",
+    "Bluetooth": "5.0",
+    "Codecs": "SBC, AAC, LDAC",
+    "Weight": "254 g"
+  },
+  "verification": {
+    "status": "draft",
+    "sources": [
+      {
+        "id": "src-ifixit-xm4-battery",
+        "title": "iFixit: Sony WH-1000XM4 Battery Replacement",
+        "url": "https://www.ifixit.com/Guide/Sony+WH-1000XM4+Battery+Replacement/143625"
+      },
+      {
+        "id": "src-ifixit-xm4-ear-pads",
+        "title": "iFixit: Sony WH-1000XM4 Ear Pads Replacement",
+        "url": "https://www.ifixit.com/Guide/Sony+WH-1000XM4+Ear+Pads+Replacement/143667"
+      },
+      {
+        "id": "src-ifixit-xm4-touch-sensor",
+        "title": "iFixit: Sony WH-1000XM4 Touch Sensor Replacement",
+        "url": "https://www.ifixit.com/Guide/Sony+WH-1000XM4+Touch+Sensor+Replacement/167571"
+      },
+      {
+        "id": "src-ifixit-xm4-motherboard",
+        "title": "iFixit: Sony WH-1000XM4 Motherboard Replacement",
+        "url": "https://www.ifixit.com/Guide/Sony+WH-1000XM4+Motherboard+Replacement/167572"
+      },
+      {
+        "id": "src-ifixit-xm4-swivel",
+        "title": "iFixit: Sony WH-1000XM4 Swivel Replacement",
+        "url": "https://www.ifixit.com/Guide/Sony+WH-1000XM4+Swivel+Replacement/167320"
+      },
+      {
+        "id": "src-ifixit-xm4-topic",
+        "title": "iFixit: Sony WH-1000XM4 device page (specs summary and guide list)",
+        "url": "https://www.ifixit.com/Topic/Sony_WH-1000XM4"
+      },
+      {
+        "id": "src-sony-xm4-spec",
+        "title": "Sony: WH-1000XM4 Specifications (Sony Canada support page)",
+        "url": "https://www.sony.ca/en/electronics/support/wireless-headphones-bluetooth-headphones/wh-1000xm4/specifications"
+      },
+      {
+        "id": "src-52audio-xm4",
+        "title": "52Audio: Sony WH-1000XM4 teardown (via The Walkman Blog)",
+        "url": "https://thewalkmanblog.blogspot.com/2020/08/sony-wh-1000xm4-teardown-by-52audio.html"
+      }
+    ],
+    "notes": "Removal order, screws and connectors for the right ear cup come from iFixit's battery, ear pad and touch sensor guides (read 2026-11-08); the main board and swivel come from iFixit's motherboard and swivel guides. Specs (30 h, 254 g, 40 mm, Bluetooth 5.0) come from iFixit's device page and Sony's spec page (the Sony page returned 403 to direct fetch; values were read from search results). The 52Audio teardown (Walkman Blog) was read only as search excerpts and was not used for any component. Not modelled: left cup, USB-C port, 3.5 mm jack, microphones, headband (no iFixit USB-port guide found). dimensionsMm is the modelled cup, not an official figure. Geometry is approximate and not to scale. Components with verified=false (thermal-sensor, mainboard, swivel, ear-cup-frame) need a hands-on or photo check. Failure behaviour is a simplified educational simulation."
+  },
+  "components": [
+    {
+      "id": "ear-pad",
+      "name": "Ear pad (right)",
+      "kind": "ear-pad",
+      "system": "audio",
+      "difficulty": "easy",
+      "requires": [],
+      "connectsTo": [],
+      "fastening": "Snaps onto the cup with clips around the rim. Press the long outer edge to open a gap, then pry the clips with a spudger. May take considerable force.",
+      "fasteners": [
+        {
+          "type": "clip",
+          "tool": "spudger",
+          "notes": "Clip count not stated by iFixit"
+        }
+      ],
+      "layer": 6,
+      "exit": [
+        0,
+        0,
+        1
+      ],
+      "info": {
+        "what": "The soft leather-look cushion that rests around your ear.",
+        "does": "Seals the cup against your head so bass stays in and outside noise stays out. That seal is what lets noise cancelling work.",
+        "ifFails": "Flaking or squashed pads leak air: thin bass, weaker noise cancelling and sound escaping to others.",
+        "advanced": "The left and right pads are different parts, so each must go on its matching cup."
+      },
+      "specs": {
+        "Side": "Right (left pad is a different part)"
+      },
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            92,
+            14,
+            16
+          ],
+          "pos": [
+            0,
+            43,
+            19
+          ],
+          "color": "#141416",
+          "roughness": 0.85
+        },
+        {
+          "type": "box",
+          "size": [
+            92,
+            14,
+            16
+          ],
+          "pos": [
+            0,
+            -43,
+            19
+          ],
+          "color": "#141416",
+          "roughness": 0.85
+        },
+        {
+          "type": "box",
+          "size": [
+            14,
+            72,
+            16
+          ],
+          "pos": [
+            -39,
+            0,
+            19
+          ],
+          "color": "#141416",
+          "roughness": 0.85
+        },
+        {
+          "type": "box",
+          "size": [
+            14,
+            72,
+            16
+          ],
+          "pos": [
+            39,
+            0,
+            19
+          ],
+          "color": "#141416",
+          "roughness": 0.85
+        }
+      ],
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "Ear pad missing: no seal around the ear, so bass collapses and noise cancelling fails."
+      },
+      "onDamaged": {
+        "outcome": "degraded",
+        "symptom": "Ear pad is worn out: air leaks around the cup, bass is thin and noise cancelling is weak."
+      },
+      "onIncompatible": {
+        "outcome": "degraded",
+        "symptom": "Wrong-side ear pad: left and right pads differ, so it does not seat and leaks."
+      },
+      "verified": true,
+      "sources": [
+        "src-ifixit-xm4-ear-pads",
+        "src-ifixit-xm4-battery",
+        "src-ifixit-xm4-touch-sensor"
+      ]
+    },
+    {
+      "id": "foam-liner",
+      "name": "Speaker foam liner",
+      "kind": "foam-liner",
+      "system": "audio",
+      "difficulty": "easy",
+      "requires": [
+        "ear-pad"
+      ],
+      "connectsTo": [],
+      "fastening": "Lifts off the speaker by hand. The guides list no screws, clips or adhesive for it.",
+      "layer": 5,
+      "exit": [
+        0,
+        0,
+        1
+      ],
+      "info": {
+        "what": "A thin foam ring that covers the speaker side of the ear cup under the ear pad.",
+        "does": "Protects the speaker and cup interior from dust and keeps the area under the pad tidy.",
+        "ifFails": "A missing or crumbling liner lets dust in and can rattle against the speaker."
+      },
+      "shapes": [
+        {
+          "type": "cylinder",
+          "size": [
+            40,
+            3,
+            0
+          ],
+          "pos": [
+            0,
+            0,
+            11.5
+          ],
+          "color": "#3a3a40",
+          "roughness": 1
+        }
+      ],
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "Foam liner missing: dust can reach the speaker, and loose foam may rattle."
+      },
+      "verified": true,
+      "sources": [
+        "src-ifixit-xm4-battery",
+        "src-ifixit-xm4-touch-sensor"
+      ]
+    },
+    {
+      "id": "cup-cover",
+      "name": "Ear cup cover with touch sensor",
+      "kind": "cup-cover",
+      "system": "input",
+      "difficulty": "medium",
+      "requires": [
+        "foam-liner"
+      ],
+      "connectsTo": [
+        "mainboard"
+      ],
+      "fastening": "Four 8.4 mm Phillips #00 screws. The cover stays tethered by the touch ribbon cable: flip it, pull the ribbon straight out of the main board connector, then lift the cover away.",
+      "fasteners": [
+        {
+          "type": "screw",
+          "count": 4,
+          "tool": "phillips-00",
+          "notes": "8.4 mm"
+        },
+        {
+          "type": "press-connector",
+          "count": 1,
+          "tool": "spudger",
+          "notes": "Touch ribbon cable"
+        }
+      ],
+      "layer": 4,
+      "exit": [
+        0,
+        0,
+        1
+      ],
+      "info": {
+        "what": "The inner cover of the right ear cup. The touch sensor circuit board is glued to it.",
+        "does": "Closes the cup over the electronics and carries the touch surface you swipe for volume, play/pause and track skip.",
+        "ifFails": "Touch gestures stop working or act randomly.",
+        "advanced": "iFixit's touch sensor guide replaces the cover and sensor as one assembly; the sensor connects to the main board by a ribbon cable."
+      },
+      "specs": {
+        "Screws": "4 x 8.4 mm Phillips"
+      },
+      "shapes": [
+        {
+          "type": "cylinder",
+          "size": [
+            44,
+            3,
+            0
+          ],
+          "pos": [
+            0,
+            0,
+            6.5
+          ],
+          "color": "#2b2b30",
+          "metalness": 0.1,
+          "roughness": 0.6
+        },
+        {
+          "type": "cylinder",
+          "size": [
+            26,
+            0.4,
+            0
+          ],
+          "pos": [
+            0,
+            0,
+            8.2
+          ],
+          "color": "#4a4d57",
+          "roughness": 0.4
+        }
+      ],
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "Cup cover missing: touch controls do not work and the board is exposed."
+      },
+      "onDamaged": {
+        "outcome": "degraded",
+        "symptom": "Touch sensor is dead: swipes and taps on the right cup do nothing."
+      },
+      "onIncompatible": {
+        "outcome": "degraded",
+        "symptom": "Cover not recognised: touch controls behave randomly."
+      },
+      "verified": true,
+      "sources": [
+        "src-ifixit-xm4-touch-sensor",
+        "src-ifixit-xm4-battery"
+      ]
+    },
+    {
+      "id": "thermal-sensor",
+      "name": "Battery thermal sensor",
+      "kind": "thermal-sensor",
+      "system": "power",
+      "difficulty": "medium",
+      "requires": [
+        "cup-cover"
+      ],
+      "connectsTo": [
+        "mainboard"
+      ],
+      "electrical": true,
+      "fastening": "Foam and adhesive cover it. Peel them back (do not puncture the battery), then pull the sensor flex cable's darker tab with tweezers. On reinstall the diode on the flex cable faces up.",
+      "fasteners": [
+        {
+          "type": "adhesive",
+          "notes": "Foam and adhesive over the sensor"
+        },
+        {
+          "type": "press-connector",
+          "count": 1,
+          "notes": "Pulled with tweezers by the darker tab"
+        }
+      ],
+      "layer": 3,
+      "exit": [
+        0,
+        0,
+        1
+      ],
+      "info": {
+        "what": "A small sensor on a flex cable that lies on the battery.",
+        "does": "iFixit tells you to move it to the new battery. Its job (reporting battery temperature to the board) is the usual purpose of such a sensor; iFixit does not state it.",
+        "ifFails": "Charging or battery warnings may misbehave if the sensor is missing or damaged (simulation assumption)."
+      },
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            10,
+            16,
+            1
+          ],
+          "pos": [
+            14,
+            -10,
+            4.2
+          ],
+          "color": "#c9a227",
+          "roughness": 0.5
+        }
+      ],
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "Battery thermal sensor missing: the board cannot read the battery temperature, so charging may be refused."
+      },
+      "onDamaged": {
+        "outcome": "degraded",
+        "symptom": "Battery thermal sensor damaged: battery temperature readings are wrong."
+      },
+      "verified": false,
+      "sources": [
+        "src-ifixit-xm4-battery"
+      ],
+      "note": "Removal facts are from the iFixit battery guide. The sensor's function is not stated by iFixit and is inferred, so the symptoms are a simplified simulation."
+    },
+    {
+      "id": "battery",
+      "name": "Battery",
+      "kind": "battery",
+      "system": "power",
+      "difficulty": "medium",
+      "requires": [
+        "cup-cover",
+        "thermal-sensor"
+      ],
+      "connectsTo": [
+        "mainboard"
+      ],
+      "connectorAccess": [
+        "cup-cover"
+      ],
+      "powerSource": true,
+      "electrical": true,
+      "fastening": "Glued into the battery well. Disconnect the brittle battery connector with tweezers, pull the thermal sensor, then pry the battery up from the top-left corner with a spudger.",
+      "fasteners": [
+        {
+          "type": "press-connector",
+          "count": 1,
+          "notes": "Brittle: pull by the connector, not the wires"
+        },
+        {
+          "type": "adhesive",
+          "tool": "spudger",
+          "notes": "Double-sided tape; use new tape or adhesive strips"
+        }
+      ],
+      "layer": 3,
+      "exit": [
+        0,
+        0,
+        1
+      ],
+      "info": {
+        "what": "A single-cell lithium-ion battery glued into the right ear cup.",
+        "does": "Powers the Bluetooth radio, noise cancelling and touch controls. iFixit lists about 30 hours of playback with noise cancelling on.",
+        "ifFails": "Short runtime, unexpected shut-offs, or a puffy battery. A swollen or punctured lithium-ion cell can catch fire, so discharge the headphones first and never puncture the cell.",
+        "advanced": "iFixit notes that a replacement battery with the same connector should work if it physically fits. Power off and let the battery fully discharge before opening."
+      },
+      "specs": {
+        "Type": "Single-cell lithium-ion",
+        "Playback (NC on)": "About 30 h"
+      },
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            32,
+            42,
+            4
+          ],
+          "pos": [
+            -12,
+            -8,
+            1.2
+          ],
+          "color": "#8c8f96",
+          "metalness": 0.4,
+          "roughness": 0.5
+        }
+      ],
+      "onMissing": {
+        "outcome": "no-power",
+        "symptom": "No battery: the headphones cannot power on."
+      },
+      "onDamaged": {
+        "outcome": "no-power",
+        "symptom": "Battery will not hold a charge: the headphones will not power on."
+      },
+      "onIncompatible": {
+        "outcome": "no-power",
+        "symptom": "Battery connector or cell does not match: the headphones will not power on."
+      },
+      "verified": true,
+      "sources": [
+        "src-ifixit-xm4-battery"
+      ]
+    },
+    {
+      "id": "mainboard",
+      "name": "Main board (right cup)",
+      "kind": "main-board",
+      "system": "compute",
+      "difficulty": "hard",
+      "requires": [
+        "cup-cover",
+        "thermal-sensor"
+      ],
+      "connectsTo": [
+        "battery",
+        "cup-cover"
+      ],
+      "electrical": true,
+      "fastening": "Two screws (iFixit swivel guide), a ribbon cable, a data/power connector and a thermal-sensor ribbon. Other wires may need desoldering to free the board completely.",
+      "fasteners": [
+        {
+          "type": "screw",
+          "count": 2,
+          "tool": "phillips-00",
+          "notes": "Swivel guide says Phillips #000"
+        },
+        {
+          "type": "press-connector",
+          "count": 3,
+          "tool": "spudger"
+        }
+      ],
+      "layer": 2,
+      "exit": [
+        0,
+        0,
+        1
+      ],
+      "info": {
+        "what": "The circuit board in the right ear cup: Bluetooth, processing and the connectors for the battery, touch sensor and headband wiring.",
+        "does": "Runs the headphones: connects to your phone, processes sound and noise cancelling, and manages the battery.",
+        "ifFails": "No power, no Bluetooth pairing, or no sound."
+      },
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            42,
+            56,
+            1.6
+          ],
+          "pos": [
+            8,
+            0,
+            -3
+          ],
+          "color": "#1f6b3a",
+          "roughness": 0.7
+        }
+      ],
+      "onMissing": {
+        "outcome": "no-power",
+        "symptom": "Main board missing: nothing powers on."
+      },
+      "onDamaged": {
+        "outcome": "no-boot",
+        "symptom": "Main board fault: the headphones do not start."
+      },
+      "verified": false,
+      "sources": [
+        "src-ifixit-xm4-motherboard",
+        "src-ifixit-xm4-swivel"
+      ],
+      "note": "iFixit's two guides disagree: the Motherboard guide shows four corner screws and works in the left cup, the Swivel guide shows two board screws in the right cup. Modelled as the right-cup board with the battery (two screws). Which cup holds which board, and the screw count, need a physical check. Screwdriver is Phillips #000 in the swivel guide and #00 elsewhere; #00 used."
+    },
+    {
+      "id": "swivel",
+      "name": "Hinge / swivel",
+      "kind": "swivel",
+      "system": "structure",
+      "difficulty": "hard",
+      "requires": [
+        "mainboard"
+      ],
+      "connectsTo": [],
+      "fastening": "Two hinge screws per cup, then two swivel screws and a metal clip pushed out with a spudger.",
+      "fasteners": [
+        {
+          "type": "screw",
+          "count": 4,
+          "tool": "phillips-00",
+          "notes": "2 hinge screws + 2 swivel screws; guide says Phillips #000"
+        }
+      ],
+      "layer": 1,
+      "exit": [
+        0,
+        0,
+        1
+      ],
+      "info": {
+        "what": "The pivot that joins the ear cup to the headband and lets the cup rotate flat.",
+        "does": "Lets the headphones fold and the cup follow the shape of your head, and carries the cable that runs up the headband.",
+        "ifFails": "The cup hangs loose, creaks or will not stay in position, and the headband cable can break."
+      },
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            16,
+            34,
+            14
+          ],
+          "pos": [
+            0,
+            56,
+            -6
+          ],
+          "color": "#26262b",
+          "roughness": 0.6
+        }
+      ],
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "Swivel missing: the ear cup is not attached to the headband."
+      },
+      "onDamaged": {
+        "outcome": "degraded",
+        "symptom": "Swivel is cracked: the cup hangs loose and creaks."
+      },
+      "verified": false,
+      "sources": [
+        "src-ifixit-xm4-swivel"
+      ],
+      "note": "Single source (one iFixit guide). Tool size (#000 vs #00) and hinge screw count per cup not cross-checked; position of the headband cable is approximate."
+    },
+    {
+      "id": "ear-cup-frame",
+      "name": "Ear cup housing and driver",
+      "kind": "ear-cup-frame",
+      "system": "audio",
+      "difficulty": "hard",
+      "requires": [
+        "ear-pad",
+        "foam-liner",
+        "cup-cover",
+        "thermal-sensor",
+        "battery",
+        "mainboard",
+        "swivel"
+      ],
+      "connectsTo": [],
+      "fastening": "The plastic housing that everything above mounts into. The speaker driver sits in the pad side.",
+      "layer": 0,
+      "exit": [
+        0,
+        0,
+        -1
+      ],
+      "info": {
+        "what": "The right ear cup shell with the 40 mm speaker driver inside.",
+        "does": "Holds every other part, connects the cup to the headband and makes the sound.",
+        "ifFails": "Cracks or a failed driver mean distorted sound, crackle or silence in one ear."
+      },
+      "specs": {
+        "Driver": "40 mm dome type"
+      },
+      "shapes": [
+        {
+          "type": "cylinder",
+          "size": [
+            50,
+            10,
+            0
+          ],
+          "pos": [
+            0,
+            0,
+            -12
+          ],
+          "color": "#1c1c1f",
+          "roughness": 0.7
+        },
+        {
+          "type": "cylinder",
+          "size": [
+            30,
+            3,
+            0
+          ],
+          "pos": [
+            0,
+            0,
+            -5.5
+          ],
+          "color": "#34343a",
+          "metalness": 0.3
+        }
+      ],
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "No ear cup or driver: no sound from this ear."
+      },
+      "onDamaged": {
+        "outcome": "degraded",
+        "symptom": "Driver is damaged: distorted or silent sound from this ear."
+      },
+      "verified": false,
+      "sources": [
+        "src-sony-xm4-spec"
+      ],
+      "note": "Driver size is from Sony's spec page (read from search results; the page returned 403 to direct fetch). The driver's position behind the foam liner and the housing shape are not confirmed by a guide. Modelled geometry is approximate."
+    }
+  ],
+  "spares": [
+    {
+      "id": "battery-new",
+      "name": "New battery",
+      "kind": "battery",
+      "compatible": [
+        "sony-wh-1000xm4"
+      ],
+      "note": "Fresh single-cell lithium-ion battery with the same connector."
+    },
+    {
+      "id": "battery-swollen",
+      "name": "Puffy battery",
+      "kind": "battery",
+      "compatible": [
+        "sony-wh-1000xm4"
+      ],
+      "damaged": true,
+      "condition": "Bulging cell; barely holds a charge",
+      "effect": {
+        "outcome": "degraded",
+        "symptom": "Battery is puffy and holds minutes of charge: the headphones shut off without warning."
+      },
+      "color": "#9a9ca3"
+    },
+    {
+      "id": "ear-pad-new",
+      "name": "New right ear pad",
+      "kind": "ear-pad",
+      "compatible": [
+        "sony-wh-1000xm4"
+      ],
+      "note": "Right-side cushion with intact clips."
+    },
+    {
+      "id": "ear-pad-worn",
+      "name": "Worn right ear pad",
+      "kind": "ear-pad",
+      "compatible": [
+        "sony-wh-1000xm4"
+      ],
+      "damaged": true,
+      "condition": "Peeling surface, squashed foam, loose clips"
+    },
+    {
+      "id": "ear-pad-left",
+      "name": "Left ear pad",
+      "kind": "ear-pad",
+      "compatible": [],
+      "note": "Same shape at a glance, but the left and right pads are different parts."
+    },
+    {
+      "id": "cup-cover-new",
+      "name": "New cup cover with touch sensor",
+      "kind": "cup-cover",
+      "compatible": [
+        "sony-wh-1000xm4"
+      ],
+      "note": "Cover with the touch sensor board attached."
+    },
+    {
+      "id": "cup-cover-dead-touch",
+      "name": "Cup cover with dead touch sensor",
+      "kind": "cup-cover",
+      "compatible": [
+        "sony-wh-1000xm4"
+      ],
+      "damaged": true,
+      "condition": "Sensor does not respond; ribbon cable looks worn"
+    }
+  ],
+  "cases": [
+    {
+      "id": "xm4-001",
+      "title": "Dies After Twenty Minutes",
+      "level": "intermediate",
+      "brief": "A pair of XM4s used to last all week. Now they shut off mid-song and the right ear cup feels slightly puffy. Replace the battery, carefully.",
+      "symptoms": [
+        "The headphones switch off after about 20 minutes of playback.",
+        "The charge indicator flips between full and empty.",
+        "The right ear cup feels slightly bulged."
+      ],
+      "setup": {
+        "battery": "battery-swollen"
+      },
+      "culprit": "battery",
+      "spares": [
+        "battery-new",
+        "battery-swollen"
+      ],
+      "targetSeconds": 300,
+      "explanation": "The lithium-ion cell had aged and swollen, so it could no longer deliver its rated runtime. Following iFixit's order (ear pad, foam liner, cover screws, disconnect the battery connector, move the thermal sensor, then pry the battery) avoids puncturing the cell. A fresh battery restored normal runtime."
+    },
+    {
+      "id": "xm4-002",
+      "title": "Where Did the Bass Go?",
+      "level": "beginner",
+      "brief": "The music sounds thin and the noise cancelling barely works. The pad on the right ear cup is peeling and flat.",
+      "symptoms": [
+        "Bass is thin and noise cancelling leaks.",
+        "The right ear pad surface is peeling and squashed."
+      ],
+      "setup": {
+        "ear-pad": "ear-pad-worn"
+      },
+      "culprit": "ear-pad",
+      "spares": [
+        "ear-pad-new",
+        "ear-pad-worn",
+        "ear-pad-left"
+      ],
+      "targetSeconds": 90,
+      "explanation": "Ear pads seal the cup against your head. A worn pad lets air leak, which weakens bass and noise cancelling. Snap-on pads are the easiest repair on these headphones, but the left and right pads are different parts, so pick the right-hand one."
+    },
+    {
+      "id": "xm4-003",
+      "title": "Swipe, Swipe, Nothing",
+      "level": "intermediate",
+      "brief": "Volume swipes and taps on the right ear cup have stopped working. The sound is fine and the battery is good.",
+      "symptoms": [
+        "Touch controls on the right cup do nothing.",
+        "Audio and Bluetooth work normally."
+      ],
+      "setup": {
+        "cup-cover": "cup-cover-dead-touch"
+      },
+      "culprit": "cup-cover",
+      "spares": [
+        "cup-cover-new",
+        "cup-cover-dead-touch"
+      ],
+      "targetSeconds": 240,
+      "explanation": "The touch sensor lives on the cup cover and talks to the main board over a ribbon cable. When the sensor or ribbon fails, only the touch gestures stop. iFixit replaces the cover and sensor as one assembly after unclipping the ear pad, lifting the foam liner and removing four screws."
+    }
+  ]
+}
