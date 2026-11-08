@@ -1,6 +1,10 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-09 - Ops: vitest timeout (branch friend/fix-test-timeout, cut from main)
+- Done: `vite.config.ts` uses `vitest/config` and sets `test.testTimeout` to 30 s. `src/match/judge.test.ts` timed out at the 5 s default under `nice -n 19` on a shared PC (with and without other changes).
+- Tested: typecheck clean, `npm test` 64/64.
+
 ## 2026-11-08 - H-TECH lane: missing tests
 - Done:
   - `src/store/progress.test.ts`: XP for discover, case replay, achievement unlock, course bonus (4 tests).
