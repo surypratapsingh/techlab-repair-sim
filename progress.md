@@ -1,6 +1,20 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-08 - T8: Laptop Device Data (Lenovo ThinkPad T14)
+- Done:
+  - Created `public/data/devices/thinkpad-t14.json` using the existing engine schema without modifications:
+    - 8 components: `bottom-cover`, `battery` (powerSource, connectorAccess, connectsTo), `ssd` (M.2 NVMe), `ram` (SO-DIMM), `fan` (blower & heatsink), `motherboard`, `keyboard` (integrated chassis), `display` (14" WUXGA panel).
+    - Structured fasteners with Phillips #00 screws, clips, spudgers, and counts.
+    - All facts verified against 3 sources (`src-lenovo-psref`, `src-ifixit-t14`, `src-laptopmedia-teardown`).
+    - Verified status set to `draft` until full manual photo match.
+  - Enabled `"available": true` for `thinkpad-t14` in `public/data/devices/index.json`.
+  - Schema expresses laptop hardware cleanly; no engine or schema alterations required.
+- Tested:
+  - `cmd.exe /c "npm run typecheck && npm test && npm run build"`: all 7 test suites pass (48 tests including `thinkpad-t14 passes validation` verifying clean boot and full strict teardown & reassembly), typecheck clean, production build clean.
+- Could not do: None.
+- Unsure of: None.
+
 ## 2026-11-08 - T7: Laptop Research (Lenovo ThinkPad T14 Gen 3)
 - Done:
   - Researched hardware architecture and teardown specifications for Lenovo ThinkPad T14 Gen 3 following `docs/content-pipeline.md`.

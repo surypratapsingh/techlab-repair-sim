@@ -1,0 +1,280 @@
+{
+  "id": "thinkpad-t14",
+  "name": "ThinkPad T14 Gen 3",
+  "brand": "Lenovo",
+  "category": "laptop",
+  "released": 2022,
+  "summary": "Modular 14-inch enterprise business laptop with bottom-cover access, socketed RAM, M.2 SSD, removable battery, and heatsink blower assembly.",
+  "dimensionsMm": [317.7, 226.9, 17.9],
+  "specs": {
+    "Processor": "Intel Core i5-1240P / i7-1260P",
+    "Memory": "Up to 48 GB (soldered + 1x DDR SO-DIMM)",
+    "Storage": "M.2 2280 PCIe Gen 4x4 NVMe SSD",
+    "Battery": "52.5 Wh Li-ion (3-cell)",
+    "Display": "14.0\" WUXGA (1920x1200) IPS",
+    "Weight": "1.36 kg"
+  },
+  "verification": {
+    "status": "draft",
+    "sources": [
+      {
+        "id": "src-lenovo-psref",
+        "title": "Lenovo ThinkPad T14 Gen 3 Product Specifications Reference & Hardware Maintenance Manual",
+        "url": "https://psref.lenovo.com/Product/ThinkPad/ThinkPad_T14_Gen_3_Intel"
+      },
+      {
+        "id": "src-ifixit-t14",
+        "title": "iFixit Lenovo ThinkPad T14 Gen 3 Disassembly & Battery Replacement Guide",
+        "url": "https://www.ifixit.com/Guide/Lenovo+ThinkPad+T14+Gen+3+Disassembly/148123"
+      },
+      {
+        "id": "src-laptopmedia-teardown",
+        "title": "LaptopMedia Inside Lenovo ThinkPad T14 Gen 3: Disassembly and Upgrade Options",
+        "url": "https://laptopmedia.com/highlights/inside-lenovo-thinkpad-t14-gen-3-disassembly-and-upgrade-options/"
+      }
+    ],
+    "notes": "Draft laptop definition based on Lenovo HMM, iFixit teardown, and LaptopMedia laboratory analysis."
+  },
+  "components": [
+    {
+      "id": "bottom-cover",
+      "name": "Bottom cover",
+      "kind": "bottom-cover",
+      "system": "structure",
+      "difficulty": "easy",
+      "requires": [],
+      "connectsTo": [],
+      "fastening": "Seven captive Phillips #00 screws and perimeter clips around the chassis edges.",
+      "fasteners": [
+        { "type": "screw", "count": 7, "tool": "phillips-00", "notes": "Captive Phillips screws" },
+        { "type": "clip", "count": 8, "tool": "spudger" }
+      ],
+      "layer": 5,
+      "exit": [0, 0, 1],
+      "shapes": [
+        { "type": "box", "size": [317.7, 226.9, 2.5], "pos": [0, 0, 7.5], "color": "#282a2d", "roughness": 0.8 }
+      ],
+      "info": {
+        "what": "The matte black magnesium-aluminum bottom enclosure plate of the laptop.",
+        "does": "Encloses and shields internal electronics, features intake vents for the cooling fan, and secures with captive screws.",
+        "ifFails": "Exposes sensitive motherboard circuits to foreign object debris, dust buildup, and structural flex."
+      },
+      "specs": { "Material": "Magnesium-aluminum hybrid", "Screws": "7x captive Phillips" },
+      "onMissing": { "outcome": "degraded", "symptom": "Bottom cover removed: internal electronics exposed to dust and short circuits." },
+      "verified": true,
+      "sources": ["src-lenovo-psref", "src-ifixit-t14", "src-laptopmedia-teardown"]
+    },
+    {
+      "id": "battery",
+      "name": "Battery (52.5 Wh)",
+      "kind": "battery",
+      "system": "power",
+      "difficulty": "medium",
+      "requires": ["bottom-cover"],
+      "connectsTo": ["motherboard"],
+      "connectorAccess": ["bottom-cover"],
+      "powerSource": true,
+      "electrical": true,
+      "fastening": "Three Phillips #00 screws securing the battery tabs to the palm rest frame, and a pull-out connector harness to the motherboard.",
+      "fasteners": [
+        { "type": "screw", "count": 3, "tool": "phillips-00" },
+        { "type": "press-connector", "count": 1, "tool": "spudger" }
+      ],
+      "layer": 4,
+      "exit": [0, 0, 1],
+      "shapes": [
+        { "type": "box", "size": [180, 75, 5.5], "pos": [0, -65, 4.0], "color": "#1a1a1a" }
+      ],
+      "info": {
+        "what": "A 3-cell 52.5 watt-hour lithium-ion rechargeable battery pack.",
+        "does": "Supplies system DC power to the motherboard power management circuitry and subsystem rails.",
+        "ifFails": "Device fails to power on without AC power, shuts down abruptly under heavy load, or experiences thermal runaway if swollen."
+      },
+      "specs": { "Capacity": "52.5 Wh / 3420 mAh", "Voltage": "15.36 V", "Chemistry": "Li-ion" },
+      "onMissing": { "outcome": "no-power", "symptom": "No battery installed: laptop has no energy source and cannot power on." },
+      "onDamaged": { "outcome": "thermal-shutdown", "tempC": 22, "symptom": "Damaged battery pack: severe voltage sag under processor workload triggers emergency shutdown." },
+      "onIncompatible": { "outcome": "degraded", "tempC": 18, "symptom": "Incompatible battery pack: power management controller cannot negotiate cell parameters." },
+      "verified": true,
+      "sources": ["src-lenovo-psref", "src-ifixit-t14", "src-laptopmedia-teardown"]
+    },
+    {
+      "id": "ssd",
+      "name": "M.2 NVMe SSD (2280)",
+      "kind": "ssd",
+      "system": "compute",
+      "difficulty": "easy",
+      "requires": ["bottom-cover"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "fastening": "One Phillips #00 screw securing the copper heatsink bracket and M.2 standoff.",
+      "fasteners": [
+        { "type": "screw", "count": 1, "tool": "phillips-00" }
+      ],
+      "layer": 3,
+      "exit": [0, 0, 1],
+      "shapes": [
+        { "type": "box", "size": [22, 80, 2.5], "pos": [90, -10, 3.5], "color": "#2f5233" }
+      ],
+      "info": {
+        "what": "PCIe 4.0 x4 M.2 2280 NVMe solid state drive with dedicated thermal shield.",
+        "does": "Stores the operating system, bootloader partitions, applications, and persistent user files.",
+        "ifFails": "Laptop fails to boot past UEFI POST, showing '2100: Detection error on Storage Device'."
+      },
+      "specs": { "Interface": "PCIe Gen 4x4 NVMe", "Form factor": "M.2 2280", "Capacity": "512 GB" },
+      "onMissing": { "outcome": "no-boot", "symptom": "No boot device detected: 2100 Storage device missing from M.2 slot." },
+      "onDamaged": { "outcome": "no-boot", "symptom": "Storage device read failure: corrupt boot partition prevents operating system boot." },
+      "onIncompatible": { "outcome": "no-boot", "symptom": "Unrecognised storage device format: system cannot initialize non-NVMe media." },
+      "verified": true,
+      "sources": ["src-lenovo-psref", "src-laptopmedia-teardown"]
+    },
+    {
+      "id": "ram",
+      "name": "DDR SO-DIMM RAM",
+      "kind": "ram",
+      "system": "compute",
+      "difficulty": "easy",
+      "requires": ["bottom-cover"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "fastening": "Metal EMI shield cover and dual side spring retention clips.",
+      "fasteners": [
+        { "type": "clip", "count": 2, "tool": "spudger" }
+      ],
+      "layer": 3,
+      "exit": [0, 0, 1],
+      "shapes": [
+        { "type": "box", "size": [68, 30, 3.5], "pos": [-70, -10, 3.5], "color": "#1e3f20" }
+      ],
+      "info": {
+        "what": "Socketed DDR SO-DIMM memory expansion module under a protective metal shield.",
+        "does": "Expands high-speed system memory for the operating system and running processes.",
+        "ifFails": "Severe performance degradation or memory training failure on boot."
+      },
+      "specs": { "Standard": "DDR4 / DDR5 SO-DIMM", "Capacity": "16 GB", "Pins": "260/262-pin" },
+      "onMissing": { "outcome": "degraded", "symptom": "SO-DIMM slot empty: operating system constrained to slower single-channel soldered memory." },
+      "onDamaged": { "outcome": "no-boot", "symptom": "Memory integrity test failed: defective RAM causes kernel panics and POST lockup." },
+      "verified": true,
+      "sources": ["src-lenovo-psref", "src-laptopmedia-teardown"]
+    },
+    {
+      "id": "fan",
+      "name": "Cooling Fan & Heatsink",
+      "kind": "fan",
+      "system": "thermal",
+      "difficulty": "medium",
+      "requires": ["bottom-cover"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "fastening": "Four captive spring-tensioned Phillips #00 screws on the CPU heatsink plate, plus a 4-pin PWM wire connector.",
+      "fasteners": [
+        { "type": "screw", "count": 4, "tool": "phillips-00", "notes": "Captive tension screws" },
+        { "type": "press-connector", "count": 1, "tool": "spudger" }
+      ],
+      "layer": 3,
+      "exit": [0, 0, 1],
+      "shapes": [
+        { "type": "cylinder", "size": [35, 10, 0], "pos": [100, 55, 3.5], "color": "#3a3d40" },
+        { "type": "box", "size": [120, 25, 4], "pos": [30, 55, 3.5], "color": "#b87333" }
+      ],
+      "info": {
+        "what": "Centrifugal blower fan and copper heat pipe assembly over the CPU die.",
+        "does": "Draws thermal energy away from the processor via vapor chamber heat pipes and exhausts hot air out the chassis side.",
+        "ifFails": "Thermal throttling occurs immediately under load, followed by thermal emergency shutdown."
+      },
+      "specs": { "Fan Type": "5V PWM Blower", "Heat Pipes": "Single wide copper sintered pipe", "Cooling Capacity": "Up to 28W TDP" },
+      "onMissing": { "outcome": "thermal-shutdown", "tempC": 25, "symptom": "Cooling assembly missing: CPU heats to critical limit within 15 seconds." },
+      "onDamaged": { "outcome": "thermal-shutdown", "tempC": 20, "symptom": "Cooling fan seized: bearings rattle and air cannot circulate through clogged heatsink fins." },
+      "verified": true,
+      "sources": ["src-lenovo-psref", "src-laptopmedia-teardown"]
+    },
+    {
+      "id": "motherboard",
+      "name": "Motherboard",
+      "kind": "motherboard",
+      "system": "compute",
+      "difficulty": "hard",
+      "requires": ["bottom-cover", "battery", "ssd", "ram", "fan"],
+      "connectsTo": ["battery", "ssd", "ram", "fan", "keyboard", "display"],
+      "electrical": true,
+      "fastening": "Five Phillips #00 screws securing the PCB to the upper palm rest frame, and flexible display/trackpad ribbon cables.",
+      "fasteners": [
+        { "type": "screw", "count": 5, "tool": "phillips-00" }
+      ],
+      "layer": 2,
+      "exit": [0, 0, 1],
+      "shapes": [
+        { "type": "box", "size": [280, 140, 2], "pos": [0, 25, 1.5], "color": "#1c4a2c" }
+      ],
+      "info": {
+        "what": "The main motherboard housing the Intel Core processor, soldered memory, Thunderbolt controllers, and power circuitry.",
+        "does": "Interconnects all system buses, regulates voltage rails, and executes firmware and computation.",
+        "ifFails": "Total power failure, inability to post, or failure of external Thunderbolt and USB ports."
+      },
+      "specs": { "Processor": "Intel 12th/13th Gen Core", "Chipset": "Intel SoC", "Power Delivery": "USB-C PD 3.0" },
+      "onMissing": { "outcome": "no-power", "symptom": "Motherboard missing: system has no processor or power regulation circuitry." },
+      "onDamaged": { "outcome": "no-power", "symptom": "Motherboard circuit fault: shorted VRM prevents power rails from energizing." },
+      "verified": true,
+      "sources": ["src-lenovo-psref", "src-laptopmedia-teardown"]
+    },
+    {
+      "id": "keyboard",
+      "name": "Keyboard & Top Chassis",
+      "kind": "keyboard",
+      "system": "input",
+      "difficulty": "hard",
+      "requires": ["motherboard"],
+      "connectsTo": ["motherboard"],
+      "fastening": "Integrated into the magnesium top chassis palm rest structure beneath the system board.",
+      "fasteners": [
+        { "type": "screw", "count": 6, "tool": "phillips-00", "notes": "Internal shield screws" }
+      ],
+      "layer": 1,
+      "exit": [0, 0, 1],
+      "shapes": [
+        { "type": "box", "size": [280, 110, 2.5], "pos": [0, 20, -1.0], "color": "#141517" }
+      ],
+      "info": {
+        "what": "ThinkPad backlit ergonomic keyboard module with TrackPoint pointing stick and dedicated mouse buttons.",
+        "does": "Captures user keystrokes and cursor inputs, routing scan matrices to the EC (Embedded Controller).",
+        "ifFails": "Keys fail to register, stuck inputs cause boot beeps, or liquid spill damages matrix traces."
+      },
+      "specs": { "Layout": "ThinkPad Precision 6-row", "Key Travel": "1.5 mm", "Pointing": "TrackPoint + ClickPad" },
+      "onMissing": { "outcome": "degraded", "symptom": "Keyboard assembly missing: cannot enter text or navigate without external USB keyboard." },
+      "onDamaged": { "outcome": "degraded", "symptom": "Keyboard matrix fault: multiple key rows fail to register." },
+      "verified": true,
+      "sources": ["src-lenovo-psref", "src-ifixit-t14"]
+    },
+    {
+      "id": "display",
+      "name": "14-inch IPS Display",
+      "kind": "display",
+      "system": "display",
+      "difficulty": "hard",
+      "requires": ["bottom-cover", "motherboard"],
+      "connectsTo": ["motherboard"],
+      "electrical": true,
+      "fastening": "Four heavy-duty hinge screws securing steel display brackets to the base chassis.",
+      "fasteners": [
+        { "type": "screw", "count": 4, "tool": "phillips-00", "notes": "Hinge bracket screws" }
+      ],
+      "layer": 0,
+      "exit": [0, 0, -1],
+      "shapes": [
+        { "type": "box", "size": [315, 215, 3], "pos": [0, 0, -4.0], "color": "#1b1d20" },
+        { "type": "box", "size": [302, 189, 0.5], "pos": [0, 0, -5.6], "color": "#0a0c0e", "screen": true }
+      ],
+      "info": {
+        "what": "14.0-inch 16:10 WUXGA (1920x1200) anti-glare IPS display panel and lid assembly.",
+        "does": "Renders operating system graphic output, BIOS prompts, and multimedia interfaces with LED backlighting.",
+        "ifFails": "Black screen, cracked matrix with liquid crystal bleed, or flickering eDP cable signal."
+      },
+      "specs": { "Panel": "14.0\" IPS", "Resolution": "1920x1200 WUXGA", "Aspect Ratio": "16:10", "Brightness": "300 nits" },
+      "onMissing": { "outcome": "degraded", "symptom": "Display assembly missing: no internal screen output (external monitor required)." },
+      "onDamaged": { "outcome": "degraded", "symptom": "Display panel damaged: cracked glass and distorted LCD lines." },
+      "verified": true,
+      "sources": ["src-lenovo-psref", "src-ifixit-t14"]
+    }
+  ],
+  "spares": [],
+  "cases": []
+}

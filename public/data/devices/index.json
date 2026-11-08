@@ -2,7 +2,7 @@
   { "id": "galaxy-s23-ultra", "name": "Galaxy S23 Ultra", "brand": "Samsung", "category": "phone", "available": true, "summary": "200 MP camera, built-in S Pen, opens from the back." },
   { "id": "iphone-12", "name": "iPhone 12", "brand": "Apple", "category": "phone", "available": true, "summary": "Opens from the front, like a book." },
   { "id": "pixel-7", "name": "Pixel 7", "brand": "Google", "category": "phone", "available": true, "summary": "Front-opening OLED display, Tensor G2 chip, and iconic camera visor." },
-  { "id": "thinkpad-t14", "name": "ThinkPad T14", "brand": "Lenovo", "category": "laptop", "available": false, "summary": "Repair-friendly business laptop." },
+  { "id": "thinkpad-t14", "name": "ThinkPad T14", "brand": "Lenovo", "category": "laptop", "available": true, "summary": "Repair-friendly business laptop." },
   { "id": "airpods-pro", "name": "AirPods Pro", "brand": "Apple", "category": "audio", "available": false, "summary": "Tiny, glued, and fascinating inside." },
   { "id": "ps5", "name": "PlayStation 5", "brand": "Sony", "category": "console", "available": false, "summary": "Liquid-metal cooling and a giant fan." },
   { "id": "samsung-tv", "name": "Samsung LED TV", "brand": "Samsung", "category": "tv", "available": false, "summary": "Backlights, power board and T-con." }
