@@ -190,8 +190,9 @@ export const useLab = create<Lab>()(
             progress().recordDaily(getLocalDateString(), score.total)
           }
           // Let the boot animation play before the score card appears.
-          // Skip if the player reset or left the case in the meantime.
-          setTimeout(() => get().repair?.startedAt === repair.startedAt && set({ repair: { ...get().repair!, done: { ...score, xp } } }), RUN_MS)
+          // Skip if the player reset or left the case in the meantime, or a card is already up (a second Run during
+          // the animation scores again for 0 XP and must not replace the first card).
+          setTimeout(() => get().repair?.startedAt === repair.startedAt && !get().repair?.done && set({ repair: { ...get().repair!, done: { ...score, xp } } }), RUN_MS)
         },
 
         flag: (slot) => {

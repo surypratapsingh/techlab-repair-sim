@@ -170,6 +170,26 @@ describe('useLab – repair mode (s23u-001)', () => {
     expect(prog.achievements).toContain('perfectionist')
   })
 
+  it('running twice during the boot animation keeps the first score card XP', () => {
+    lab().open(s23u, 'repair', 's23u-001')
+    lab().flag('battery')
+    for (const id of ['back-cover', 'coil-speaker']) lab().remove(id)
+    lab().power(false)
+    for (const id of ['interconnect', 'screen-cable', 'battery']) lab().remove(id)
+    lab().install('battery-new', 'battery')
+    lab().install('screen-cable', 'screen-cable')
+    lab().install('interconnect', 'interconnect')
+    lab().power(true)
+    lab().install('coil-speaker', 'coil-speaker')
+    lab().install('back-cover', 'back-cover')
+
+    lab().runDevice()
+    lab().runDevice() // second press before the score card appears: replay pays 0 XP
+    vi.advanceTimersByTime(RUN_MS + 1)
+
+    expect(lab().repair?.done?.xp).toBeGreaterThan(0)
+  })
+
   it('reset during the run cancels the score card', () => {
     lab().open(s23u, 'repair', 's23u-001')
 
