@@ -275,6 +275,95 @@
       "sources": ["src-lenovo-psref", "src-ifixit-t14"]
     }
   ],
-  "spares": [],
-  "cases": []
+  "spares": [
+    {
+      "id": "battery-healthy",
+      "name": "52.5 Wh Li-ion Battery (OEM)",
+      "kind": "battery",
+      "compatible": ["thinkpad-t14"]
+    },
+    {
+      "id": "battery-swollen",
+      "name": "Swollen Battery (Faulty)",
+      "kind": "battery",
+      "compatible": ["thinkpad-t14"],
+      "damaged": true,
+      "condition": "Cell swollen, voltage sagging"
+    },
+    {
+      "id": "ssd-fast",
+      "name": "1 TB NVMe M.2 2280 SSD (New)",
+      "kind": "ssd",
+      "compatible": ["thinkpad-t14"]
+    },
+    {
+      "id": "ssd-corrupt",
+      "name": "Failed NVMe SSD (Corrupt)",
+      "kind": "ssd",
+      "compatible": ["thinkpad-t14"],
+      "damaged": true,
+      "condition": "Partition corrupted, 2100 detection error"
+    },
+    {
+      "id": "fan-clean",
+      "name": "Replacement Cooling Fan & Heatsink",
+      "kind": "fan",
+      "compatible": ["thinkpad-t14"]
+    },
+    {
+      "id": "fan-clogged",
+      "name": "Clogged Thermal Fan (Faulty)",
+      "kind": "fan",
+      "compatible": ["thinkpad-t14"],
+      "damaged": true,
+      "condition": "Bearing jammed with dust and lint"
+    }
+  ],
+  "cases": [
+    {
+      "id": "t14-001",
+      "title": "Swollen Cell Syndrome",
+      "level": "beginner",
+      "brief": "The ThinkPad shuts down abruptly whenever unplugged from AC power and the bottom panel shows slight bulging.",
+      "symptoms": [
+        "Severe battery degradation: laptop powers off under moderate CPU load.",
+        "Bottom cover exhibits outward pressure near the battery bay."
+      ],
+      "setup": { "battery": "battery-swollen" },
+      "culprit": "battery",
+      "spares": ["battery-healthy", "battery-swollen"],
+      "targetSeconds": 120,
+      "explanation": "The internal lithium-ion battery cells had degraded and developed internal resistance, causing emergency shutdowns under system load. Swapping in a healthy OEM battery restored full runtime and stable DC rails."
+    },
+    {
+      "id": "t14-002",
+      "title": "Storage Detection Failure",
+      "level": "beginner",
+      "brief": "During boot, the laptop halts with error '2100: Detection error on Storage Device (M.2 NVMe SSD)'.",
+      "symptoms": [
+        "Halts at POST with error 2100.",
+        "Operating system cannot load because the NVMe controller is unresponsive."
+      ],
+      "setup": { "ssd": "ssd-corrupt" },
+      "culprit": "ssd",
+      "spares": ["ssd-fast", "ssd-corrupt"],
+      "targetSeconds": 90,
+      "explanation": "The primary M.2 2280 SSD suffered NAND controller failure, preventing BIOS enumeration. Installing a fresh NVMe SSD under the thermal bracket restored boot capability."
+    },
+    {
+      "id": "t14-003",
+      "title": "Thermal Exhaust Blockage",
+      "level": "intermediate",
+      "brief": "The laptop fan whines at maximum RPM and the machine forcibly shuts down after 30 seconds of workload.",
+      "symptoms": [
+        "CPU temperature exceeds 95 °C triggering thermal shutdown.",
+        "Fan generates abnormal grinding noise without exhausting airflow."
+      ],
+      "setup": { "fan": "fan-clogged" },
+      "culprit": "fan",
+      "spares": ["fan-clean", "fan-clogged"],
+      "targetSeconds": 150,
+      "explanation": "Lint and hardened debris seized the centrifugal fan impeller, preventing heat pipe dissipation. Replacing the heatsink blower unit restored nominal operating temperatures under test load."
+    }
+  ]
 }

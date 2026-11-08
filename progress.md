@@ -1,6 +1,20 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-08 - T9: Laptop Repair Cases (ThinkPad T14)
+- Done:
+  - Added 6 spare parts to `public/data/devices/thinkpad-t14.json`: `battery-healthy`, `battery-swollen` (damaged), `ssd-fast`, `ssd-corrupt` (damaged), `fan-clean`, `fan-clogged` (damaged).
+  - Added 3 repair cases to `thinkpad-t14.json`:
+    1. `t14-001` (Swollen Cell Syndrome): battery degradation causing unexpected shutdowns under load, solvable with `battery-healthy`.
+    2. `t14-002` (Storage Detection Failure): NVMe controller failure with 2100 error, solvable with `ssd-fast`.
+    3. `t14-003` (Thermal Exhaust Blockage): clogged thermal fan bearings causing thermal throttling and emergency shutdown, solvable with `fan-clean`.
+  - Verified in headless browser (Edge via CDP) across all 3 repair cases at both 375 px (mobile) and 1280 px (desktop) viewports: all cases loaded with zero console errors.
+- Tested:
+  - `cmd.exe /c "npm run typecheck && npm test && npm run build"`: all 7 test suites pass (48 tests proving every case starts unbootable and solves to clean boot with spare), typecheck clean, static build clean.
+  - Browser verification script: checked `#/lab/thinkpad-t14/repair/t14-001`, `t14-002`, `t14-003` at 375x667 and 1280x800; 0 console errors logged.
+- Could not do: None.
+- Unsure of: None.
+
 ## 2026-11-08 - T8: Laptop Device Data (Lenovo ThinkPad T14)
 - Done:
   - Created `public/data/devices/thinkpad-t14.json` using the existing engine schema without modifications:
