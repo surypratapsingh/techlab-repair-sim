@@ -7,6 +7,8 @@ import * as THREE from 'three'
 import { AMBIENT_C, getPart } from '../engine/engine'
 import type { Component, Device, Shape, Vec3 } from '../engine/types'
 import { RUN_MS, useLab } from '../store/lab'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { resolveGltfUrl } from './gltf'
 
 const MM = 0.05 // scene units per millimetre
 const EXPLODE_MM = 9
@@ -59,6 +61,47 @@ export function ShapeMesh({ s, color, screen }: { s: Shape; color: string; scree
         )}
       </mesh>
     </group>
+  )
+}
+
+export function ComponentVisual({ c, tint }: { c: Component; tint?: string }) {
+  const [model, setModel] = useState<THREE.Group | null>(null)
+  const [failed, setFailed] = useState(false)
+
+  useEffect(() => {
+    if (!c.gltf) {
+      setFailed(true)
+      return
+    }
+    let active = true
+    const loader = new GLTFLoader()
+    const url = resolveGltfUrl(c.gltf, import.meta.env.BASE_URL)
+    loader.load(
+      url,
+      (gltf) => {
+        if (!active) return
+        setModel(gltf.scene)
+      },
+      undefined,
+      (err) => {
+        if (!active) return
+        console.warn(`[TechLab] glTF load failed for ${c.id}, falling back to procedural shapes:`, err)
+        setFailed(true)
+      }
+    )
+    return () => {
+      active = false
+    }
+  }, [c.gltf, c.id])
+
+  if (c.gltf && model && !failed) {
+    return <primitive object={model} />
+  }
+
+  return (
+    <>
+      <ComponentVisual c={c} tint={tint} />
+    </>
   )
 }
 

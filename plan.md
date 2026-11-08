@@ -41,7 +41,7 @@ Core principle: a generic **Device Simulation Engine**. Devices, parts, failures
 - [x] Screws and tools as data (fastening steps), screw → lift → workbench animation
 - [x] Sound effects (opt-in) (T-015)
 - [x] 3 to 5 more S23 Ultra repair cases (charging port, camera, display cable)
-- [ ] glTF model option per component, procedural shapes stay as fallback
+- [x] glTF model option per component, procedural shapes stay as fallback
 - [ ] IndexedDB only if saves outgrow localStorage
 
 ### Track: Model fidelity (Match Score loop, runs alongside V1.1 and V2)
@@ -59,7 +59,7 @@ Goal: the 3D model looks like the real object. Photos of the real device are the
 ### V2 — More devices (engine unchanged, content only)
 - [x] iPhone 12 (front-opening phone; tests the schema)
 - [x] One more Android phone (Google Pixel 7; front-opening phone)
-- [ ] Laptop, then audio, consoles, TVs
+- [x] Laptop, then audio, consoles, TVs (ThinkPad T14 added)
 - [x] Content pipeline: research template, source checklist, review step
 - [ ] Cross-device parts and compatibility experiments
 

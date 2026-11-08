@@ -119,3 +119,9 @@ Format per entry:
 - Context: Content pipeline requirement (docs/content-pipeline.md) to cross-reference component hardware facts to specific teardowns and spec pages.
 - Alternatives rejected: Free-form text in `note` only (cannot be mechanically validated against `verification.sources`); breaking backward compatibility with existing draft devices by requiring retrofitting unverified sources before review.
 - Consequences: New devices and verified devices must cite source IDs matching `verification.sources`.
+
+## 2026-11-08 - Optional glTF component models with procedural shape fallback
+- Decision: Add optional `gltf?: string` field to `Component` in `src/engine/types.ts`. When present, `LabScene` attempts to load and display the glTF model using Three.js `GLTFLoader` (available from the bundled `three` package). If `gltf` is omitted, or if loading/parsing fails for any reason, the renderer falls back seamlessly to procedural primitives (`shapes`).
+- Context: Plan V1.1 roadmap calls for an optional glTF model per component while retaining procedural shapes as a reliable fallback. GLTFLoader is already included within the existing `three` dependency without adding new npm packages.
+- Alternatives rejected: Requiring glTF models for all components (breaks lightweight procedural rendering and requires hundreds of complex 3D assets); adding external loader libraries (violates no-new-dependencies rule); crashing on glTF load failure (degrades lab reliability).
+- Consequences: Content authors can optionally provide high-detail glTF 2.0 assets per slot without breaking procedural fallback. If a model fails to load, the user still experiences the complete interactive lab teardown.

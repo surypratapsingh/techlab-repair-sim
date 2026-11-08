@@ -1,6 +1,33 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-08 - Final Summary: Wave 2 Complete (T7 - T10)
+- Status: All Wave 2 items (T7, T8, T9, T10) successfully completed, thoroughly verified, and committed locally.
+- T7 (Laptop Research): Authored `docs/research-laptop-thinkpad-t14.md` for Lenovo ThinkPad T14 Gen 3 following `docs/content-pipeline.md` with 3-source checklist (`src-lenovo-psref`, `src-ifixit-t14`, `src-laptopmedia-teardown`), component disassembly DAG, fastener specs, and proposed repair cases. No device JSON added in T7.
+- T8 (Laptop Device Data): Created `public/data/devices/thinkpad-t14.json` using the existing engine schema (8 components: `bottom-cover`, `battery`, `ssd`, `ram`, `fan`, `motherboard`, `keyboard`, `display`) with fastener specs and verified sources. Enabled `"available": true` in `index.json`. Engine schema proved completely sufficient; 0 engine modifications required.
+- T9 (Laptop Repair Cases): Added 6 spare parts and 3 repair cases (`t14-001` battery swap, `t14-002` SSD upgrade, `t14-003` fan cleaning). Validated in tests and verified in live headless browser (Edge via CDP) across all 3 cases at both 375 px (mobile) and 1280 px (desktop) viewports with zero console errors.
+- T10 (glTF Option with Procedural Shapes Fallback): Verified `GLTFLoader` already available in bundled `three` package (0 new dependencies added). Added optional `gltf?: string` field to `Component` in `src/engine/types.ts` and validator in `src/engine/validate.ts`. Handcrafted test glTF model `public/models/test-cube.gltf` with valid PBR mesh geometry (no external assets). Implemented `ComponentVisual` in `src/scene/LabScene.tsx` with automatic procedural shapes fallback upon omission or error. Authored unit test suite in `src/scene/gltf.test.ts` (10/10 tests pass). Documented in `decisions.md` and ticked `plan.md`.
+- Quality gates:
+  - `npm run typecheck`: clean (0 errors)
+  - `npm test`: 8/8 test suites pass (58 unit tests passed)
+  - `npm run build`: static production bundle built cleanly in `dist/`
+
+## 2026-11-08 - T10: glTF Option with Procedural Shapes Fallback
+- Done:
+  - Verified `GLTFLoader` is already present in the existing `three` dependency without adding any npm packages.
+  - Documented architectural decision in `decisions.md`.
+  - Added optional `gltf?: string` field to `Component` interface in `src/engine/types.ts`.
+  - Added validation rule in `src/engine/validate.ts` ensuring `gltf` path is a non-empty string when provided.
+  - Handcrafted calibration glTF 2.0 test model `public/models/test-cube.gltf` with embedded base64 buffer, PBR material, 8 vertices, and 36 indices (no downloaded models).
+  - Created `src/scene/gltf.ts` providing `resolveVisualMode`, `resolveGltfUrl`, and `loadGltf`.
+  - Implemented `ComponentVisual` in `src/scene/LabScene.tsx` to conditionally render glTF models while gracefully falling back to procedural shapes upon omission or network/parsing error.
+  - Added unit test suite in `src/scene/gltf.test.ts` testing fallback state resolution, URL handling, glTF parsing of handcrafted test model, and error fallback (10/10 tests pass).
+  - Ticked `plan.md` for "glTF model option per component, procedural shapes stay as fallback".
+- Tested:
+  - `cmd.exe /c "npm run typecheck && npm test && npm run build"`: all 8 test suites pass (58 tests), typecheck clean, production build clean.
+- Could not do: None.
+- Unsure of: None.
+
 ## 2026-11-08 - T9: Laptop Repair Cases (ThinkPad T14)
 - Done:
   - Added 6 spare parts to `public/data/devices/thinkpad-t14.json`: `battery-healthy`, `battery-swollen` (damaged), `ssd-fast`, `ssd-corrupt` (damaged), `fan-clean`, `fan-clogged` (damaged).

@@ -77,6 +77,8 @@ export interface Component {
   /** Direction the part leaves the device when removed. Default [0,0,1] (out of the back). */
   exit?: Vec3
   shapes: Shape[]
+  /** Optional glTF 2.0 model path or URL (procedural shapes used as fallback). */
+  gltf?: string
   onMissing: Effect
   /** Defaults to onMissing. */
   onDamaged?: Effect

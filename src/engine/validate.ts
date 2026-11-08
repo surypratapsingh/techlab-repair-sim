@@ -35,6 +35,9 @@ export function validateDevice(d: Device): string[] {
         err(`${c.id} is verified: true but cites no source id that exists in the device's sources list`)
       }
     }
+    if (c.gltf !== undefined && (typeof c.gltf !== 'string' || !c.gltf.trim())) {
+      err(`${c.id} has invalid gltf model path "${c.gltf}"`)
+    }
     if (c.fasteners) {
       const validTypes = new Set(['screw', 'adhesive', 'clip', 'press-connector'])
       const validTools = new Set(['phillips-00', 'tri-point-y000', 'pentalobe-p2', 'spudger', 'suction-pick', 'sim-tool', 'heat-gun'])
