@@ -1,6 +1,11 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-09 - UI: power label on mains devices (branch friend/mains-power-label, cut from friend/v2-console-device)
+- Done: `src/engine/power.ts` `powerWord(device)` returns "Power supply" for console and tv, else "Battery". Used in the parts panel status, the info panel button and the lab log line. Test in `power.test.ts`. Closes the follow-up in the PS5 decision.
+- Tested: typecheck clean, `npm test` 71/71.
+- Not done: intro text lines that still say "battery" (generic copy).
+
 ## 2026-11-09 - V2 console: Sony PS5 (branch friend/v2-console-device, cut from friend/v2-audio-device)
 - Done:
   - `public/data/devices/sony-ps5.json`: 14 slots (stand, both panels, grille, SSD cover, shroud, fan, two shells, disc drive, top shield, power supply, main board, chassis), 7 spares, 3 cases (`ps5-001` clogged fan, `ps5-002` failing disc drive with a paired-drive trap, `ps5-003` failed PSU). `index.json`: `ps5` entry renamed `sony-ps5`, `available: true`.
