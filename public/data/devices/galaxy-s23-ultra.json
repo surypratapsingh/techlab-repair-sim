@@ -18,16 +18,17 @@
   "verification": {
     "status": "draft",
     "sources": [
-      { "title": "iFixit: Galaxy S23 Ultra Back Cover Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+Back+Cover+Replacement/161195" },
-      { "title": "iFixit: Galaxy S23 Ultra Battery Replacement", "url": "https://www.ifixit.com/Guide/Galaxy+S23+Ultra+Battery+Replacement/173949" },
-      { "title": "iFixit: Galaxy S23 Ultra USB-C Port and Charging Board Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+USB-C+Port+and+Charging+Board+Replacement/161197" },
-      { "title": "iFixit: Galaxy S23 Ultra Screen and Battery Assembly Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+Screen+and+Battery+Assembly+Replacement/161196" },
-      { "title": "iFixit: Galaxy S23 Ultra Motherboard Removal", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+Motherboard+Removal/161225" },
-      { "title": "iFixit: Galaxy S23 Ultra Chip ID", "url": "https://www.ifixit.com/Guide/Galaxy+S23+Ultra+Chip+ID/158052" },
-      { "title": "iFixit: Galaxy S23 Ultra SIM Tray Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+SIM+Tray+Replacement/161198" },
-      { "title": "iFixit: Galaxy S23 Ultra Stylus Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+Stylus+Replacement/161199" }
+      { "id": "src-ifixit-s23u-back-cover", "title": "iFixit: Galaxy S23 Ultra Back Cover Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+Back+Cover+Replacement/161195" },
+      { "id": "src-ifixit-s23u-battery", "title": "iFixit: Galaxy S23 Ultra Battery Replacement", "url": "https://www.ifixit.com/Guide/Galaxy+S23+Ultra+Battery+Replacement/173949" },
+      { "id": "src-ifixit-s23u-charging-board", "title": "iFixit: Galaxy S23 Ultra USB-C Port and Charging Board Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+USB-C+Port+and+Charging+Board+Replacement/161197" },
+      { "id": "src-ifixit-s23u-screen", "title": "iFixit: Galaxy S23 Ultra Screen and Battery Assembly Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+Screen+and+Battery+Assembly+Replacement/161196" },
+      { "id": "src-ifixit-s23u-motherboard", "title": "iFixit: Galaxy S23 Ultra Motherboard Removal", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+Motherboard+Removal/161225" },
+      { "id": "src-ifixit-s23u-chip-id", "title": "iFixit: Galaxy S23 Ultra Chip ID", "url": "https://www.ifixit.com/Guide/Galaxy+S23+Ultra+Chip+ID/158052" },
+      { "id": "src-ifixit-s23u-sim-tray", "title": "iFixit: Galaxy S23 Ultra SIM Tray Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+SIM+Tray+Replacement/161198" },
+      { "id": "src-ifixit-s23u-stylus", "title": "iFixit: Galaxy S23 Ultra Stylus Replacement", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Ultra+Stylus+Replacement/161199" },
+      { "id": "src-ifixit-s23-rear-cameras", "title": "iFixit: Samsung Galaxy S23 Rear Cameras Replacement (base S23, closest published rear-camera guide)", "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S23+Rear+Cameras+Replacement/174228" }
     ],
-    "notes": "Removal order, fastening and connectors taken from the iFixit guides above (fetched 2026-10-07). 3D geometry is approximate and not to scale. Components with verified=false need a teardown-photo check before this device is marked verified. Failure behaviour is a simplified educational simulation."
+    "notes": "Removal order, fastening and connectors taken from the iFixit guides above (fetched 2026-10-07). 3D geometry is approximate and not to scale. Components with verified=false (main-camera, aux-cameras, thermal-paste; see each note) need a teardown-photo check before this device is marked verified; T-001 re-checked 2026-11-08 and none could be confirmed from public sources. Failure behaviour is a simplified educational simulation."
   },
   "components": [
     {
@@ -252,7 +253,7 @@
       "kind": "camera-main",
       "system": "imaging",
       "difficulty": "medium",
-      "requires": ["motherboard-cover"],
+      "requires": ["motherboard"],
       "connectsTo": ["motherboard"],
       "electrical": true,
       "fastening": "Press connector to the motherboard; sits in a cutout in the frame.",
@@ -272,7 +273,7 @@
       "onDamaged": { "outcome": "degraded", "symptom": "Main camera damaged: black, blurry or shaking image." },
       "onIncompatible": { "outcome": "degraded", "symptom": "Camera module not recognised: the camera app reports 'Camera failed'." },
       "verified": false,
-      "note": "Specs from Samsung's published spec sheet. iFixit's guides don't cover rear-camera removal; access after the motherboard cover is inferred and needs a teardown check."
+      "note": "Removal order corrected 2026-11-08: iFixit's S23 Ultra Motherboard Removal (161225) lifts the board out with no rear-camera steps, and iFixit's base-S23 Rear Cameras guide (174228) unplugs the three cameras from the back of the board only after the board is out, so the cameras now come off after the motherboard. No Ultra-specific rear-camera guide or photo exists, so the Ultra's own removal path, screws and connectors are still unconfirmed. Specs are from Samsung's published sheet, not re-fetched."
     },
     {
       "id": "aux-cameras",
@@ -280,7 +281,7 @@
       "kind": "camera-aux",
       "system": "imaging",
       "difficulty": "medium",
-      "requires": ["motherboard-cover"],
+      "requires": ["motherboard"],
       "connectsTo": ["motherboard"],
       "electrical": true,
       "fastening": "Press connectors to the motherboard; modules sit in cutouts in the frame.",
@@ -301,7 +302,7 @@
       "specs": { "Ultra-wide": "12 MP, f/2.2, 120 deg", "Telephoto": "10 MP, f/2.4, 3x optical, OIS", "Periscope": "10 MP, f/4.9, 10x optical, OIS" },
       "onMissing": { "outcome": "degraded", "symptom": "Ultra-wide and zoom cameras missing: only the main lens works." },
       "verified": false,
-      "note": "Grouped as one slot for V1. Removal access inferred (see main camera). Lens layout approximate."
+      "note": "Grouped as one slot for V1. Removal order corrected the same way as the main camera (after the motherboard; see its note). Ultra-specific connectors and fasteners unconfirmed; lens layout approximate."
     },
     {
       "id": "motherboard",
@@ -309,7 +310,7 @@
       "kind": "motherboard",
       "system": "compute",
       "difficulty": "medium",
-      "requires": ["motherboard-cover", "interconnect", "screen-cable", "main-camera", "aux-cameras"],
+      "requires": ["motherboard-cover", "interconnect", "screen-cable"],
       "connectsTo": ["battery", "interconnect", "screen-cable", "front-camera", "mmwave", "main-camera", "aux-cameras", "motherboard-cover", "coil-speaker"],
       "electrical": true,
       "fastening": "A single 4 mm Phillips screw plus press connectors for the battery, interconnects, screen, front camera, fingerprint reader, stylus silo, two mmWave antennas, earpiece, NFC and coil.",
@@ -399,7 +400,7 @@
       "onMissing": { "outcome": "degraded", "tempC": 24, "symptom": "No thermal paste: heat can't reach the vapor chamber, so the processor's temperature climbs fast." },
       "onDamaged": { "outcome": "degraded", "tempC": 18, "symptom": "Thermal paste is dried out: poor heat transfer, so the phone runs hot and throttles." },
       "verified": false,
-      "note": "Thermal interface between the SoC shield and the frame's vapor chamber is typical for this class of phone but not yet confirmed from a teardown photo."
+      "note": "Checked 2026-11-08: no primary S23 Ultra teardown reachable (iFixit's guides don't show it; TechInsights returned 403). Secondary articles say the Ultra has a copper vapor chamber under the battery, roughly 2x the S22 Ultra's, with graphite film and paste over the SoC/RAM, but disagree with this slot's 'SoC shield to frame vapor chamber' placement and give no photo. Placement and whether the vapor chamber belongs to the frame stay unconfirmed."
     },
     {
       "id": "display-frame",

@@ -1,6 +1,38 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-09 - UI: power label on mains devices (branch friend/mains-power-label, cut from friend/v2-console-device)
+- Done: `src/engine/power.ts` `powerWord(device)` returns "Power supply" for console and tv, else "Battery". Used in the parts panel status, the info panel button and the lab log line. Test in `power.test.ts`. Closes the follow-up in the PS5 decision.
+- Tested: typecheck clean, `npm test` 71/71.
+- Not done: intro text lines that still say "battery" (generic copy).
+
+## 2026-11-09 - V2 console: Sony PS5 (branch friend/v2-console-device, cut from friend/v2-audio-device)
+- Done:
+  - `public/data/devices/sony-ps5.json`: 14 slots (stand, both panels, grille, SSD cover, shroud, fan, two shells, disc drive, top shield, power supply, main board, chassis), 7 spares, 3 cases (`ps5-001` clogged fan, `ps5-002` failing disc drive with a paired-drive trap, `ps5-003` failed PSU). `index.json`: `ps5` entry renamed `sony-ps5`, `available: true`.
+  - `docs/research-console-ps5.md`, `src/engine/ps5.test.ts` (2 tests). Engine unchanged. Decision logged.
+- Draft: `mainboard`, `chassis-frame` are `verified: false` (teardown only, no removal guide). Single source family (iFixit); dimensions are a secondary report.
+- Tested: `npm test` 70/70 (full run; `judge.test.ts` "drops as an inner feature moves" timed out once under `nice -n 19` load, and also fails on the branch without these changes, so it is a load-sensitive 5 s timeout, not PS5), typecheck clean, build ok. Browser: `#/lab/sony-ps5/explore` lists 14 parts, no console errors; the canvas stays blank in the pane, as it does for the ThinkPad.
+- Next: camera framing for large devices (UI/scene lane); owner check of a real PS5.
+
+## 2026-11-08 - V2 audio: Sony WH-1000XM4 (branch friend/v2-audio-device, cut from friend/t001-verify-s23)
+- Done:
+  - `docs/research-audio-sony-wh-1000xm4.md`: template values, 8 sources, removal DAG, open points.
+  - `public/data/devices/sony-wh-1000xm4.json`: 8 slots (right ear cup: ear pad, foam liner, cup cover with touch sensor, thermal sensor, battery, main board, swivel, housing and driver), 7 spares, 3 cases (`xm4-001` battery, `xm4-002` ear pad, `xm4-003` touch sensor). Added to `index.json` (`available: true`).
+  - `src/engine/xm4.test.ts` (2 tests). Engine unchanged. `plan.md` V2 line updated; decision logged.
+- Draft: 4 components `verified: false` (thermal-sensor, mainboard, swivel, ear-cup-frame) with notes; iFixit's motherboard and swivel guides disagree on screw count and cup.
+- Tested: `npm test` 67/67, `npm run typecheck` clean, `npm run build` ok. Browser: `#/lab/sony-wh-1000xm4/explore` renders, Explode separates the layers, no console errors. Dev server stopped.
+- Not done: no USB-C case (no iFixit guide), left cup not modelled, Match loop photos (owner), glTF (optional, skipped). Sony spec page returned 403; specs read from search excerpts.
+- Next: owner check of a physical XM4 (main board cup, screw count); consoles and TVs for V2.
+
+## 2026-11-08 - T-001: S23 Ultra verification check (branch friend/t001-verify-s23)
+- Done:
+  - Checked `main-camera`, `aux-cameras`, `thermal-paste` against iFixit (Ultra motherboard removal, base-S23 rear cameras guide, S23+ teardown) and secondary articles on the vapor chamber.
+  - Corrected removal order: cameras now `require` `motherboard` (iFixit puts them after the board). Logged in `decisions.md`.
+  - Added `id`s to all S23 Ultra sources (pipeline format) plus the base-S23 rear-cameras guide as `src-ifixit-s23-rear-cameras`; rewrote the three notes with what was checked and what is missing.
+- Not done: no component promoted to `verified: true`, device stays `draft`. No Ultra-specific camera guide or thermal teardown is reachable (TechInsights/Tekdep returned 403, Samsung service manual not public). T-001 stays open in `todo.md` with what is still needed.
+- Tested: `npm test` 64/64, `npm run typecheck` clean, `npm run build` ok.
+- Next: owner photos or a physical S23 Ultra to confirm the three slots.
+
 ## 2026-11-08 - H-TECH lane: missing tests
 - Done:
   - `src/store/progress.test.ts`: XP for discover, case replay, achievement unlock, course bonus (4 tests).

@@ -1,5 +1,6 @@
 // Component list: the keyboard-accessible way to select parts, plus slot status at a glance.
 import { isCompatible, isDamaged, powerSource } from '../../engine/engine'
+import { powerWord } from '../../engine/power'
 import { useLab } from '../../store/lab'
 import { useProgress } from '../../store/progress'
 
@@ -19,7 +20,7 @@ export function PartsPanel() {
     <div className="panel">
       <div className="power">
         <span className={`dot ${state.powerConnected ? 'on' : ''}`} aria-hidden="true" />
-        <span aria-live="polite">Battery {state.powerConnected ? 'connected' : 'disconnected'}</span>
+        <span aria-live="polite">{powerWord(d)} {state.powerConnected ? 'connected' : 'disconnected'}</span>
         {state.slots[battery.id] && (
           <button className="btn sm" onClick={() => power(!state.powerConnected)}>
             {state.powerConnected ? 'Disconnect' : 'Connect'}
