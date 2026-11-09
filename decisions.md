@@ -125,3 +125,9 @@ Format per entry:
 - Context: Plan V1.1 roadmap calls for an optional glTF model per component while retaining procedural shapes as a reliable fallback. GLTFLoader is already included within the existing `three` dependency without adding new npm packages.
 - Alternatives rejected: Requiring glTF models for all components (breaks lightweight procedural rendering and requires hundreds of complex 3D assets); adding external loader libraries (violates no-new-dependencies rule); crashing on glTF load failure (degrades lab reliability).
 - Consequences: Content authors can optionally provide high-detail glTF 2.0 assets per slot without breaking procedural fallback. If a model fails to load, the user still experiences the complete interactive lab teardown.
+
+## 2026-11-08 - S23 Ultra: rear cameras come off after the motherboard
+- Context: T-001. The draft data had `motherboard` require `main-camera` and `aux-cameras`. iFixit's S23 Ultra Motherboard Removal (161225) has no camera steps before lifting the board, and iFixit's base-S23 Rear Cameras guide (174228) unplugs the cameras from the back of the board after it is out.
+- Decision: swap the dependency (cameras require `motherboard`). Cameras stay `verified: false`: the only Ultra-specific evidence is the absence of camera steps, there is no Ultra camera guide or photo.
+- Alternatives: keep the old order (contradicts both iFixit guides); mark cameras verified (no Ultra-specific proof, fails the promotion checklist in `docs/content-pipeline.md`).
+- Effect: repair case `s23u-005` (main camera) now needs the motherboard out first. `npm test` proves it is still solvable.

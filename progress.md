@@ -1,6 +1,15 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-08 - T-001: S23 Ultra verification check (branch friend/t001-verify-s23)
+- Done:
+  - Checked `main-camera`, `aux-cameras`, `thermal-paste` against iFixit (Ultra motherboard removal, base-S23 rear cameras guide, S23+ teardown) and secondary articles on the vapor chamber.
+  - Corrected removal order: cameras now `require` `motherboard` (iFixit puts them after the board). Logged in `decisions.md`.
+  - Added `id`s to all S23 Ultra sources (pipeline format) plus the base-S23 rear-cameras guide as `src-ifixit-s23-rear-cameras`; rewrote the three notes with what was checked and what is missing.
+- Not done: no component promoted to `verified: true`, device stays `draft`. No Ultra-specific camera guide or thermal teardown is reachable (TechInsights/Tekdep returned 403, Samsung service manual not public). T-001 stays open in `todo.md` with what is still needed.
+- Tested: `npm test` 64/64, `npm run typecheck` clean, `npm run build` ok.
+- Next: owner photos or a physical S23 Ultra to confirm the three slots.
+
 ## 2026-11-08 - H-TECH lane: missing tests
 - Done:
   - `src/store/progress.test.ts`: XP for discover, case replay, achievement unlock, course bonus (4 tests).
