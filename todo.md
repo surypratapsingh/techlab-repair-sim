@@ -12,7 +12,8 @@ How to use (people and agents):
 
 ### T-001 Verify the uncertain S23 Ultra components
 - Lane: content (`public/data/devices/galaxy-s23-ultra.json`)
-- Status: open (needs a human with teardown photos or a physical device)
+- Status: open, partly worked 2026-11-08 (friend/t001-verify-s23): public sources checked, nothing could be promoted; still needs teardown photos or a physical device
+- Checked 2026-11-08: iFixit has no S23 Ultra rear-camera guide; the S23 Ultra Motherboard Removal guide and the base-S23 Rear Cameras guide both put the cameras after the motherboard, so `main-camera` and `aux-cameras` now `require` `motherboard` (was the reverse). Both stay `verified: false`. No primary teardown for `thermal-paste` or the vapor chamber (TechInsights 403; secondary articles disagree with the slot's placement), so it stays `verified: false`. Device stays `draft`. Still needed: Ultra-specific photos of the camera connectors, camera screws and the heat-spreader stack, or Samsung's service manual.
 - Work: check `main-camera`, `aux-cameras` (removal order relative to the motherboard cover) and `thermal-paste` (placement, and whether the vapor chamber belongs to the frame). Fix data if wrong. Set `verified: true` and remove the note. When all components are verified, set `verification.status` to `verified` and add the sources used.
 - Accept: `npm test` passes; every component has `verified: true`; "Draft data" tag disappears in the lab.
 

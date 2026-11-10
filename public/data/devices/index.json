@@ -3,7 +3,8 @@
   { "id": "iphone-12", "name": "iPhone 12", "brand": "Apple", "category": "phone", "available": true, "summary": "Opens from the front, like a book." },
   { "id": "pixel-7", "name": "Pixel 7", "brand": "Google", "category": "phone", "available": true, "summary": "Front-opening OLED display, Tensor G2 chip, and iconic camera visor." },
   { "id": "thinkpad-t14", "name": "ThinkPad T14", "brand": "Lenovo", "category": "laptop", "available": true, "summary": "Repair-friendly business laptop." },
+  { "id": "sony-wh-1000xm4", "name": "Sony WH-1000XM4", "brand": "Sony", "category": "audio", "available": true, "summary": "Noise-cancelling over-ear headphones: snap-on pads, a glued battery and a touch sensor." },
   { "id": "airpods-pro", "name": "AirPods Pro", "brand": "Apple", "category": "audio", "available": false, "summary": "Tiny, glued, and fascinating inside." },
-  { "id": "ps5", "name": "PlayStation 5", "brand": "Sony", "category": "console", "available": false, "summary": "Liquid-metal cooling and a giant fan." },
+  { "id": "sony-ps5", "name": "PlayStation 5", "brand": "Sony", "category": "console", "available": true, "summary": "Pop-off panels, a giant fan and liquid-metal cooling." },
   { "id": "samsung-tv", "name": "Samsung LED TV", "brand": "Samsung", "category": "tv", "available": false, "summary": "Backlights, power board and T-con." }
 ]

@@ -1,5 +1,6 @@
 // Selected component: the three learning questions, specs, and the actions available right now.
 import { blockers, canRemove, componentFasteners, getComponent, getPart, isCompatible, isDamaged } from '../../engine/engine'
+import { powerWord } from '../../engine/power'
 import { useLab } from '../../store/lab'
 
 export function InfoPanel() {
@@ -60,7 +61,7 @@ export function InfoPanel() {
         )}
         {c.powerSource && part && (
           <button className="btn" onClick={() => power(!state.powerConnected)}>
-            {state.powerConnected ? 'Disconnect battery' : 'Connect battery'}
+            {state.powerConnected ? 'Disconnect' : 'Connect'} {powerWord(d).toLowerCase()}
           </button>
         )}
         {mode === 'repair' && part && !repair?.done && (

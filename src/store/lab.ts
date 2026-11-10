@@ -1,6 +1,7 @@
 // Lab session: one device in one mode. Wraps the pure engine and turns its events into
 // log lines, achievements and XP. The current session is saved in this browser so a reload resumes it.
 import { create } from 'zustand'
+import { powerWord } from '../engine/power'
 import { persist } from 'zustand/middleware'
 import { playSound } from '../audio/sound'
 import * as engine from '../engine/engine'
@@ -86,7 +87,7 @@ export const useLab = create<Lab>()(
             playSound('install')
           }
           if (e.type === 'power') {
-            say(e.connected ? 'Battery connected.' : 'Battery disconnected. Safe to work inside.', e.connected ? 'info' : 'good')
+            say(e.connected ? `${powerWord(d)} connected.` : `${powerWord(d)} disconnected. Safe to work inside.`, e.connected ? 'info' : 'good')
             playSound('click')
             if (!e.connected && r.state.violations === 0) progress().unlock('safety-first')
           }
