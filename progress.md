@@ -1,6 +1,10 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-09 - Fix: double Run shows +0 XP score card (branch friend/fix-double-run-xp, cut from main)
+- Bug: pressing Run twice on a fixed repair within the 4.5 s boot animation scheduled two score cards; the second (replay, 0 XP) replaced the first. Fix in `src/store/lab.ts`: the delayed callback skips when a card is already set. Test added in `lab.test.ts` (failed before: expected 0 > 0).
+- Tested: typecheck clean, `npm test` 65/65.
+
 ## 2026-11-08 - H-TECH lane: missing tests
 - Done:
   - `src/store/progress.test.ts`: XP for discover, case replay, achievement unlock, course bonus (4 tests).
