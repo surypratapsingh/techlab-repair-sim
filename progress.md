@@ -9,6 +9,10 @@ Newest entry first. Each entry: Done / In progress / Next / Blockers.
 - Done: `vite.config.ts` uses `vitest/config` and sets `test.testTimeout` to 30 s. `src/match/judge.test.ts` timed out at the 5 s default under `nice -n 19` on a shared PC (with and without other changes).
 - Tested: typecheck clean, `npm test` 64/64.
 
+## 2026-11-09 - Tests: lab session (branch friend/test-lab-session, cut from main)
+- Done: `src/store/lab-session.test.ts` (3 tests): same key resumes and another mode starts fresh, discovery XP paid once, marking a part faulty twice records it once. Tests only, no bug found.
+- Checked and skipped: accessibility (App sound toggle, mode tabs, log live regions, run overlay already labelled by the T-003 pass), nothing demonstrable.
+
 ## 2026-11-08 - H-TECH lane: missing tests
 - Done:
   - `src/store/progress.test.ts`: XP for discover, case replay, achievement unlock, course bonus (4 tests).
