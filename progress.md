@@ -1,6 +1,11 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-10 - c12/integrate: all seven friend pull requests in one branch
+- Done: merged #1, #2, #5, then #3, which already contains #4, #6 and #7 (a stack: #4 < #6 < #7 < #3), so those three need no separate merge. Only progress.md conflicted; all entries kept.
+- Tested: typecheck, npm test 75/75 (14 files), build pass. Planted faults caught: console/TV power word, double-run score card guard. The vitest timeout change (#2) is config only and has no test.
+- Next: owner reads the new devices (sony-ps5, sony-wh-1000xm4: sources are iFixit pages listed in each device file; case xm4-002 explanation names no source) and pushes c12/integrate, or merges #1, #2, #5, #3. T-001 photos are still missing.
+
 ## 2026-11-09 - Fix: double Run shows +0 XP score card (branch friend/fix-double-run-xp, cut from main)
 - Bug: pressing Run twice on a fixed repair within the 4.5 s boot animation scheduled two score cards; the second (replay, 0 XP) replaced the first. Fix in `src/store/lab.ts`: the delayed callback skips when a card is already set. Test added in `lab.test.ts` (failed before: expected 0 > 0).
 - Tested: typecheck clean, `npm test` 65/65.
