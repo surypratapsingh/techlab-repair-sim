@@ -1,6 +1,15 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-14 - AG-TECH lane: performance on mobile
+- Done:
+  - Created `src/scene/mobile.ts` providing device profiling and dynamic rendering tiering: clamps canvas DPR to 1.5 on mobile to eliminate 3x fill-rate exhaustion, scales down cylinder radial segments (18 vs 32) to save vertex processing, scales particle counts (Sparkles), and reduces smoke puff geometry segments.
+  - Added test suite `src/scene/mobile.test.ts` (5 unit tests) covering mobile detection, DPR clamping, and geometry segment scaling.
+  - Added `touch-action: none;` on `.stage canvas` in `src/styles.css` to prevent browser gesture interception and layout jank during 3D manipulation.
+- Tested: `npm test` (93/93 passed across 13 test suites), `npm run typecheck` clean, `npm run build` clean.
+- Blocked: T-001, T-002, T-009, T-011, T-012, T-013.
+- Next: Next item from lane list (one new practice case per item from devices already in the data, with tests).
+
 ## 2026-11-14 - AG-TECH lane: accessibility (keyboard repair flow, labels)
 - Done:
   - Created `src/ui/lab/keyboard.ts` providing complete keyboard repair flow shortcuts: `[`/`]` to cycle component selection, `r` to remove selected component, `i` to install matching spare part, `b` to toggle battery isolation, `m` to mark component faulty in repair mode, `t` to run diagnostic test, and `Escape` to clear selection.

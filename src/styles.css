@@ -486,6 +486,9 @@ ul.plain {
   background: radial-gradient(circle at 50% 40%, #1a2534, var(--bg) 70%);
   overflow: hidden;
 }
+.stage canvas {
+  touch-action: none;
+}
 .scene-fallback {
   display: flex;
   flex-direction: column;

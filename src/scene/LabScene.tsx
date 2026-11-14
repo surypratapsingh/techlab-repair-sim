@@ -9,6 +9,7 @@ import type { Component, Device, Shape, Vec3 } from '../engine/types'
 import { RUN_MS, useLab } from '../store/lab'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { resolveGltfUrl } from './gltf'
+import { getCylinderSegments, getSceneDpr, getSparklesCount, getSphereSegments, isMobileDevice } from './mobile'
 
 const MM = 0.05 // scene units per millimetre
 const EXPLODE_MM = 9
@@ -49,11 +50,12 @@ export function ShapeMesh({ s, color, screen }: { s: Shape; color: string; scree
   const metal = s.metalness ?? 0.25
   const rough = s.roughness ?? 0.55
   const opac = s.opacity ?? 1.0
+  const mobile = useMemo(() => isMobileDevice(), [])
   return (
     <group position={s.pos} rotation={s.rot ?? [0, 0, 0]}>
       {/* Cylinder axis defaults to +z (lenses face out of the back); three's cylinder axis is y. */}
       <mesh rotation={s.type === 'cylinder' ? [Math.PI / 2, 0, 0] : [0, 0, 0]} userData={{ screen, opacity: opac }}>
-        {s.type === 'box' ? <boxGeometry args={s.size} /> : <cylinderGeometry args={[s.size[0], s.size[0], s.size[1], 32]} />}
+        {s.type === 'box' ? <boxGeometry args={s.size} /> : <cylinderGeometry args={[s.size[0], s.size[0], s.size[1], getCylinderSegments(mobile)]} />}
         {s.textureUrl ? (
           <TexturedMaterial url={s.textureUrl} color={color} rough={rough} metal={metal} opac={opac} />
         ) : (
@@ -193,6 +195,7 @@ function slotPos(d: Device, slot: string | null | undefined, exploded: boolean):
 
 function Smoke({ at }: { at: Vec3 }) {
   const puffs = useRef<THREE.Group>(null!)
+  const mobile = useMemo(() => isMobileDevice(), [])
   const seeds = useMemo(() => Array.from({ length: 12 }, (_, i) => ({ dx: Math.sin(i * 2.4) * 8, dy: Math.cos(i * 1.7) * 8, phase: i / 12 })), [])
   useFrame(() => {
     const t = performance.now() / 1000
@@ -208,7 +211,7 @@ function Smoke({ at }: { at: Vec3 }) {
     <group ref={puffs}>
       {seeds.map((_, i) => (
         <mesh key={i}>
-          <sphereGeometry args={[1, 12, 12]} />
+          <sphereGeometry args={[1, ...getSphereSegments(mobile)]} />
           <meshStandardMaterial color="#6b6f75" transparent depthWrite={false} />
         </mesh>
       ))}
@@ -233,13 +236,14 @@ function Effects({ d }: { d: Device }) {
   const culprit = run?.result.symptoms.find((s) => s.slot)?.slot
   const sparkOn = spark && performance.now() - spark.t0 < 1400
   const noMotion = reducedMotion()
+  const mobile = useMemo(() => isMobileDevice(), [])
   return (
     <>
       {!noMotion && short && t !== null && t > 0.25 && t < 0.7 && (
-        <Sparkles position={slotPos(d, culprit, exploded)} count={60} scale={30} size={14} speed={3} color="#ffb340" />
+        <Sparkles position={slotPos(d, culprit, exploded)} count={getSparklesCount(mobile, 60)} scale={30} size={14} speed={3} color="#ffb340" />
       )}
       {!noMotion && short && t !== null && t > 0.4 && <Smoke at={slotPos(d, culprit, exploded)} />}
-      {!noMotion && sparkOn && <Sparkles position={slotPos(d, spark.slot, exploded)} count={40} scale={18} size={12} speed={4} color="#9fd8ff" />}
+      {!noMotion && sparkOn && <Sparkles position={slotPos(d, spark.slot, exploded)} count={getSparklesCount(mobile, 40)} scale={18} size={12} speed={4} color="#9fd8ff" />}
     </>
   )
 }
@@ -294,8 +298,14 @@ export function Lights() {
 
 export default function LabScene({ device }: { device: Device }) {
   const select = useLab((s) => s.select)
+  const mobile = useMemo(() => isMobileDevice(), [])
   return (
-    <Canvas camera={{ position: VIEWS.reset.slice(0, 3) as Vec3, fov: 40 }} dpr={[1, 2]} gl={{ alpha: true }} onPointerMissed={() => select(null)}>
+    <Canvas
+      camera={{ position: VIEWS.reset.slice(0, 3) as Vec3, fov: 40 }}
+      dpr={getSceneDpr(mobile)}
+      gl={{ alpha: true, powerPreference: mobile ? 'default' : 'high-performance' }}
+      onPointerMissed={() => select(null)}
+    >
       <Lights />
       <Rig>
         {device.components.map((c) => (
