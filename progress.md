@@ -1,6 +1,18 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-14 - AG-TECH lane: practice cases across all devices
+- Done:
+  - Added new practice repair cases and matching spares for all 4 devices in the catalog:
+    - Galaxy S23 Ultra: `s23u-006` (Shattered Horizon) display assembly repair case with `display-frame-new` and `display-frame-cracked` spares.
+    - iPhone 12: `ip12-004` (Blurred Vision) dual camera repair case with `ip12-camera-damaged` spare.
+    - Google Pixel 7: `p7-003` (Unfocused Horizon) rear camera repair case with `rear-cameras-new` and `rear-cameras-damaged` spares.
+    - ThinkPad T14: `t14-004` (Memory POST Lockup) RAM repair case with `ram-16gb` and `ram-corrupted` spares.
+  - Added test suite `src/game/cases.test.ts` (4 unit tests) proving each case loads, starts unbootable, and fixes to clean boot with spare part.
+- Tested: `npm test` (97/97 passed across 14 test suites, all devices valid), `npm run typecheck` clean, `npm run build` clean.
+- Blocked: T-001, T-002, T-009, T-011, T-012, T-013.
+- Next: All lane list items completed.
+
 ## 2026-11-14 - AG-TECH lane: performance on mobile
 - Done:
   - Created `src/scene/mobile.ts` providing device profiling and dynamic rendering tiering: clamps canvas DPR to 1.5 on mobile to eliminate 3x fill-rate exhaustion, scales down cylinder radial segments (18 vs 32) to save vertex processing, scales particle counts (Sparkles), and reduces smoke puff geometry segments.
