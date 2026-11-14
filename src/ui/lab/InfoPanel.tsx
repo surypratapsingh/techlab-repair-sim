@@ -30,7 +30,7 @@ export function InfoPanel() {
   const fast = componentFasteners(c)
 
   return (
-    <div className="panel info">
+    <div className="panel info" role="region" aria-label="Component inspection and actions">
       <h3>{c.name}</h3>
       <div className="tags">
         <span className="tag">{c.system}</span>
@@ -52,19 +52,33 @@ export function InfoPanel() {
         ))}
       {mode === 'repair' && partId && !reachable && <p className="muted">Remove what's on top of it to inspect it closely.</p>}
 
-      <div className="actions">
+      <div className="actions" role="toolbar" aria-label="Component actions">
         {part && (
-          <button className="btn" disabled={!!reason} onClick={() => remove(c.id)}>
+          <button
+            className="btn"
+            disabled={!!reason}
+            aria-label={`Remove ${c.name}${reason ? ` (${reason})` : ''}`}
+            onClick={() => remove(c.id)}
+          >
             Remove
           </button>
         )}
         {c.powerSource && part && (
-          <button className="btn" onClick={() => power(!state.powerConnected)}>
+          <button
+            className="btn"
+            aria-label={state.powerConnected ? 'Disconnect battery power' : 'Connect battery power'}
+            onClick={() => power(!state.powerConnected)}
+          >
             {state.powerConnected ? 'Disconnect battery' : 'Connect battery'}
           </button>
         )}
         {mode === 'repair' && part && !repair?.done && (
-          <button className="btn" disabled={repair?.flagged.includes(c.id)} onClick={() => flag(c.id)}>
+          <button
+            className="btn"
+            disabled={repair?.flagged.includes(c.id)}
+            aria-label={`Mark ${c.name} as faulty`}
+            onClick={() => flag(c.id)}
+          >
             {repair?.flagged.includes(c.id) ? 'Marked faulty' : 'Mark as faulty'}
           </button>
         )}
@@ -73,7 +87,12 @@ export function InfoPanel() {
             const sp = getPart(d, p)!
             const odd = mode !== 'repair' && (!isCompatible(d, p) ? ' (incompatible)' : sp.damaged ? ' (damaged)' : '')
             return (
-              <button key={p} className="btn" onClick={() => install(p, c.id)}>
+              <button
+                key={p}
+                className="btn"
+                aria-label={`Install ${sp.name} into ${c.name} slot${odd}`}
+                onClick={() => install(p, c.id)}
+              >
                 Install {sp.name}
                 {odd}
               </button>

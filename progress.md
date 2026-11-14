@@ -1,6 +1,16 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-14 - AG-TECH lane: accessibility (keyboard repair flow, labels)
+- Done:
+  - Created `src/ui/lab/keyboard.ts` providing complete keyboard repair flow shortcuts: `[`/`]` to cycle component selection, `r` to remove selected component, `i` to install matching spare part, `b` to toggle battery isolation, `m` to mark component faulty in repair mode, `t` to run diagnostic test, and `Escape` to clear selection.
+  - Added test suite `src/ui/lab/keyboard.test.ts` (8 unit tests) verifying all key handling, battery access checks, and input focus guarding.
+  - Added accessible `.keyboard-hints` footer in `LabPage.tsx` and styled in `styles.css`.
+  - Added comprehensive `aria-label` attributes and landmark roles across `PartsPanel.tsx`, `InfoPanel.tsx`, `Controls.tsx` (Toolbar and Bench), and `CasePanel.tsx`.
+- Tested: `npm test` (88/88 passed across 12 test suites), `npm run typecheck` clean, `npm run build` clean.
+- Blocked: T-001, T-002, T-009, T-011, T-012, T-013.
+- Next: Next item from lane list (performance on mobile).
+
 ## 2026-11-14 - AG-TECH lane: tests for validate module
 - Done:
   - Authored comprehensive test suite `src/engine/validate.test.ts` (16 unit tests) testing all `validateDevice` validation rules (duplicate IDs, power source count, references, shapes/info requirements, source citation checking, gltf model paths, fastener specs, spare kind matching, cycles, stock boot validation, repair case setup/culprit/spares) and `teardownAndRebuild`.
