@@ -1,6 +1,14 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-14 - AG-TECH lane: tests for validate module
+- Done:
+  - Authored comprehensive test suite `src/engine/validate.test.ts` (16 unit tests) testing all `validateDevice` validation rules (duplicate IDs, power source count, references, shapes/info requirements, source citation checking, gltf model paths, fastener specs, spare kind matching, cycles, stock boot validation, repair case setup/culprit/spares) and `teardownAndRebuild`.
+  - Added safety guard in `src/engine/validate.ts` to skip running state evaluation if repair case setup references are unknown.
+- Tested: `npm test` (80/80 passed across 11 test suites), `npm run typecheck` clean, `npm run build` clean.
+- Blocked: T-001, T-002, T-009, T-011, T-012, T-013 (owner photos, host choice).
+- Next: Next item from lane list (accessibility: keyboard repair flow, labels).
+
 ## 2026-11-08 - H-TECH lane: missing tests
 - Done:
   - `src/store/progress.test.ts`: XP for discover, case replay, achievement unlock, course bonus (4 tests).

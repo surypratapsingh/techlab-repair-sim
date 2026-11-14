@@ -67,6 +67,7 @@ export function validateDevice(d: Device): string[] {
 
   for (const k of d.cases) {
     const where = `case ${k.id}`
+    const caseErrors = errors.length
     for (const [slot, part] of Object.entries(k.setup)) {
       const c = d.components.find((x) => x.id === slot)
       const p = getPart(d, part)
@@ -75,6 +76,7 @@ export function validateDevice(d: Device): string[] {
     }
     if (!compIds.has(k.culprit)) err(`${where} culprit "${k.culprit}" is not a component`)
     k.spares.filter((p) => !getPart(d, p)).forEach((p) => err(`${where} unknown spare "${p}"`))
+    if (errors.length > caseErrors) continue
     if (run(d, createState(d, k.setup)).outcome === 'boots') err(`${where} starts in a state that already boots`)
     const fix = k.spares.find((p) => getPart(d, p)?.kind === getPart(d, k.setup[k.culprit] ?? k.culprit)?.kind && !getPart(d, p)?.damaged && getPart(d, p)?.compatible.includes(d.id))
     if (!fix) err(`${where} has no healthy compatible spare for the culprit`)
