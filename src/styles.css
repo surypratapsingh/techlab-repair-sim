@@ -832,3 +832,42 @@ summary {
   border-radius: 4px;
   color: var(--text);
 }
+
+/* Accessibility: 44px minimum tap targets on touch devices (WCAG 2.5.5 / 2.5.8) */
+@media (pointer: coarse), (max-width: 600px) {
+  .btn,
+  .sound-btn,
+  .topbar nav a,
+  .chip,
+  .run .link,
+  .modal .link,
+  .toolbar .btn {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .topbar nav {
+    align-items: center;
+  }
+
+  .topbar nav a {
+    padding: 0 0.6rem;
+  }
+
+  ul.chips {
+    gap: 0.6rem;
+  }
+
+  .chip {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.95em;
+  }
+
+  .run-head .link {
+    padding: 0.4rem 0.8rem;
+  }
+}
+
