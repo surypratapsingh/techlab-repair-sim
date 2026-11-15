@@ -1,6 +1,15 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-15 - AG-TECH lane: audit fixes (touch targets, lab lifecycle tests, data error recovery)
+- Done:
+  - Accessibility: Enforced 44px minimum tap targets across all interactive elements (`.btn`, `.sound-btn`, `.chip`, `.toolbar .btn`, `.topbar nav a`, `.run .link`) under `@media (pointer: coarse)` and `(max-width: 600px)` per WCAG 2.5.5 / 2.5.8; tested in `src/ui/touch-targets.test.ts` (4 unit tests).
+  - Lab store testing: Authored comprehensive test suite `src/store/lab-lifecycle.test.ts` (9 unit tests) covering camera commands (`flip`, `reset`, `front`, `angle`), explode view toggling, key gameplay achievements (`first-open`, `safety-first`, `know-it-all`, `sparky`, `frankenphone`), repair mode fault flagging deduplication, session resumption, and daily challenge recording.
+  - Data cache error recovery: Updated `src/data.ts` to evict rejected promises upon fetch failures so subsequent retries succeed when network recovers; added `clearDataCache()` export; tested in `src/data.test.ts` (3 unit tests).
+- Tested: `npm test` (111/111 passed across 16 test suites), `npm run typecheck` clean, `npm run build` clean.
+- Blocked: T-001, T-002, T-009, T-011, T-012, T-013.
+- Next: Await VERIFY or owner photos/host decisions.
+
 ## 2026-11-14 - AG-TECH lane: practice cases across all devices
 - Done:
   - Added new practice repair cases and matching spares for all 4 devices in the catalog:
