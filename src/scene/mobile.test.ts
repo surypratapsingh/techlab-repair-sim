@@ -9,9 +9,19 @@ import {
 
 describe('mobile performance utilities', () => {
   it('identifies mobile environments by viewport width or touch points', () => {
+    // Mobile phones: narrow viewport
     expect(isMobileDevice({ innerWidth: 375, maxTouchPoints: 0 })).toBe(true)
-    expect(isMobileDevice({ innerWidth: 500, maxTouchPoints: 5 })).toBe(true)
+    expect(isMobileDevice({ innerWidth: 412, maxTouchPoints: 5 })).toBe(true)
+    // Tablets: touch screen with width < 1024
+    expect(isMobileDevice({ innerWidth: 768, maxTouchPoints: 5 })).toBe(true)
+    expect(isMobileDevice({ innerWidth: 820, maxTouchPoints: 10 })).toBe(true)
+    // Desktop without touch
     expect(isMobileDevice({ innerWidth: 1280, maxTouchPoints: 0 })).toBe(false)
+    expect(isMobileDevice({ innerWidth: 1920, maxTouchPoints: 0 })).toBe(false)
+    // Touch laptops / desktops (>= 1024px) retain full desktop performance tier
+    expect(isMobileDevice({ innerWidth: 1024, maxTouchPoints: 10 })).toBe(false)
+    expect(isMobileDevice({ innerWidth: 1280, maxTouchPoints: 10 })).toBe(false)
+    expect(isMobileDevice({ innerWidth: 3840, maxTouchPoints: 10 })).toBe(false)
   })
 
   it('clamps DPR to 1.5 on mobile to avoid 3x fillrate exhaustion', () => {
