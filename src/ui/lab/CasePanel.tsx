@@ -24,7 +24,7 @@ export function CasePanel() {
   const elapsed = Math.max(0, (now - repair.startedAt) / 1000)
 
   return (
-    <div className="panel case">
+    <div className="panel case" role="region" aria-label="Repair case brief">
       <small className="muted">
         Case {k.id} · <span className="cap">{k.level}</span>
       </small>
@@ -38,7 +38,10 @@ export function CasePanel() {
       </ul>
       <h4>Objective</h4>
       <p className="muted">Find the faulty part, mark it, replace it, and run the device until it boots clean. Disconnect the battery before working inside.</p>
-      <p className={`timer ${elapsed > k.targetSeconds ? 'over' : ''}`}>
+      <p
+        className={`timer ${elapsed > k.targetSeconds ? 'over' : ''}`}
+        aria-label={`Elapsed time ${mmss(elapsed)}, target time ${mmss(k.targetSeconds)}`}
+      >
         {mmss(elapsed)} <small>/ target {mmss(k.targetSeconds)}</small>
       </p>
       {repair.flagged.length > 0 && (

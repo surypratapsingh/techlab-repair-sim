@@ -11,6 +11,7 @@ export function Toolbar() {
       <button
         className="btn"
         aria-pressed={exploded}
+        aria-label={exploded ? 'Collapse exploded 3D view' : 'Explode components 3D view'}
         onClick={() => {
           playSound('click')
           toggleExplode()
@@ -20,6 +21,7 @@ export function Toolbar() {
       </button>
       <button
         className="btn"
+        aria-label="Flip device between front and back views"
         onClick={() => {
           playSound('click')
           cameraCmd('flip')
@@ -29,6 +31,7 @@ export function Toolbar() {
       </button>
       <button
         className="btn"
+        aria-label="Reset 3D camera to default position"
         onClick={() => {
           playSound('click')
           cameraCmd('reset')
@@ -36,11 +39,17 @@ export function Toolbar() {
       >
         Reset view
       </button>
-      <button className="btn primary" disabled={done} onClick={runDevice}>
+      <button
+        className="btn primary"
+        disabled={done}
+        aria-label="Run device diagnostic test"
+        onClick={runDevice}
+      >
         Run device
       </button>
       <button
         className="btn"
+        aria-label="Reset device to its starting state"
         onClick={() => {
           playSound('click')
           if (confirm('Reset this device to its starting state?')) reset()
@@ -58,12 +67,12 @@ export function Bench() {
   const mode = useLab((s) => s.mode)
   const select = useLab((s) => s.select)
   return (
-    <div className="panel">
+    <div className="panel" role="region" aria-label="Workbench">
       <h3>
         Workbench <small>{state.bench.length} parts</small>
       </h3>
       {!state.bench.length && <p className="muted">Removed parts land here.</p>}
-      <ul className="chips">
+      <ul className="chips" aria-label="Workbench parts list">
         {state.bench.map((id) => {
           const p = getPart(d, id)!
           const slot = slotsFor(d, state, id)[0]
@@ -73,6 +82,7 @@ export function Bench() {
               <button
                 className={`chip ${odd ? 'odd' : ''}`}
                 title={slot ? 'Select the empty slot this part fits' : 'No empty slot for this part'}
+                aria-label={slot ? `Select slot to install ${p.name}` : `No empty slot for ${p.name}`}
                 disabled={!slot}
                 onClick={() => slot && select(slot)}
               >
