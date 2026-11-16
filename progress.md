@@ -1,6 +1,15 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-17 - AG-TECH lane: touch laptop mobile detection, unlock toast accessibility, and loader/keyboard tests
+- Done:
+  - Mobile detection optimization: Refined `isMobileDevice` in `src/scene/mobile.ts` to `width < 768 || (touch > 0 && width < 1024)`, ensuring touch-enabled laptops/desktops (>= 1024px) retain the high-performance desktop rendering tier without 1.5 DPR clamping or reduced geometry segments; updated `src/scene/mobile.test.ts`.
+  - Accessibility: Added `aria-live="polite"` to `UnlockToast` in `src/ui/App.tsx` for dynamic screen reader announcements of unlocked achievements; added `src/ui/app-accessibility.test.ts` (3 unit tests) testing toast `role="status"` / `aria-live="polite"`, `SoundToggle` button aria states, and logo/navigation landmarks.
+  - Test coverage: Extended `src/scene/gltf.test.ts` with dedicated unit tests for `loadGltf` success resolution and error rejection (12/12 tests pass); extended `src/ui/lab/keyboard.test.ts` with tests for uppercase keys (R, B, M, I, T) and invalid precondition guards (empty bench, filled slot, removed battery, explore mode flag) (10/10 tests pass).
+- Tested: `npm test` (118/118 passed across 17 test suites), `npm run typecheck` clean, `npm run build` clean.
+- Blocked: T-001, T-002, T-009, T-011, T-012, T-013.
+- Next: Await VERIFY or owner photos/host decisions.
+
 ## 2026-11-15 - AG-TECH lane: audit fixes (touch targets, lab lifecycle tests, data error recovery)
 - Done:
   - Accessibility: Enforced 44px minimum tap targets across all interactive elements (`.btn`, `.sound-btn`, `.chip`, `.toolbar .btn`, `.topbar nav a`, `.run .link`) under `@media (pointer: coarse)` and `(max-width: 600px)` per WCAG 2.5.5 / 2.5.8; tested in `src/ui/touch-targets.test.ts` (4 unit tests).
