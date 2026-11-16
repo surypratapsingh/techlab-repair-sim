@@ -1,9 +1,10 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
+import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import type { Component } from '../engine/types'
-import { resolveGltfUrl, resolveVisualMode } from './gltf'
+import { loadGltf, resolveGltfUrl, resolveVisualMode } from './gltf'
 
 // Provide minimal ProgressEvent for Node environment testing if needed
 if (typeof globalThis.ProgressEvent === 'undefined') {
@@ -120,6 +121,33 @@ describe('glTF option and procedural fallback', () => {
       expect(mesh.geometry).toBeDefined()
       expect(mesh.geometry.attributes.position.count).toBe(8)
       expect(mesh.geometry.index.count).toBe(36)
+    })
+  })
+
+  describe('loadGltf loader helper', () => {
+    it('resolves with the loaded scene group when loader succeeds', async () => {
+      const mockScene = new THREE.Group()
+      mockScene.name = 'MockScene'
+      const mockLoader = {
+        load: (_url: string, onLoad: (g: any) => void) => {
+          onLoad({ scene: mockScene })
+        },
+      } as unknown as GLTFLoader
+
+      const result = await loadGltf('models/mock.gltf', mockLoader)
+      expect(result).toBe(mockScene)
+      expect(result.name).toBe('MockScene')
+    })
+
+    it('rejects with error when loader fails to fetch or parse', async () => {
+      const mockError = new Error('Network timeout')
+      const mockLoader = {
+        load: (_url: string, _onLoad: any, _onProgress: any, onError: (e: any) => void) => {
+          onError(mockError)
+        },
+      } as unknown as GLTFLoader
+
+      await expect(loadGltf('models/missing.gltf', mockLoader)).rejects.toThrow('Network timeout')
     })
   })
 })

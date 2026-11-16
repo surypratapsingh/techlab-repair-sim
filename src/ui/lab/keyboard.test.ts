@@ -153,4 +153,73 @@ describe('handleLabKeyDown', () => {
     const res = handleLabKeyDown({ key: 'z' })
     expect(res).toBe(false)
   })
+
+  it('handles uppercase keys (R, B, M, I, T)', () => {
+    useLab.getState().open(s23u, 'repair', 's23u-001')
+    useLab.getState().select('back-cover')
+
+    // Uppercase R
+    expect(handleLabKeyDown({ key: 'R' })).toBe(true)
+    expect(useLab.getState().state?.slots['back-cover']).toBeNull()
+
+    // Uppercase B (after removing blocking part)
+    useLab.getState().remove('coil-speaker')
+    expect(handleLabKeyDown({ key: 'B' })).toBe(true)
+    expect(useLab.getState().state?.powerConnected).toBe(false)
+
+    // Uppercase M
+    useLab.getState().select('battery')
+    expect(handleLabKeyDown({ key: 'M' })).toBe(true)
+    expect(useLab.getState().repair?.flagged).toContain('battery')
+
+    // Uppercase I
+    useLab.getState().remove('interconnect')
+    useLab.getState().remove('screen-cable')
+    useLab.getState().remove('battery')
+    expect(useLab.getState().state?.slots['battery']).toBeNull()
+    useLab.getState().select('battery')
+    expect(handleLabKeyDown({ key: 'I' })).toBe(true)
+    expect(useLab.getState().state?.slots['battery']).toBe('battery-new')
+
+    // Uppercase T
+    expect(handleLabKeyDown({ key: 'T' })).toBe(true)
+    expect(useLab.getState().run).not.toBeNull()
+  })
+
+  it('guards against invalid operations when slot or part preconditions are not met', () => {
+    useLab.getState().open(s23u, 'explore', null)
+
+    // Escape when nothing selected returns false
+    expect(useLab.getState().selected).toBeNull()
+    expect(handleLabKeyDown({ key: 'Escape' })).toBe(false)
+
+    // R when selected slot is already empty returns false
+    useLab.getState().select('back-cover')
+    useLab.getState().remove('back-cover')
+    expect(useLab.getState().state?.slots['back-cover']).toBeNull()
+    expect(handleLabKeyDown({ key: 'r' })).toBe(false)
+
+    // I when slot is already filled returns false
+    useLab.getState().select('screen')
+    expect(useLab.getState().state?.slots['screen']).not.toBeNull()
+    expect(handleLabKeyDown({ key: 'i' })).toBe(false)
+
+    // I when no matching spare is available on bench returns false
+    useLab.setState({ state: { ...useLab.getState().state!, bench: [] } })
+    useLab.getState().select('back-cover')
+    expect(handleLabKeyDown({ key: 'i' })).toBe(false)
+
+    // B when battery component is completely removed returns false
+    useLab.getState().remove('coil-speaker')
+    useLab.getState().power(false)
+    useLab.getState().remove('interconnect')
+    useLab.getState().remove('screen-cable')
+    useLab.getState().remove('battery')
+    expect(useLab.getState().state?.slots['battery']).toBeNull()
+    expect(handleLabKeyDown({ key: 'b' })).toBe(false)
+
+    // M in explore mode returns false
+    useLab.getState().select('motherboard')
+    expect(handleLabKeyDown({ key: 'm' })).toBe(false)
+  })
 })
