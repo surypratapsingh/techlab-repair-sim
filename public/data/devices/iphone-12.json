@@ -23,39 +23,47 @@
     "status": "draft",
     "sources": [
       {
+        "id": "src-ifixit-ip12-screen",
         "title": "iFixit: iPhone 12 Screen Replacement",
         "url": "https://www.ifixit.com/Guide/iPhone+12+Screen+Replacement/136421"
       },
       {
+        "id": "src-ifixit-ip12-battery",
         "title": "iFixit: iPhone 12 Battery Replacement",
         "url": "https://www.ifixit.com/Guide/iPhone+12+Battery+Replacement/136428"
       },
       {
+        "id": "src-ifixit-ip12-rear-camera",
         "title": "iFixit: iPhone 12 Rear Camera Replacement",
         "url": "https://www.ifixit.com/Guide/iPhone+12+Rear+Camera+Replacement/136430"
       },
       {
+        "id": "src-ifixit-ip12-earpiece",
         "title": "iFixit: iPhone 12 Earpiece Speaker and Front Sensor Assembly Replacement",
         "url": "https://www.ifixit.com/Guide/iPhone+12+Earpiece+Speaker+and+Front+Sensor+Assembly+Replacement/136427"
       },
       {
+        "id": "src-ifixit-ip12-taptic",
         "title": "iFixit: iPhone 12 Taptic Engine Replacement",
         "url": "https://www.ifixit.com/Guide/iPhone+12+Taptic+Engine+Replacement/136432"
       },
       {
+        "id": "src-ifixit-ip12-loudspeaker",
         "title": "iFixit: iPhone 12 Loudspeaker Replacement",
         "url": "https://www.ifixit.com/Guide/iPhone+12+Loudspeaker+Replacement/136431"
       },
       {
+        "id": "src-ifixit-ip12-lightning",
         "title": "iFixit: iPhone 12 Lightning Connector Assembly Replacement",
         "url": "https://www.ifixit.com/Guide/iPhone+12+Lightning+Connector+Assembly+Replacement/136433"
       },
       {
+        "id": "src-ifixit-ip12-logic-board",
         "title": "iFixit: iPhone 12 Logic Board Replacement",
         "url": "https://www.ifixit.com/Guide/iPhone+12+Logic+Board+Replacement/136434"
       }
     ],
-    "notes": "Removal order, fastening, and connector layout derived from iFixit teardown guides. 3D geometry modeled with detailed multi-primitive components, realistic metallic/roughness materials, and hardware features."
+    "notes": "Removal order, fastening and connector layout from the iFixit guides listed in verification.sources (each component cites its guide by source id). Guide URLs returned HTTP 403/404 on re-check 2026-11-17, so the facts are not re-read this pass. 3D geometry modeled with detailed multi-primitive components, realistic metallic/roughness materials, and hardware features."
   },
   "components": [
     {
@@ -143,7 +151,10 @@
         "outcome": "degraded",
         "symptom": "No display screen: the device cannot show video output or accept touch input."
       },
-      "verified": true
+      "verified": true,
+      "sources": [
+        "src-ifixit-ip12-screen"
+      ]
     },
     {
       "id": "sim-tray",
@@ -209,7 +220,8 @@
         "outcome": "degraded",
         "symptom": "No SIM tray: physical nano-SIM card cannot be loaded."
       },
-      "verified": true
+      "verified": false,
+      "note": "No cited iFixit guide for this part yet. Facts unconfirmed; needs a source id."
     },
     {
       "id": "display-bracket",
@@ -305,7 +317,10 @@
         "outcome": "degraded",
         "symptom": "Connector bracket missing: battery and screen ribbon connectors are unprotected."
       },
-      "verified": true
+      "verified": true,
+      "sources": [
+        "src-ifixit-ip12-screen"
+      ]
     },
     {
       "id": "earpiece-assembly",
@@ -366,7 +381,10 @@
         "outcome": "degraded",
         "symptom": "Earpiece & sensor assembly missing: call audio disabled, auto-brightness off, and Face ID unavailable."
       },
-      "verified": true
+      "verified": true,
+      "sources": [
+        "src-ifixit-ip12-earpiece"
+      ]
     },
     {
       "id": "battery",
@@ -516,7 +534,10 @@
         "tempC": 12,
         "symptom": "Non-genuine battery: iOS displays 'Important Battery Message' and health metrics are disabled."
       },
-      "verified": true
+      "verified": true,
+      "sources": [
+        "src-ifixit-ip12-battery"
+      ]
     },
     {
       "id": "camera-rear",
@@ -680,7 +701,10 @@
         "outcome": "degraded",
         "symptom": "Unrecognized camera module: iOS displays 'Important Camera Message'."
       },
-      "verified": true
+      "verified": true,
+      "sources": [
+        "src-ifixit-ip12-rear-camera"
+      ]
     },
     {
       "id": "front-camera-faceid",
@@ -737,7 +761,10 @@
         "outcome": "degraded",
         "symptom": "TrueDepth camera missing: selfie video and Face ID authentication disabled."
       },
-      "verified": true
+      "verified": true,
+      "sources": [
+        "src-ifixit-ip12-logic-board"
+      ]
     },
     {
       "id": "loudspeaker",
@@ -789,7 +816,10 @@
         "outcome": "degraded",
         "symptom": "Loudspeaker missing: media playback and speakerphone produce no sound from the bottom."
       },
-      "verified": true
+      "verified": true,
+      "sources": [
+        "src-ifixit-ip12-loudspeaker"
+      ]
     },
     {
       "id": "taptic-engine",
@@ -886,7 +916,10 @@
         "outcome": "degraded",
         "symptom": "Taptic Engine missing: tactile feedback and call vibrations are disabled."
       },
-      "verified": true
+      "verified": true,
+      "sources": [
+        "src-ifixit-ip12-taptic"
+      ]
     },
     {
       "id": "lightning-board",
@@ -951,7 +984,10 @@
         "outcome": "degraded",
         "symptom": "Lightning connector assembly missing: wired charging, voice microphone, and USB data disabled."
       },
-      "verified": true
+      "verified": true,
+      "sources": [
+        "src-ifixit-ip12-lightning"
+      ]
     },
     {
       "id": "magsafe-coil",
@@ -1008,7 +1044,8 @@
         "outcome": "degraded",
         "symptom": "MagSafe coil missing: wireless charging and Apple Pay NFC fail."
       },
-      "verified": true
+      "verified": false,
+      "note": "No cited iFixit guide for this part yet. Facts unconfirmed; needs a source id."
     },
     {
       "id": "motherboard",
@@ -1188,7 +1225,10 @@
         "tempC": 30,
         "symptom": "Short circuit on logic board power rail: rapid heating and instant shutdown."
       },
-      "verified": true
+      "verified": true,
+      "sources": [
+        "src-ifixit-ip12-logic-board"
+      ]
     },
     {
       "id": "rear-chassis",
@@ -1320,7 +1360,8 @@
         "outcome": "degraded",
         "symptom": "No chassis frame: components have no structural housing."
       },
-      "verified": true
+      "verified": false,
+      "note": "No cited iFixit guide for this part yet. Facts unconfirmed; needs a source id."
     }
   ],
   "spares": [
