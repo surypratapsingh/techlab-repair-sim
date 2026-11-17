@@ -7,14 +7,24 @@ import { calculateStreak, getLocalDateString, pickDailyCase } from '../game/dail
 import { COURSES } from '../game/courses'
 import { useProgress } from '../store/progress'
 
+/** Message for a rejected load: an Error, a value with a `message`, or the value as text. */
+export function errorMessage(e: unknown): string {
+  return (e instanceof Error ? e.message : (e as any)?.message) ?? String(e)
+}
+
+/** What useLoad stores: the data, or the error message. Pure, so tests call the real code. */
+export function loadState<T>(fn: () => Promise<T>): Promise<{ data?: T; error?: string }> {
+  return fn().then(
+    (data) => ({ data }),
+    (e: unknown) => ({ error: errorMessage(e) }),
+  )
+}
+
 export function useLoad<T>(fn: () => Promise<T>, deps: unknown[]) {
   const [state, setState] = useState<{ data?: T; error?: string }>({})
   useEffect(() => {
     let live = true
-    fn().then(
-      (data) => live && setState({ data }),
-      (e: Error) => live && setState({ error: e.message }),
-    )
+    loadState(fn).then((s) => live && setState(s))
     return () => {
       live = false
     }
@@ -210,14 +220,23 @@ export function ProgressPage() {
   const level = levelFor(p.xp)
   const from = xpForLevel(level)
   const to = xpForLevel(level + 1)
+  const span = Math.max(1, to - from)
+  const progressPct = Math.min(100, Math.max(0, Math.round(((p.xp - from) / span) * 100)))
   return (
     <main className="page">
       <h2>Your progress</h2>
       <p className="muted">Saved only in this browser. Clearing site data erases it.</p>
       <section className="stat">
         <b>Level {level}</b>
-        <div className="bar" role="progressbar" aria-valuemin={from} aria-valuemax={to} aria-valuenow={p.xp}>
-          <i style={{ width: `${((p.xp - from) / (to - from)) * 100}%` }} />
+        <div
+          className="bar"
+          role="progressbar"
+          aria-valuemin={from}
+          aria-valuemax={to}
+          aria-valuenow={p.xp}
+          aria-valuetext={`Level ${level}, ${p.xp - from} of ${to - from} XP to next level`}
+        >
+          <i style={{ width: `${progressPct}%` }} />
         </div>
         <small>
           {p.xp} XP · {to - p.xp} XP to level {level + 1}
@@ -257,6 +276,7 @@ export function ProgressPage() {
       </ul>
       <button
         className="btn danger"
+        aria-label="Reset all saved progress in this browser"
         onClick={() => confirm('Erase all TechLab progress in this browser? This cannot be undone.') && p.reset()}
       >
         Reset progress

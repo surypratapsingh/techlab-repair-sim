@@ -69,7 +69,7 @@ function UnlockToast() {
   }, [id])
   const a = ACHIEVEMENTS.find((x) => x.id === id)
   return a ? (
-    <div className="unlock" role="status">
+    <div className="unlock" role="status" aria-live="polite">
       Achievement unlocked: <b>{a.title}</b>
     </div>
   ) : null

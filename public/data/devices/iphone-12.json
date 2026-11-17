@@ -1401,6 +1401,16 @@
         "outcome": "degraded",
         "symptom": "Damaged Lightning port: wired charging and data connection fail."
       }
+    },
+    {
+      "id": "ip12-camera-damaged",
+      "name": "Damaged dual rear camera module",
+      "kind": "camera-main",
+      "compatible": [
+        "iphone-12"
+      ],
+      "damaged": true,
+      "condition": "Cracked optical lens and rattling OIS coil actuator."
     }
   ],
   "cases": [
@@ -1463,6 +1473,24 @@
       ],
       "targetSeconds": 420,
       "explanation": "The Lightning port experiences mechanical wear and pin corrosion from moisture or debris. Replacing the Lightning flex assembly restores wired fast charging and USB data transfer."
+    },
+    {
+      "id": "ip12-004",
+      "title": "Blurred Vision",
+      "level": "intermediate",
+      "brief": "Customer reports rear camera vibrates loudly and produces blurry out-of-focus images after a drop.",
+      "symptoms": [
+        "Rear camera damaged: vibrating image, focus failure, or black preview."
+      ],
+      "setup": {
+        "camera-rear": "ip12-camera-damaged"
+      },
+      "culprit": "camera-rear",
+      "spares": [
+        "ip12-camera-new"
+      ],
+      "targetSeconds": 180,
+      "explanation": "Remove display assembly bracket, disconnect battery, unclip rear camera retainer bracket, and replace the faulty dual camera module."
     }
   ]
 }

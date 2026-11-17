@@ -10,13 +10,20 @@ function get<T>(file: string): Promise<T> {
   if (!cache.has(file))
     cache.set(
       file,
-      fetch(CONTENT_BASE + file).then((r) => {
-        if (!r.ok) throw new Error(`Could not load ${file} (${r.status})`)
-        return r.json()
-      }),
+      fetch(CONTENT_BASE + file)
+        .then((r) => {
+          if (!r.ok) throw new Error(`Could not load ${file} (${r.status})`)
+          return r.json()
+        })
+        .catch((err) => {
+          cache.delete(file)
+          throw err
+        }),
     )
   return cache.get(file) as Promise<T>
 }
+
+export const clearDataCache = () => cache.clear()
 
 export const loadIndex = () => get<DeviceSummary[]>('index.json')
 
