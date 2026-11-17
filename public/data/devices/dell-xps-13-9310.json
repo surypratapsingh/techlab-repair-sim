@@ -1,0 +1,370 @@
+{
+  "id": "dell-xps-13-9310",
+  "name": "Dell XPS 13 9310",
+  "brand": "Dell",
+  "category": "laptop",
+  "released": 2020,
+  "summary": "Common 13.3-inch ultrabook. Bottom cover, battery connector, battery and SSD come out from the bottom.",
+  "dimensionsMm": [
+    295.7,
+    198.7,
+    14.8
+  ],
+  "specs": {
+    "Display": "13.3 inch",
+    "Battery": "52 Wh",
+    "Released": "2020"
+  },
+  "verification": {
+    "status": "draft",
+    "sources": [
+      {
+        "id": "src-ifixit-xps13-device",
+        "title": "iFixit: Dell XPS 13 9310 device page (dimensions, battery, release year)",
+        "url": "https://www.ifixit.com/Device/Dell_XPS_13_9310"
+      },
+      {
+        "id": "src-ifixit-xps13-battery",
+        "title": "iFixit: Dell XPS 13 9310 Battery Replacement",
+        "url": "https://www.ifixit.com/Guide/Dell+XPS+13+9310+Battery+Replacement/154772"
+      },
+      {
+        "id": "src-ifixit-xps13-lower-case",
+        "title": "iFixit: Dell XPS 13 9310 Lower Case Replacement",
+        "url": "https://www.ifixit.com/Guide/Dell+XPS+13+9310+Lower+Case+Replacement/153496"
+      },
+      {
+        "id": "src-ifixit-xps13-ssd",
+        "title": "iFixit: Dell XPS 13 9310 SSD Replacement",
+        "url": "https://www.ifixit.com/Guide/Dell+XPS+13+9310+SSD+Replacement/153501"
+      }
+    ],
+    "notes": "Lower case, battery connector, battery and SSD steps come from the iFixit guides above. Dimensions, battery capacity and release year come from the iFixit device page. Motherboard and display are not modelled (no guide read yet). Two repair cases only; a third needs another guide."
+  },
+  "components": [
+    {
+      "id": "lower-case",
+      "name": "Lower case",
+      "kind": "bottom-cover",
+      "system": "structure",
+      "difficulty": "easy",
+      "requires": [],
+      "connectsTo": [],
+      "fastening": "Eight T5 Torx 3.3 mm screws holding the lower case to the chassis.",
+      "fasteners": [
+        {
+          "type": "screw",
+          "count": 8,
+          "notes": "T5 Torx 3.3 mm"
+        }
+      ],
+      "layer": 5,
+      "exit": [
+        0,
+        0,
+        1
+      ],
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            295.7,
+            198.7,
+            1.5
+          ],
+          "pos": [
+            0,
+            0,
+            7.5
+          ],
+          "color": "#2a2c30",
+          "roughness": 0.8
+        }
+      ],
+      "info": {
+        "what": "The bottom panel of the XPS 13 9310 chassis.",
+        "does": "Covers the battery, SSD and cooling; removing it exposes internal parts.",
+        "ifFails": "Loose or cracked base: dust ingress and flex that stresses internal connectors."
+      },
+      "specs": {
+        "Screws": "8x T5 Torx 3.3 mm"
+      },
+      "onMissing": {
+        "outcome": "degraded",
+        "symptom": "Lower case removed: internal parts exposed to dust and short circuits."
+      },
+      "verified": true,
+      "sources": [
+        "src-ifixit-xps13-lower-case"
+      ]
+    },
+    {
+      "id": "battery-connector",
+      "name": "Battery connector",
+      "kind": "battery-connector",
+      "system": "power",
+      "difficulty": "easy",
+      "requires": [
+        "lower-case"
+      ],
+      "connectsTo": [],
+      "electrical": true,
+      "fastening": "Battery cable press-connector, unplugged with a spudger.",
+      "fasteners": [
+        {
+          "type": "press-connector",
+          "count": 1,
+          "tool": "spudger"
+        }
+      ],
+      "layer": 4,
+      "exit": [
+        0,
+        0,
+        1
+      ],
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            30,
+            6,
+            1
+          ],
+          "pos": [
+            -80,
+            -60,
+            6
+          ],
+          "color": "#c9a227"
+        }
+      ],
+      "info": {
+        "what": "The press connector that links the battery cable to the mainboard.",
+        "does": "Carries battery power into the laptop. Must be unplugged before the battery is removed.",
+        "ifFails": "Loose connector: intermittent power and unexpected shutdowns."
+      },
+      "onMissing": {
+        "outcome": "no-power",
+        "symptom": "Battery connector unplugged: no battery power reaches the laptop."
+      },
+      "verified": true,
+      "sources": [
+        "src-ifixit-xps13-battery"
+      ]
+    },
+    {
+      "id": "battery",
+      "name": "Battery (52 Wh)",
+      "kind": "battery",
+      "system": "power",
+      "difficulty": "medium",
+      "requires": [
+        "lower-case",
+        "battery-connector"
+      ],
+      "connectsTo": [
+        "battery-connector"
+      ],
+      "connectorAccess": [
+        "lower-case"
+      ],
+      "powerSource": true,
+      "electrical": true,
+      "fastening": "Five 2.8 mm Phillips screws holding the battery to the chassis, after the lower case and battery connector.",
+      "fasteners": [
+        {
+          "type": "screw",
+          "count": 5,
+          "tool": "phillips-00",
+          "notes": "2.8 mm Phillips"
+        }
+      ],
+      "layer": 3,
+      "exit": [
+        0,
+        0,
+        1
+      ],
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            200,
+            90,
+            5
+          ],
+          "pos": [
+            0,
+            -30,
+            5
+          ],
+          "color": "#1a1a1a"
+        }
+      ],
+      "info": {
+        "what": "A 52 Wh lithium-ion battery pack under the palm rest.",
+        "does": "Supplies system power when AC power is not connected.",
+        "ifFails": "Short runtime, unexpected shutdowns under load, or swelling."
+      },
+      "specs": {
+        "Capacity": "52 Wh"
+      },
+      "onMissing": {
+        "outcome": "no-power",
+        "symptom": "No battery installed: laptop cannot run on battery power."
+      },
+      "onDamaged": {
+        "outcome": "thermal-shutdown",
+        "tempC": 22,
+        "symptom": "Degraded battery: voltage sag under load triggers emergency shutdown."
+      },
+      "verified": true,
+      "sources": [
+        "src-ifixit-xps13-battery",
+        "src-ifixit-xps13-device"
+      ]
+    },
+    {
+      "id": "ssd",
+      "name": "M.2 SSD",
+      "kind": "ssd",
+      "system": "compute",
+      "difficulty": "easy",
+      "requires": [
+        "lower-case",
+        "battery-connector"
+      ],
+      "connectsTo": [],
+      "electrical": true,
+      "fastening": "One 3.6 mm Phillips screw holding the M.2 SSD after the SSD cover is lifted.",
+      "fasteners": [
+        {
+          "type": "screw",
+          "count": 1,
+          "tool": "phillips-00",
+          "notes": "3.6 mm Phillips"
+        }
+      ],
+      "layer": 2,
+      "exit": [
+        0,
+        0,
+        1
+      ],
+      "shapes": [
+        {
+          "type": "box",
+          "size": [
+            22,
+            80,
+            2.5
+          ],
+          "pos": [
+            60,
+            20,
+            3.5
+          ],
+          "color": "#2f5233"
+        }
+      ],
+      "info": {
+        "what": "The M.2 solid state drive that holds the operating system and user files.",
+        "does": "Stores the operating system and applications.",
+        "ifFails": "Laptop fails to detect storage; boot stops with a storage detection error."
+      },
+      "onMissing": {
+        "outcome": "no-boot",
+        "symptom": "No storage device detected: laptop cannot boot."
+      },
+      "onDamaged": {
+        "outcome": "no-boot",
+        "symptom": "Storage controller failure: boot device not recognised."
+      },
+      "verified": true,
+      "sources": [
+        "src-ifixit-xps13-ssd"
+      ]
+    }
+  ],
+  "spares": [
+    {
+      "id": "battery-healthy",
+      "name": "52 Wh Li-ion battery (healthy)",
+      "kind": "battery",
+      "compatible": [
+        "dell-xps-13-9310"
+      ]
+    },
+    {
+      "id": "battery-degraded",
+      "name": "52 Wh Li-ion battery (degraded)",
+      "kind": "battery",
+      "compatible": [
+        "dell-xps-13-9310"
+      ],
+      "damaged": true,
+      "condition": "Cells worn, voltage sags under load"
+    },
+    {
+      "id": "ssd-fast",
+      "name": "M.2 SSD (healthy)",
+      "kind": "ssd",
+      "compatible": [
+        "dell-xps-13-9310"
+      ]
+    },
+    {
+      "id": "ssd-corrupt",
+      "name": "M.2 SSD (controller fault)",
+      "kind": "ssd",
+      "compatible": [
+        "dell-xps-13-9310"
+      ],
+      "damaged": true,
+      "condition": "Controller fault, not detected"
+    }
+  ],
+  "cases": [
+    {
+      "id": "xps-001",
+      "title": "Shutdown Under Load",
+      "level": "beginner",
+      "brief": "The laptop shuts off under load when unplugged from AC power.",
+      "symptoms": [
+        "Shuts down abruptly on battery power under load.",
+        "Runs fine on AC power."
+      ],
+      "setup": {
+        "battery": "battery-degraded"
+      },
+      "culprit": "battery",
+      "spares": [
+        "battery-healthy",
+        "battery-degraded"
+      ],
+      "targetSeconds": 120,
+      "explanation": "Worn battery cells cause voltage sag under load. A healthy battery restores runtime and stable power."
+    },
+    {
+      "id": "xps-002",
+      "title": "Storage Not Detected",
+      "level": "beginner",
+      "brief": "The laptop stops at boot with a storage detection error.",
+      "symptoms": [
+        "Boot halts with a storage detection error.",
+        "No operating system loads."
+      ],
+      "setup": {
+        "ssd": "ssd-corrupt"
+      },
+      "culprit": "ssd",
+      "spares": [
+        "ssd-fast",
+        "ssd-corrupt"
+      ],
+      "targetSeconds": 150,
+      "explanation": "The SSD controller fault stops the drive from being detected. A healthy M.2 SSD restores boot."
+    }
+  ]
+}
