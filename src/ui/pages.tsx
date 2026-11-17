@@ -13,7 +13,7 @@ export function useLoad<T>(fn: () => Promise<T>, deps: unknown[]) {
     let live = true
     fn().then(
       (data) => live && setState({ data }),
-      (e: Error) => live && setState({ error: e.message }),
+      (e: unknown) => live && setState({ error: (e instanceof Error ? e.message : (e as any)?.message) ?? String(e) }),
     )
     return () => {
       live = false
