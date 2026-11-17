@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { crossDeviceParts, partFitsDevice } from './compat'
+import { crossDeviceParts, fitNote, partFitsDevice } from './compat'
 import type { Device, Part } from './types'
 
 const DATA = join(__dirname, '../../public/data/devices')
@@ -32,5 +32,15 @@ describe('cross-device parts', () => {
 
   it('current content has no cross-device fits (no source supports one yet)', () => {
     for (const d of devices) expect(crossDeviceParts(devices, d)).toEqual([])
+  })
+})
+
+describe('fit note', () => {
+  it('says so when nothing from other devices fits, and names the part when one does', () => {
+    const iphone = byId('iphone-12')
+    expect(fitNote(iphone, devices)).toBe('No loose parts from other devices fit this device.')
+    const pixel = structuredClone(byId('pixel-7'))
+    pixel.spares.push({ id: 'pixel-shared', name: 'Shared battery', kind: iphone.components[0].kind, compatible: ['iphone-12'] })
+    expect(fitNote(iphone, [pixel])).toBe('Also fits: Shared battery (from pixel-7).')
   })
 })

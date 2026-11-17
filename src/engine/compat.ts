@@ -12,3 +12,10 @@ export function crossDeviceParts(devices: Device[], target: Device): Array<{ par
     .filter((d) => d.id !== target.id)
     .flatMap((d) => d.spares.filter((p) => partFitsDevice(p, target)).map((part) => ({ part, from: d.id })))
 }
+
+/** One line for the lab UI: which loose parts from `devices` fit `target`. */
+export function fitNote(target: Device, devices: Device[]): string {
+  const fits = crossDeviceParts(devices, target)
+  if (!fits.length) return 'No loose parts from other devices fit this device.'
+  return `Also fits: ${fits.map((f) => `${f.part.name} (from ${f.from})`).join(', ')}.`
+}
