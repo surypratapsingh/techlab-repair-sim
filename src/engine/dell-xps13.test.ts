@@ -65,6 +65,20 @@ describe('Dell XPS 13 9310 (laptop, content only)', () => {
     expect(run(d, s).outcome).toBe('boots')
   })
 
+  it('case xps-003: corroded battery connector cuts power; a healthy connector restores it', () => {
+    let s = createState(d, { 'battery-connector': 'battery-connector-damaged' }, ['battery-connector-new'])
+    expect(run(d, s).outcome).not.toBe('boots')
+    s = apply(s, [
+      ['remove', 'lower-case'],
+      ['off', ''],
+      ['remove', 'battery-connector'],
+      ['install', 'battery-connector-new', 'battery-connector'],
+    ])
+    s = powerOn(s)
+    s = apply(s, [['install', 'lower-case', 'lower-case']])
+    expect(run(d, s).outcome).toBe('boots')
+  })
+
   it('no missing part ids: every case and spare reference resolves', () => {
     const slots = new Set(d.components.map((c) => c.id))
     const parts = new Set(d.spares.map((p) => p.id))

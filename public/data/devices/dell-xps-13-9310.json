@@ -323,6 +323,24 @@
       ],
       "damaged": true,
       "condition": "Controller fault, not detected"
+    },
+    {
+      "id": "battery-connector-new",
+      "name": "Battery connector (healthy)",
+      "kind": "battery-connector",
+      "compatible": [
+        "dell-xps-13-9310"
+      ]
+    },
+    {
+      "id": "battery-connector-damaged",
+      "name": "Battery connector (corroded)",
+      "kind": "battery-connector",
+      "compatible": [
+        "dell-xps-13-9310"
+      ],
+      "damaged": true,
+      "condition": "Contacts corroded, intermittent power"
     }
   ],
   "cases": [
@@ -365,6 +383,26 @@
       ],
       "targetSeconds": 150,
       "explanation": "The SSD controller fault stops the drive from being detected. A healthy M.2 SSD restores boot."
+    },
+    {
+      "id": "xps-003",
+      "title": "Intermittent Power",
+      "level": "intermediate",
+      "brief": "The laptop loses power when the lid is moved, and the battery connector is suspect.",
+      "symptoms": [
+        "Power drops out while on battery.",
+        "Battery reports no power source to the board."
+      ],
+      "setup": {
+        "battery-connector": "battery-connector-damaged"
+      },
+      "culprit": "battery-connector",
+      "spares": [
+        "battery-connector-new",
+        "battery-connector-damaged"
+      ],
+      "targetSeconds": 150,
+      "explanation": "A corroded battery connector breaks the power path to the battery. Simplified model: the real fault mode is not in the iFixit guide; it is a learning shortcut. A healthy connector restores power."
     }
   ]
 }
