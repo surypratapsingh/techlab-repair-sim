@@ -869,5 +869,21 @@ summary {
   .run-head .link {
     padding: 0.4rem 0.8rem;
   }
+
+  .part,
+  .seg a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .seg a {
+    padding: 0 1rem;
+    justify-content: center;
+  }
+
+  .part {
+    padding: 0.5rem 0.75rem;
+  }
 }
 

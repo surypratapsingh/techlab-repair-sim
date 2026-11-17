@@ -33,4 +33,15 @@ describe('touch targets accessibility (WCAG 2.5.5 / 2.5.8)', () => {
     const coarseBlock = coarseBlockMatch![1]
     expect(coarseBlock).toContain('padding: 0.5rem 0.9rem')
   })
+
+  it('enforces 44px min-height on component parts and mode segment tabs on touch devices', () => {
+    const coarseBlockMatch = css.match(/@media[^{]*\(\s*pointer\s*:\s*coarse\s*\)[^{]*\{([\s\S]*?)\n\}/)
+    expect(coarseBlockMatch).not.toBeNull()
+    const coarseBlock = coarseBlockMatch![1]
+
+    expect(coarseBlock).toContain('.part')
+    expect(coarseBlock).toContain('.seg a')
+    expect(coarseBlock).toMatch(/\.part,\s*\.seg a\s*\{[^}]*min-height:\s*44px/)
+    expect(coarseBlock).toContain('padding: 0.5rem 0.75rem')
+  })
 })
