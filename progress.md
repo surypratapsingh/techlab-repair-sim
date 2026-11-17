@@ -1,6 +1,15 @@
 # Progress Log
 Newest entry first. Each entry: Done / In progress / Next / Blockers.
 
+## 2026-11-17 - AG-TECH lane: touch targets expansion, scoreCase zero-target guards, and UI pages test suite
+- Done:
+  - Accessibility: Enforced 44px minimum tap targets on `.part` component buttons and `.seg a` mode tabs under `@media (pointer: coarse)` and `(max-width: 600px)` per WCAG 2.5.5 / 2.5.8; updated `src/ui/touch-targets.test.ts` (5 tests pass).
+  - Game engine & progress bar bounds: Added `Math.max(1, a.targetSeconds)` guard in `scoreCase` (`src/game/game.ts`) and NaN-safe clamping to prevent division-by-zero on zero or negative target times; bounded progress bar calculation in `ProgressPage` (`src/ui/pages.tsx`) to avoid `NaN%` with screen-reader accessible `aria-valuetext` and button `aria-label`; expanded `src/game/game.test.ts` with 6 new tests covering level boundaries, scoring penalties, zero targetSeconds, and achievements catalog (9 tests pass).
+  - UI content pages resilience and test coverage: Handled non-Error objects/strings in `useLoad` rejection handler in `src/ui/pages.tsx`; added `src/ui/pages.test.ts` (6 tests) covering `Landing` call-to-actions and descriptions, `ProgressPage` level bar, achievements, courses, and `useLoad` error extraction.
+- Tested: `npm test` (131/131 passed across 18 test suites), `npm run typecheck` clean, `npm run build` clean.
+- Blocked: T-001, T-002, T-009, T-011, T-012, T-013.
+- Next: Await VERIFY or owner photos/host decisions.
+
 ## 2026-11-17 - AG-TECH lane: touch laptop mobile detection, unlock toast accessibility, and loader/keyboard tests
 - Done:
   - Mobile detection optimization: Refined `isMobileDevice` in `src/scene/mobile.ts` to `width < 768 || (touch > 0 && width < 1024)`, ensuring touch-enabled laptops/desktops (>= 1024px) retain the high-performance desktop rendering tier without 1.5 DPR clamping or reduced geometry segments; updated `src/scene/mobile.test.ts`.
