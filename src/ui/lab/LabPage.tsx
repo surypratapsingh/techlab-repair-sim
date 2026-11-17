@@ -7,6 +7,7 @@ import { CasePanel, CaseResult } from './CasePanel'
 import { CourseGuide } from './CourseGuide'
 import { Bench, Log, Toolbar } from './Controls'
 import { InfoPanel } from './InfoPanel'
+import { handleLabKeyDown } from './keyboard'
 import { PartsPanel } from './PartsPanel'
 import { RunOverlay } from './RunOverlay'
 
@@ -72,6 +73,14 @@ export default function LabPage({ deviceId, mode, caseId }: { deviceId: string; 
     useLab.getState().open(device, mode, caseId)
   }, [device, mode, caseId])
 
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      handleLabKeyDown(e)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [])
+
   if (error) return <p className="error">{error}</p>
   if (!device) return <p className="loading">Loading device…</p>
   if (mode === 'repair' && !device.cases.some((k) => k.id === caseId)) return <p className="error">Unknown repair case.</p>
@@ -113,6 +122,16 @@ export default function LabPage({ deviceId, mode, caseId }: { deviceId: string; 
         <InfoPanel />
         <Bench />
       </aside>
+      <div className="keyboard-hints" role="region" aria-label="Keyboard repair shortcuts">
+        <span>Keyboard shortcuts:</span>
+        <span><kbd>[</kbd> / <kbd>]</kbd> Select part</span>
+        <span><kbd>R</kbd> Remove</span>
+        <span><kbd>I</kbd> Install spare</span>
+        <span><kbd>B</kbd> Battery power</span>
+        {mode === 'repair' && <span><kbd>M</kbd> Mark faulty</span>}
+        <span><kbd>T</kbd> Test run</span>
+        <span><kbd>Esc</kbd> Deselect</span>
+      </div>
       <CaseResult />
     </main>
   )

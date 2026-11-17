@@ -210,14 +210,23 @@ export function ProgressPage() {
   const level = levelFor(p.xp)
   const from = xpForLevel(level)
   const to = xpForLevel(level + 1)
+  const span = Math.max(1, to - from)
+  const progressPct = Math.min(100, Math.max(0, Math.round(((p.xp - from) / span) * 100)))
   return (
     <main className="page">
       <h2>Your progress</h2>
       <p className="muted">Saved only in this browser. Clearing site data erases it.</p>
       <section className="stat">
         <b>Level {level}</b>
-        <div className="bar" role="progressbar" aria-valuemin={from} aria-valuemax={to} aria-valuenow={p.xp}>
-          <i style={{ width: `${((p.xp - from) / (to - from)) * 100}%` }} />
+        <div
+          className="bar"
+          role="progressbar"
+          aria-valuemin={from}
+          aria-valuemax={to}
+          aria-valuenow={p.xp}
+          aria-valuetext={`Level ${level}, ${p.xp - from} of ${to - from} XP to next level`}
+        >
+          <i style={{ width: `${progressPct}%` }} />
         </div>
         <small>
           {p.xp} XP · {to - p.xp} XP to level {level + 1}
@@ -257,6 +266,7 @@ export function ProgressPage() {
       </ul>
       <button
         className="btn danger"
+        aria-label="Reset all saved progress in this browser"
         onClick={() => confirm('Erase all TechLab progress in this browser? This cannot be undone.') && p.reset()}
       >
         Reset progress

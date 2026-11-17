@@ -16,12 +16,16 @@ export function PartsPanel() {
   const outerFirst = [...d.components].sort((a, b) => b.layer - a.layer)
 
   return (
-    <div className="panel">
+    <div className="panel" role="region" aria-label="Device components list">
       <div className="power">
         <span className={`dot ${state.powerConnected ? 'on' : ''}`} aria-hidden="true" />
         <span aria-live="polite">Battery {state.powerConnected ? 'connected' : 'disconnected'}</span>
         {state.slots[battery.id] && (
-          <button className="btn sm" onClick={() => power(!state.powerConnected)}>
+          <button
+            className="btn sm"
+            aria-label={state.powerConnected ? 'Disconnect battery power' : 'Connect battery power'}
+            onClick={() => power(!state.powerConnected)}
+          >
             {state.powerConnected ? 'Disconnect' : 'Connect'}
           </button>
         )}
@@ -39,7 +43,12 @@ export function PartsPanel() {
           const known = found.includes(c.id)
           return (
             <li key={c.id}>
-              <button aria-pressed={selected === c.id} onClick={() => select(c.id)} className={`part ${status}`}>
+              <button
+                aria-pressed={selected === c.id}
+                aria-label={`${known ? c.name : 'Unknown part'}, status ${status}${selected === c.id ? ', currently selected' : ''}`}
+                onClick={() => select(c.id)}
+                className={`part ${status}`}
+              >
                 <span className="dot" aria-hidden="true" />
                 <span>{known ? c.name : 'Unknown part'}</span>
                 <small>{status === 'ok' ? '' : status}</small>
