@@ -25,15 +25,16 @@ export interface CaseScore {
   total: number
 }
 
-const clamp = (n: number) => Math.max(0, Math.min(100, Math.round(n)))
+const clamp = (n: number) => (Number.isNaN(n) ? 0 : Math.max(0, Math.min(100, Math.round(n))))
 
 export function scoreCase(a: CaseAttempt): CaseScore {
   const wrong = a.flagged.filter((f) => f !== a.culprit).length
   const diagnosis = a.flagged.includes(a.culprit) ? clamp(100 - 25 * wrong) : 40
   const repair = clamp(100 - 25 * a.violations)
   const parts = clamp(100 - 25 * a.extraSwaps)
-  const over = Math.max(0, a.seconds - a.targetSeconds)
-  const time = Math.max(40, clamp(100 - (60 * over) / (2 * a.targetSeconds)))
+  const target = Math.max(1, a.targetSeconds || 1)
+  const over = Math.max(0, a.seconds - target)
+  const time = Math.max(40, clamp(100 - (60 * over) / (2 * target)))
   const total = clamp(0.3 * diagnosis + 0.3 * repair + 0.2 * parts + 0.2 * time)
   return { diagnosis, repair, parts, time, total }
 }
