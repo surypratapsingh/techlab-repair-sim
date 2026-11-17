@@ -136,3 +136,13 @@ describe('gamification rules and scoring (game.ts)', () => {
     })
   })
 })
+
+describe('scoreCase time guard (game.ts)', () => {
+  const base = { flagged: ['c'], culprit: 'c', violations: 0, extraSwaps: 0 }
+  it('a zero target counts as 1 second: finishing in 1 s is full time score', () => {
+    expect(scoreCase({ ...base, seconds: 1, targetSeconds: 0 }).time).toBe(100)
+  })
+  it('a negative target counts as 1 second: 5 s on it loses time, not gains it', () => {
+    expect(scoreCase({ ...base, seconds: 5, targetSeconds: -10 }).time).toBe(40)
+  })
+})
