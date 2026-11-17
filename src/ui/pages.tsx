@@ -7,14 +7,24 @@ import { calculateStreak, getLocalDateString, pickDailyCase } from '../game/dail
 import { COURSES } from '../game/courses'
 import { useProgress } from '../store/progress'
 
+/** Message for a rejected load: an Error, a value with a `message`, or the value as text. */
+export function errorMessage(e: unknown): string {
+  return (e instanceof Error ? e.message : (e as any)?.message) ?? String(e)
+}
+
+/** What useLoad stores: the data, or the error message. Pure, so tests call the real code. */
+export function loadState<T>(fn: () => Promise<T>): Promise<{ data?: T; error?: string }> {
+  return fn().then(
+    (data) => ({ data }),
+    (e: unknown) => ({ error: errorMessage(e) }),
+  )
+}
+
 export function useLoad<T>(fn: () => Promise<T>, deps: unknown[]) {
   const [state, setState] = useState<{ data?: T; error?: string }>({})
   useEffect(() => {
     let live = true
-    fn().then(
-      (data) => live && setState({ data }),
-      (e: unknown) => live && setState({ error: (e instanceof Error ? e.message : (e as any)?.message) ?? String(e) }),
-    )
+    loadState(fn).then((s) => live && setState(s))
     return () => {
       live = false
     }

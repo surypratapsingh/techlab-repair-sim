@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { renderToString } from 'react-dom/server'
 import React from 'react'
-import { Landing, ProgressPage } from './pages'
+import { errorMessage, Landing, loadState, ProgressPage } from './pages'
 import { useProgress } from '../store/progress'
 
 vi.mock('../store/progress', () => {
@@ -101,16 +101,19 @@ describe('UI content pages (pages.tsx)', () => {
     })
   })
 
-  describe('useLoad error extraction resilience', () => {
-    it('handles non-Error objects and string rejections safely', () => {
-      const extractError = (e: unknown): string =>
-        (e instanceof Error ? e.message : (e as any)?.message) ?? String(e)
-
-      expect(extractError(new Error('Standard error'))).toBe('Standard error')
-      expect(extractError('String error message')).toBe('String error message')
-      expect(extractError({ message: 'Object error message' })).toBe('Object error message')
-      expect(extractError(404)).toBe('404')
-      expect(extractError(null)).toBe('null')
+  describe('load errors (useLoad uses loadState)', () => {
+    it('errorMessage reads Error, message objects, strings and other values', () => {
+      expect(errorMessage(new Error('Standard error'))).toBe('Standard error')
+      expect(errorMessage('String error message')).toBe('String error message')
+      expect(errorMessage({ message: 'Object error message' })).toBe('Object error message')
+      expect(errorMessage(404)).toBe('404')
+      expect(errorMessage(null)).toBe('null')
+    })
+    it('loadState stores data on success and the message on failure', async () => {
+      expect(await loadState(() => Promise.resolve(42))).toEqual({ data: 42 })
+      expect(await loadState(() => Promise.reject(new Error('boom')))).toEqual({ error: 'boom' })
+      expect(await loadState(() => Promise.reject('plain'))).toEqual({ error: 'plain' })
+      expect(await loadState(() => Promise.reject({ message: 'obj' }))).toEqual({ error: 'obj' })
     })
   })
 })
