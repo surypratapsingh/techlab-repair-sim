@@ -1,4 +1,5 @@
 // Component list: the keyboard-accessible way to select parts, plus slot status at a glance.
+import { fitNote } from '../../engine/compat'
 import { isCompatible, isDamaged, powerSource } from '../../engine/engine'
 import { useLab } from '../../store/lab'
 import { useProgress } from '../../store/progress'
@@ -48,6 +49,8 @@ export function PartsPanel() {
           )
         })}
       </ul>
+      {/* Cross-device fits: only this device is loaded here, so the note covers it alone. */}
+      <p className="muted">{fitNote(d, [d])}</p>
     </div>
   )
 }
